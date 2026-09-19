@@ -1,350 +1,252 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Điều khoản dịch vụ — Nova Bot</title>
-<meta name="description" content="Điều khoản dịch vụ của Nova Bot Discord.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://images.unsplash.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fraunces:ital,wght@1,400&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#050508;--bg-2:#0a0a14;--surface:rgba(255,255,255,0.025);--border:rgba(255,255,255,0.07);
-  --text:#e8eaf0;--text-dim:#6b7084;--text-mid:#9ca0b4;--cyan:#00e5ff;--purple:#a855f7;--amber:#ffb347;
-  --warn:#f59e0b;--glow-cyan:rgba(0,229,255,0.15)}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-a{color:var(--cyan);transition:opacity .2s;text-decoration:none}
-a:hover{opacity:.75}
-em{font-family:'Fraunces',serif;font-style:italic;font-weight:400;color:var(--amber)}
-img{display:block;max-width:100%;height:auto}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#111318" />
+  <meta name="description" content="Nova Discord automation workspace · War Ping, Backup, Event, AI and server tools in an iOS 26-inspired Liquid Glass interface." />
+  <title>Nova · Liquid Glass</title>
+  <style>
+    :root{
+      --glass: .62;
+      --tint: 210;
+      --blur: 26px;
+      --text: #f7f8fb;
+      --muted: rgba(247,248,251,.66);
+      --hair: rgba(255,255,255,.16);
+      --panel: rgba(18,20,27,.48);
+      --panel-strong: rgba(22,24,31,.72);
+      --shadow: 0 22px 70px rgba(0,0,0,.40);
+      --accent: #0a84ff;
+      --good: #30d158;
+      --warn: #ffd60a;
+      --danger: #ff453a;
+      --purple: #bf5af2;
+      --cyan: #64d2ff;
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 20px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,system-ui,sans-serif;color:var(--text);background:#05070a}
+    button,input,textarea,select{font:inherit}
+    button{border:0;color:inherit;cursor:pointer}
+    button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid rgba(255,255,255,.88);outline-offset:2px}
+    a{color:inherit;text-decoration:none}
 
-.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(circle at 70% 25%, hsla(28,90%,58%,0.07), transparent 38%),
-    radial-gradient(circle at 25% 70%, hsla(270,80%,55%,0.05), transparent 42%),
-    var(--bg);}
-.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.4}
-.orb-1{width:400px;height:400px;top:15%;right:-5%;background:radial-gradient(circle,rgba(255,179,71,0.10),transparent 70%)}
-.orb-2{width:440px;height:440px;bottom:-8%;left:-5%;background:radial-gradient(circle,var(--glow-cyan),transparent 70%)}
+    .wallpaper{position:fixed;inset:-12%;z-index:-3;background:
+      radial-gradient(55% 45% at 18% 12%, rgba(86,119,255,.55), transparent 68%),
+      radial-gradient(42% 34% at 82% 18%, rgba(191,90,242,.46), transparent 72%),
+      radial-gradient(44% 44% at 72% 78%, rgba(10,132,255,.40), transparent 68%),
+      radial-gradient(36% 30% at 18% 86%, rgba(48,209,88,.22), transparent 70%),
+      linear-gradient(135deg,#070910,#0e1424 40%,#08111b 75%,#06070b);
+      filter:saturate(1.18);transform:scale(1.08)}
+    .wallpaper::before{content:"";position:absolute;inset:0;background:
+      repeating-radial-gradient(circle at 30% 40%,rgba(255,255,255,.07) 0 1px,transparent 1px 16px);mix-blend-mode:overlay;opacity:.18}
+    .noise{position:fixed;inset:0;pointer-events:none;z-index:99;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E")}
 
-.grain{position:fixed;inset:0;z-index:80;pointer-events:none;opacity:.04;mix-blend-mode:soft-light;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>")}
-.stars{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='900' height='900'><g fill='white'><circle cx='80' cy='120' r='1.2' opacity='0.7'/><circle cx='320' cy='90' r='0.8' opacity='0.5'/><circle cx='560' cy='200' r='1' opacity='0.6'/><circle cx='780' cy='150' r='0.7' opacity='0.4'/><circle cx='150' cy='380' r='0.9' opacity='0.5'/><circle cx='450' cy='420' r='1.1' opacity='0.65'/><circle cx='700' cy='360' r='0.8' opacity='0.45'/><circle cx='250' cy='620' r='1' opacity='0.55'/><circle cx='540' cy='680' r='0.7' opacity='0.4'/><circle cx='820' cy='580' r='1.1' opacity='0.6'/><circle cx='120' cy='820' r='0.8' opacity='0.5'/><circle cx='420' cy='800' r='1' opacity='0.55'/><circle cx='700' cy='850' r='0.9' opacity='0.5'/><circle cx='880' cy='760' r='0.7' opacity='0.4'/></g></svg>");
-  background-size:900px 900px}
+    .glass{background:color-mix(in srgb,var(--panel) calc(var(--glass)*100%), transparent);border:1px solid var(--hair);box-shadow:var(--shadow);backdrop-filter:blur(var(--blur)) saturate(160%);-webkit-backdrop-filter:blur(var(--blur)) saturate(160%)}
+    .glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.12),transparent 22%,transparent 65%,rgba(255,255,255,.05));opacity:.75}
 
-.progress{position:fixed;top:0;left:0;height:2px;z-index:100;width:0;
-  background:linear-gradient(90deg,var(--amber),var(--cyan),var(--purple))}
+    /* top system chrome */
+    .statusbar{position:fixed;left:18px;right:18px;top:12px;height:36px;display:flex;align-items:center;justify-content:space-between;z-index:70;padding:0 14px;font-size:14px;font-weight:700;letter-spacing:.01em}
+    .status-left,.status-right{display:flex;align-items:center;gap:10px}
+    .island{height:25px;min-width:96px;padding:0 10px;border-radius:20px;display:flex;align-items:center;justify-content:center;gap:7px;background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.10);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+    .dot-live{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 12px rgba(48,209,88,.8)}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:60;padding:14px clamp(20px,5vw,60px);
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(5,5,8,0.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);transition:background .4s}
-nav.scrolled{background:rgba(5,5,8,0.92)}
-.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:14px;letter-spacing:.14em;text-transform:uppercase}
-.brand-orb{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--glow-cyan)}
-.nav-links{display:flex;gap:24px;font-size:12.5px;color:var(--text-dim);font-weight:600}
-.nav-links a{color:inherit}.nav-links a:hover{color:var(--text);opacity:1}
-.lang-toggle{display:flex;gap:2px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:2px}
-.lang-btn{font-size:10.5px;font-weight:600;padding:5px 11px;border-radius:6px;border:none;background:transparent;color:var(--text-dim);cursor:pointer;transition:background .3s,color .3s;letter-spacing:.06em}
-.lang-btn.active{background:var(--cyan);color:#050508}
-@media(max-width:700px){.nav-links{display:none}}
+    .home{position:relative;width:100%;height:100%;padding:78px 6.5vw 82px;overflow:auto;scrollbar-width:none}
+    .home::-webkit-scrollbar{display:none}
+    .hero-row{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;max-width:1320px;margin:0 auto 24px}
+    .hello h1{font-size:clamp(30px,4vw,52px);line-height:.98;letter-spacing:-.055em;margin:0 0 10px;font-weight:850}
+    .hello p{margin:0;color:var(--muted);font-size:15px}
+    .hero-actions{display:flex;gap:10px}
+    .sys-btn,.pill-btn{border-radius:18px;padding:11px 14px;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(20px);box-shadow:inset 0 1px 0 rgba(255,255,255,.10);transition:.2s transform,.2s background}
+    .sys-btn:hover,.pill-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.17)}
 
-.banner{position:relative;height:340px;overflow:hidden}
-.banner img{width:100%;height:100%;object-fit:cover;opacity:.4}
-.banner::after{content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg, rgba(5,5,8,0.7) 0%, transparent 30%, transparent 60%, var(--bg) 100%)}
+    .widget-grid{max-width:1320px;margin:0 auto 24px;display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:14px}
+    .widget{position:relative;overflow:hidden;border-radius:28px;padding:19px;min-height:150px}
+    .widget h3{margin:0 0 6px;font-size:13px;color:var(--muted);font-weight:650;letter-spacing:.01em}
+    .big{font-size:38px;line-height:1;font-weight:800;letter-spacing:-.045em}
+    .sub{margin-top:8px;color:var(--muted);font-size:13px}
+    .progress{height:6px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:15px}.progress i{display:block;height:100%;width:62%;background:linear-gradient(90deg,#64d2ff,#0a84ff,#bf5af2);border-radius:inherit}
+    .ops-list{display:flex;gap:8px;margin-top:13px;flex-wrap:wrap}.status-chip{font-size:11px;padding:6px 9px;border-radius:99px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.10)}
 
-.layout{display:grid;grid-template-columns:240px 1fr;max-width:1080px;margin:0 auto;
-  padding:60px 24px 100px;gap:60px;position:relative;z-index:2}
-@media(max-width:900px){.layout{grid-template-columns:1fr;gap:32px;padding-top:40px}}
-.sidebar{position:sticky;top:110px;height:fit-content}
-@media(max-width:900px){.sidebar{position:static;display:flex;flex-wrap:wrap;gap:6px}}
-.sidebar a{display:block;font-size:12.5px;color:var(--text-dim);padding:7px 0 7px 14px;
-  transition:color .3s,border-color .3s;border-left:1px solid transparent;margin-left:-14px;line-height:1.5}
-.sidebar a.active,.sidebar a:hover{color:var(--amber);border-left-color:var(--amber)}
-@media(max-width:900px){.sidebar a{border-left:none;padding:6px 14px;background:var(--surface);
-  border-radius:100px;font-size:11.5px;margin-left:0}
-.sidebar a.active{background:rgba(255,179,71,0.08);border-left:none}}
+    .section-title{max-width:1320px;margin:26px auto 12px;display:flex;justify-content:space-between;align-items:center}.section-title h2{margin:0;font-size:18px;letter-spacing:-.02em}.section-title span{font-size:12px;color:var(--muted)}
+    .apps-grid{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(9,minmax(84px,1fr));gap:20px 14px;padding-bottom:120px}
+    .app{position:relative;text-align:center;min-width:0}.app-icon{position:relative;width:min(76px,7vw);height:min(76px,7vw);min-width:64px;min-height:64px;margin:0 auto 8px;border-radius:22px;display:grid;place-items:center;font-size:31px;box-shadow:0 10px 28px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.18);overflow:hidden;transition:.2s transform,.2s filter}.app-icon::before{content:"";position:absolute;inset:-35%;background:linear-gradient(130deg,rgba(255,255,255,.38),transparent 30%,transparent 65%,rgba(255,255,255,.1));transform:rotate(14deg)}.app:hover .app-icon{transform:scale(1.07) translateY(-3px);filter:saturate(1.2)}.app span{display:block;font-size:12px;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 12px rgba(0,0,0,.6)}
+    .i-war{background:linear-gradient(145deg,#ff453a,#9f1d33)}.i-backup{background:linear-gradient(145deg,#0a84ff,#1633a5)}.i-event{background:linear-gradient(145deg,#bf5af2,#7a25a4)}.i-ai{background:linear-gradient(145deg,#64d2ff,#0a84ff)}.i-config{background:linear-gradient(145deg,#8e8e93,#36363b)}.i-ban{background:linear-gradient(145deg,#ff9f0a,#842e0a)}.i-key{background:linear-gradient(145deg,#ffd60a,#9a6b00)}.i-log{background:linear-gradient(145deg,#30d158,#17662d)}.i-help{background:linear-gradient(145deg,#c7c7cc,#6b6b70)}.i-settings{background:linear-gradient(145deg,#b8b8be,#54545a)}
 
-.content h1{font-size:clamp(30px,5.5vw,52px);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin-bottom:14px}
-.subtitle{color:var(--text-mid);font-size:14.5px;margin-bottom:48px;line-height:1.7}
-.badge{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:600;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--amber);padding:7px 16px;border:1px solid rgba(255,179,71,0.2);
-  border-radius:100px;background:rgba(255,179,71,0.05);margin-bottom:24px}
-.badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber)}
+    /* dock */
+    .dock{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:65;display:flex;gap:12px;padding:10px 12px;border-radius:30px;width:min(620px,calc(100vw - 30px));justify-content:center}.dock .dock-item{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:24px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(28px);transition:.2s transform,.2s background}.dock .dock-item:hover{transform:translateY(-4px) scale(1.05);background:rgba(255,255,255,.22)}
 
-section{margin-bottom:60px;scroll-margin-top:110px;content-visibility:auto;contain-intrinsic-size:auto 320px}
-section h2{font-size:clamp(20px,2.8vw,26px);font-weight:800;color:#fff;margin-bottom:18px;
-  display:flex;align-items:center;gap:14px;letter-spacing:-.015em}
-section h2 .num{font-family:'Fraunces',serif;font-style:italic;font-size:14px;font-weight:400;
-  color:var(--amber);background:rgba(255,179,71,0.07);border:1px solid rgba(255,179,71,0.15);
-  width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-section p{font-size:14.5px;color:var(--text);margin-bottom:14px;line-height:1.85}
-section ul{padding-left:22px;margin-bottom:18px;list-style:none}
-section li{font-size:14px;color:var(--text-mid);margin-bottom:10px;line-height:1.75;position:relative;padding-left:6px}
-section li::before{content:'·';position:absolute;left:-14px;color:var(--amber);font-weight:700;font-size:18px}
-section strong{color:#fff;font-weight:600}
+    /* modal / app windows */
+    .overlay{position:fixed;inset:0;display:none;place-items:center;z-index:80;background:rgba(0,0,0,.26);backdrop-filter:blur(4px)}.overlay.open{display:grid}
+    .window{position:relative;width:min(1020px,calc(100vw - 28px));max-height:min(760px,calc(100vh - 42px));overflow:hidden;border-radius:var(--radius-xl);animation:pop .25s ease-out}.window::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 80% at 0 0,rgba(255,255,255,.15),transparent 65%)}
+    @keyframes pop{from{opacity:0;transform:scale(.965) translateY(10px)}to{opacity:1;transform:none}}
+    .win-head{height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 18px 0 22px;border-bottom:1px solid var(--hair);position:relative}.win-title{display:flex;align-items:center;gap:10px;font-weight:780;letter-spacing:-.01em}.win-tools{display:flex;align-items:center;gap:8px}.close{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.13);font-size:18px}.win-body{padding:22px;overflow:auto;max-height:calc(min(760px,100vh - 42px) - 66px)}
+    .two-col{display:grid;grid-template-columns:.82fr 1.18fr;gap:18px}.card{position:relative;overflow:hidden;border:1px solid var(--hair);border-radius:24px;background:rgba(255,255,255,.06);padding:18px}.card h3{margin:0 0 4px;font-size:15px}.card p,.muted{color:var(--muted);font-size:13px}.fields{display:grid;gap:11px}.field label{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted);margin:0 0 6px}.field input,.field textarea,.field select{width:100%;border:1px solid rgba(255,255,255,.13);background:rgba(0,0,0,.20);color:var(--text);border-radius:16px;padding:12px 13px;outline:none}.field textarea{min-height:90px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:rgba(100,210,255,.62);box-shadow:0 0 0 3px rgba(10,132,255,.11)}
+    .actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.primary,.secondary,.danger-btn{padding:11px 14px;border-radius:15px;font-weight:730;border:1px solid rgba(255,255,255,.13);transition:.18s transform}.primary{background:linear-gradient(145deg,#0a84ff,#1366d6)}.secondary{background:rgba(255,255,255,.10)}.danger-btn{background:linear-gradient(145deg,#ff453a,#b4252e)}.primary:hover,.secondary:hover,.danger-btn:hover{transform:translateY(-1px)}
+    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{padding:14px;border-radius:19px;background:rgba(255,255,255,.065);border:1px solid rgba(255,255,255,.10)}.stat b{font-size:23px}.stat small{display:block;color:var(--muted);margin-top:3px}
+    .list{display:grid;gap:9px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 13px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.055);border-radius:17px}.row .left{min-width:0}.row .name{font-size:13px;font-weight:700}.row .desc{font-size:11px;color:var(--muted);margin-top:2px}.badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,.10);white-space:nowrap}.b-good{color:#b7f7c5;background:rgba(48,209,88,.13);border-color:rgba(48,209,88,.18)}.b-warn{color:#fff0aa;background:rgba(255,214,10,.12);border-color:rgba(255,214,10,.18)}.b-bad{color:#ffd0cd;background:rgba(255,69,58,.12);border-color:rgba(255,69,58,.18)}
+    .segmented{display:flex;padding:4px;border-radius:16px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.10);gap:4px}.segmented button{flex:1;padding:9px;border-radius:12px;background:transparent;color:var(--muted);font-size:12px}.segmented button.active{background:rgba(255,255,255,.15);color:#fff;font-weight:720}
 
-glass{display:block;background:linear-gradient(135deg,rgba(255,255,255,0.02),rgba(255,255,255,0.005));
-  border:1px solid var(--border);border-radius:16px;padding:28px 32px;margin:20px 0;transition:border-color .3s}
-glass:hover{border-color:rgba(255,179,71,0.15)}
-glass.warn{border-left:3px solid var(--warn);background:linear-gradient(90deg,rgba(245,158,11,0.04),rgba(255,255,255,0.005))}
-glass p:last-child,glass ul:last-child{margin-bottom:0}
-glass ul li:last-child{margin-bottom:0}
-glass code,section code{font-size:12.5px;background:rgba(0,229,255,0.07);color:var(--cyan);
-  padding:2px 8px;border-radius:6px;font-family:'Inter',monospace;
-  border:1px solid rgba(0,229,255,0.12);white-space:nowrap}
+    /* lockscreen */
+    .lock{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:
+      radial-gradient(80% 55% at 50% 4%,rgba(106,119,255,.55),transparent 60%),
+      linear-gradient(140deg,#060811,#101b2d 55%,#06070c);transition:.55s ease}.lock.hidden{opacity:0;pointer-events:none;transform:scale(1.02)}.lock-inner{text-align:center;transform:translateY(-3vh)}.lock-date{font-size:14px;font-weight:700;color:rgba(255,255,255,.78);margin-bottom:9px}.lock-time{font-size:clamp(72px,12vw,150px);font-weight:820;letter-spacing:-.07em;line-height:.9}.lock-title{font-size:14px;color:rgba(255,255,255,.66);margin-top:16px}.unlock{margin-top:34px;padding:13px 20px;border-radius:20px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.19);backdrop-filter:blur(24px);font-weight:760}.lock-bottom{position:absolute;left:24px;right:24px;bottom:22px;display:flex;justify-content:space-between;color:rgba(255,255,255,.82);font-size:12px}.lock-bottom span{display:flex;align-items:center;gap:7px}
 
-.reveal{opacity:0;transform:translate3d(0,20px,0);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
-.reveal.visible{opacity:1;transform:translate3d(0,0,0)}
+    /* control center */
+    .cc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.cc-tile{min-height:110px;border-radius:23px;padding:15px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.13)}.cc-tile.on{background:rgba(10,132,255,.30)}.cc-tile .cc-ico{font-size:24px}.cc-tile b{display:block;margin-top:11px;font-size:13px}.cc-tile span{font-size:11px;color:var(--muted)}.slider{width:100%;accent-color:#fff}
 
-.back-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--text-dim);
-  margin-bottom:28px;transition:color .3s}
-.back-link:hover{color:var(--amber);opacity:1}
+    /* spotlight */
+    .searchbar{display:flex;align-items:center;gap:9px;padding:12px 15px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.13);border-radius:17px}.searchbar input{flex:1;background:transparent;border:0;outline:0;color:white}.results{margin-top:12px;display:grid;gap:7px}
 
-footer{position:relative;z-index:2;border-top:1px solid var(--border);
-  padding:40px clamp(20px,5vw,60px);text-align:center;margin-top:60px}
-footer p{font-size:11.5px;color:#3a3d4a;letter-spacing:.03em}
+    /* chat */
+    .chat-shell{display:grid;grid-template-rows:1fr auto;min-height:510px}.messages{display:flex;flex-direction:column;gap:10px;overflow:auto;padding:6px}.msg{max-width:78%;padding:12px 14px;border-radius:19px;line-height:1.42;font-size:13px}.msg.user{margin-left:auto;background:linear-gradient(145deg,#0a84ff,#1768cf);border-bottom-right-radius:7px}.msg.bot{margin-right:auto;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.10);border-bottom-left-radius:7px}.compose{display:flex;gap:8px;margin-top:12px}.compose input{flex:1}.hint-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}.hint{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);font-size:11px;color:var(--muted)}
 
-[data-lang-en]{display:none}
-body.en [data-lang-vi]{display:none}
-body.en [data-lang-en]{display:block}
-body.en span[data-lang-en]{display:inline}
-body.en span[data-lang-vi]{display:none}
-span[data-lang-en]{display:none}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-</style>
+    .toast{position:fixed;top:58px;left:50%;transform:translateX(-50%) translateY(-14px);z-index:300;opacity:0;pointer-events:none;padding:11px 14px;border-radius:16px;background:rgba(22,24,30,.84);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(24px);box-shadow:0 16px 50px rgba(0,0,0,.35);font-size:12px;font-weight:720;transition:.28s}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    .footnote{margin-top:12px;font-size:11px;color:rgba(255,255,255,.48);line-height:1.5}.footnote a{text-decoration:underline;color:rgba(255,255,255,.68)}
+
+    @media(max-width:1050px){.apps-grid{grid-template-columns:repeat(6,1fr)}.widget-grid{grid-template-columns:1fr 1fr}.widget:first-child{grid-column:1/-1}.two-col{grid-template-columns:1fr}.hero-row{align-items:flex-start;flex-direction:column}.hero-actions{width:100%}}
+    @media(max-width:650px){.statusbar{top:8px;left:8px;right:8px}.home{padding:70px 16px 90px}.apps-grid{grid-template-columns:repeat(4,1fr);gap:18px 10px}.widget-grid{grid-template-columns:1fr}.widget:first-child{grid-column:auto}.app-icon{width:64px;height:64px;font-size:27px}.dock .dock-item{width:50px;height:50px}.dock{gap:7px}.window{width:calc(100vw - 14px);max-height:calc(100vh - 24px);border-radius:28px}.win-body{padding:15px}.stat-row{grid-template-columns:1fr 1fr 1fr}.status-left .island{min-width:78px}.status-right .hide-mobile{display:none}}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  </style>
 </head>
 <body>
-<div class="ambient" aria-hidden="true"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
-<div class="stars" aria-hidden="true"></div>
-<div class="grain" aria-hidden="true"></div>
-<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="wallpaper"></div><div class="noise"></div>
 
-<nav>
-  <a href="index.html" class="brand"><span class="brand-orb"></span>NOVA</a>
-  <div class="nav-links">
-    <a href="index.html"><span data-lang-vi>Trang chủ</span><span data-lang-en>Home</span></a>
-    <a href="privacy-policy.html"><span data-lang-vi>Bảo mật</span><span data-lang-en>Privacy</span></a>
-  </div>
-  <div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('vi')">VI</button>
-    <button class="lang-btn" onclick="setLang('en')">EN</button>
-  </div>
-</nav>
-
-<div class="banner" aria-hidden="true">
-  <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=70&auto=format&fit=crop"
-       alt="" loading="eager" fetchpriority="high" decoding="async"
-       onerror="this.onerror=null;this.src='https://picsum.photos/seed/nova-terms/1600/400'">
+<div class="statusbar">
+  <div class="status-left"><span id="clockMini">22:21</span><span class="island"><i class="dot-live"></i>Nova</span></div>
+  <div class="status-right"><span class="hide-mobile">5G</span><span>⌁</span><span>▰</span></div>
 </div>
 
-<div class="layout">
-<aside class="sidebar" id="sidebar">
-  <a href="#s1"><span data-lang-vi>1. Mô tả dịch vụ</span><span data-lang-en>1. Service description</span></a>
-  <a href="#s2"><span data-lang-vi>2. Điều kiện sử dụng</span><span data-lang-en>2. Usage conditions</span></a>
-  <a href="#s3"><span data-lang-vi>3. Nội dung AI</span><span data-lang-en>3. AI content</span></a>
-  <a href="#s4"><span data-lang-vi>4. War / Backup Ping</span><span data-lang-en>4. War / Backup</span></a>
-  <a href="#s5"><span data-lang-vi>5. Ban Zone</span><span data-lang-en>5. Ban Zone</span></a>
-  <a href="#s6"><span data-lang-vi>6. Event</span><span data-lang-en>6. Event</span></a>
-  <a href="#s7"><span data-lang-vi>7. Giới hạn trách nhiệm</span><span data-lang-en>7. Liability</span></a>
-  <a href="#s8"><span data-lang-vi>8. Chấm dứt</span><span data-lang-en>8. Termination</span></a>
-  <a href="#s9"><span data-lang-vi>9. Dữ liệu</span><span data-lang-en>9. Data</span></a>
-  <a href="#s10"><span data-lang-vi>10. Thay đổi</span><span data-lang-en>10. Changes</span></a>
-  <a href="#s11"><span data-lang-vi>11. Chung</span><span data-lang-en>11. General</span></a>
-  <a href="#s12"><span data-lang-vi>12. Liên hệ</span><span data-lang-en>12. Contact</span></a>
-</aside>
+<main class="home" id="home">
+  <div class="hero-row">
+    <div class="hello"><h1>Xin chào.<br><span style="opacity:.64">Control Center</span></h1><p>Nova Discord automation suite · Liquid Glass workspace</p></div>
+    <div class="hero-actions"><button class="sys-btn" onclick="openApp('search')">⌕ Tìm kiếm</button><button class="sys-btn" onclick="openApp('control')">☷ Trung tâm điều khiển</button></div>
+  </div>
 
-<main class="content">
-  <a href="index.html" class="back-link reveal">← <span data-lang-vi>Về trang chủ</span><span data-lang-en>Back to home</span></a>
-  <span class="badge reveal"><span data-lang-vi>Có hiệu lực: 19/09/2026</span><span data-lang-en>Effective: Sep 19, 2026</span></span>
-  <h1 class="reveal"><span data-lang-vi>Điều khoản <em>dịch vụ</em></span><span data-lang-en>Terms of <em>Service</em></span></h1>
-  <p class="subtitle reveal"><span data-lang-vi>Áp dụng cho bot Discord "Nova" — AI Chatbot, War Ping, Backup Ping, Event và Ban Zone.</span><span data-lang-en>Applies to the "Nova" Discord bot — AI Chatbot, War Ping, Backup Ping, Event, and Ban Zone.</span></p>
+  <div class="widget-grid">
+    <section class="widget glass"><h3>Nova Status</h3><div class="big" id="statusText">Online</div><div class="sub">Local demo mode · Frontend ready</div><div class="progress"><i id="healthBar"></i></div><div class="ops-list"><span class="status-chip">⚔️ War Ping</span><span class="status-chip">🛡️ Backup</span><span class="status-chip">🤖 AI</span><span class="status-chip">🎟 Event</span></div></section>
+    <section class="widget glass"><h3>Active Operations</h3><div class="big" id="activeOps">2</div><div class="sub">War + Backup</div></section>
+    <section class="widget glass"><h3>Event Participants</h3><div class="big" id="participantCount">12</div><div class="sub">Registered for current event</div></section>
+  </div>
 
-  <section id="s1" class="reveal">
-    <h2><span class="num">1</span><span data-lang-vi>Mô tả dịch vụ</span><span data-lang-en>Service description</span></h2>
-    <glass>
-      <p><span data-lang-vi>Nova là bot Discord cung cấp các tính năng:</span><span data-lang-en>Nova is a Discord bot providing these features:</span></p>
-      <ul>
-        <li><span data-lang-vi>Trò chuyện AI với ngữ cảnh riêng từng người, tùy chỉnh persona và ngôn ngữ (<code>/chat</code>, <code>/persona</code>, <code>/language</code>).</span><span data-lang-en>AI chat with per-user context, persona and language customization (<code>/chat</code>, <code>/persona</code>, <code>/language</code>).</span></li>
-        <li><span data-lang-vi>War Ping / Backup Ping — điều phối chiến đấu, gọi cứu viện, quản lý thread, danh sách Trusted.</span><span data-lang-en>War Ping / Backup Ping — combat coordination, backup calls, thread management, trusted list.</span></li>
-        <li><span data-lang-vi>Event Management — panel join, danh sách tham gia, blacklist role, trao giải.</span><span data-lang-en>Event Management — join panel, participant list, role blacklist, winner announcement.</span></li>
-        <li><span data-lang-vi>Ban Zone — kênh auto-ban, xóa tin nhắn, DM thông báo, whitelist.</span><span data-lang-en>Ban Zone — auto-ban channel, message purge, DM notification, whitelist.</span></li>
-        <li><span data-lang-vi>Tạo ảnh AI theo mô tả (<code>/image</code>).</span><span data-lang-en>AI image generation from prompt (<code>/image</code>).</span></li>
-      </ul>
-      <p><span data-lang-vi><strong>Bot hoàn toàn miễn phí</strong> — không có tính năng trả phí hay gói nâng cấp.</span><span data-lang-en><strong>The bot is completely free</strong> — no paid features or upgrade tiers.</span></p>
-    </glass>
-  </section>
-
-  <section id="s2" class="reveal">
-    <h2><span class="num">2</span><span data-lang-vi>Điều kiện sử dụng</span><span data-lang-en>Usage conditions</span></h2>
-    <glass><ul>
-      <li><span data-lang-vi>Tuân thủ <a href="https://discord.com/terms" target="_blank" rel="noopener">Điều khoản Discord</a> và <a href="https://discord.com/guidelines" target="_blank" rel="noopener">Nguyên tắc Cộng đồng</a>.</span><span data-lang-en>Comply with <a href="https://discord.com/terms" target="_blank" rel="noopener">Discord Terms</a> and <a href="https://discord.com/guidelines" target="_blank" rel="noopener">Community Guidelines</a>.</span></li>
-      <li><span data-lang-vi>Đủ tuổi theo quy định của Discord.</span><span data-lang-en>Meet Discord's minimum age requirements.</span></li>
-      <li><span data-lang-vi>Không dùng bot cho mục đích bất hợp pháp, quấy rối, spam, hoặc lạm dụng.</span><span data-lang-en>Do not use the bot for illegal purposes, harassment, spam, or abuse.</span></li>
-      <li><span data-lang-vi>Không khai thác lỗi hoặc can thiệp trái phép vào bot.</span><span data-lang-en>Do not exploit bugs or interfere with the bot.</span></li>
-      <li><span data-lang-vi>Không spam lệnh <code>/chat</code> hay <code>/image</code> để làm cạn quota hệ thống.</span><span data-lang-en>Do not spam <code>/chat</code> or <code>/image</code> to drain system quotas.</span></li>
-    </ul></glass>
-  </section>
-
-  <section id="s3" class="reveal">
-    <h2><span class="num">3</span><span data-lang-vi>Nội dung do AI tạo ra</span><span data-lang-en>AI-generated content</span></h2>
-    <glass class="warn">
-      <p><span data-lang-vi>Nova sử dụng mô hình AI bên thứ ba (cocolink.ai — Qwen) để tạo phản hồi. Nội dung AI:</span><span data-lang-en>Nova uses a third-party AI model (cocolink.ai — Qwen) to generate responses. AI content:</span></p>
-      <ul>
-        <li><span data-lang-vi><strong>Có thể không chính xác</strong> — không nên coi là lời khuyên chuyên môn (y tế, pháp lý, tài chính).</span><span data-lang-en><strong>May be inaccurate</strong> — should not be treated as professional advice (medical, legal, financial).</span></li>
-        <li><span data-lang-vi><strong>Không phản ánh quan điểm của chủ bot</strong> — được tạo tự động, không xét duyệt trước.</span><span data-lang-en><strong>Does not reflect the bot owner's views</strong> — generated automatically, not pre-screened.</span></li>
-        <li><span data-lang-vi>Người dùng chịu trách nhiệm về cách sử dụng thông tin nhận được.</span><span data-lang-en>Users are responsible for how they use received information.</span></li>
-      </ul>
-    </glass>
-  </section>
-
-  <section id="s4" class="reveal">
-    <h2><span class="num">4</span><span data-lang-vi>War Ping &amp; Backup Ping</span><span data-lang-en>War Ping &amp; Backup Ping</span></h2>
-    <glass>
-      <p><span data-lang-vi>Khi sử dụng War Ping / Backup Ping, bạn đồng ý rằng:</span><span data-lang-en>By using War Ping / Backup Ping, you agree that:</span></p>
-      <ul>
-        <li><span data-lang-vi>Dữ liệu war/backup (tên clan, link server, danh sách tham gia) được lưu trong database cục bộ.</span><span data-lang-en>War/backup data (clan name, server link, join list) is stored in a local database.</span></li>
-        <li><span data-lang-vi>Bot sẽ ping role được cấu hình khi có yêu cầu mới.</span><span data-lang-en>The bot pings the configured role when a new request is created.</span></li>
-        <li><span data-lang-vi>Thread war/backup tự khóa khi kết thúc, không ai nhắn được nữa.</span><span data-lang-en>The war/backup thread is auto-locked when ended.</span></li>
-        <li><span data-lang-vi>Chỉ Manager hoặc Trusted user mới được Win / Lose / End / Call Hacker.</span><span data-lang-en>Only Managers or Trusted users can Win / Lose / End / Call Hacker.</span></li>
-      </ul>
-    </glass>
-  </section>
-
-  <section id="s5" class="reveal">
-    <h2><span class="num">5</span><span data-lang-vi>Ban Zone</span><span data-lang-en>Ban Zone</span></h2>
-    <glass class="warn">
-      <p><span data-lang-vi>Khi quản trị viên đặt một kênh làm Ban Zone bằng <code>/setbanchannel</code>:</span><span data-lang-en>When an admin sets a channel as Ban Zone via <code>/setbanchannel</code>:</span></p>
-      <ul>
-        <li><span data-lang-vi>Bất kỳ ai gửi tin nhắn vào kênh đó sẽ bị <strong>ban ngay lập tức</strong>, kể cả người có quyền quản lý, miễn role bot cao hơn.</span><span data-lang-en>Anyone who messages there is <strong>instantly banned</strong>, even admins, if the bot's role is higher.</span></li>
-        <li><span data-lang-vi>Toàn bộ tin nhắn trong ngày của người bị ban sẽ bị xóa.</span><span data-lang-en>All their messages from that day are purged.</span></li>
-        <li><span data-lang-vi>Bot gửi DM thông báo bằng embed cho người bị ban.</span><span data-lang-en>The bot DMs the banned user a notification embed.</span></li>
-        <li><span data-lang-vi>Người trong whitelist (<code>/banwhitelist</code>) được miễn trừ — chỉ owner bot mới quản lý whitelist.</span><span data-lang-en>Whitelisted users (<code>/banwhitelist</code>) are exempt — only the bot owner manages the whitelist.</span></li>
-      </ul>
-      <p><span data-lang-vi><strong>Sử dụng tính năng này đồng nghĩa bạn chấp nhận rủi ro bị ban nếu nhắn tin nhầm kênh.</strong></span><span data-lang-en><strong>Using this feature means you accept the risk of being banned if you message the wrong channel.</strong></span></p>
-    </glass>
-  </section>
-
-  <section id="s6" class="reveal">
-    <h2><span class="num">6</span><span data-lang-vi>Event</span><span data-lang-en>Event</span></h2>
-    <glass>
-      <p><span data-lang-vi>Khi tham gia event qua bot:</span><span data-lang-en>When joining an event through the bot:</span></p>
-      <ul>
-        <li><span data-lang-vi>ID Discord của bạn được lưu vào danh sách tham gia.</span><span data-lang-en>Your Discord ID is stored in the participant list.</span></li>
-        <li><span data-lang-vi>Role bị blacklist sẽ không thể tham gia, bất kể quyền hạn khác (kể cả role quản lý).</span><span data-lang-en>Blacklisted roles cannot join regardless of other permissions (even management roles).</span></li>
-        <li><span data-lang-vi>Quản trị viên server có quyền kết thúc event và trao giải.</span><span data-lang-en>Server admins can end the event and announce the winner.</span></li>
-      </ul>
-    </glass>
-  </section>
-
-  <section id="s7" class="reveal">
-    <h2><span class="num">7</span><span data-lang-vi>Giới hạn trách nhiệm</span><span data-lang-en>Liability limits</span></h2>
-    <glass>
-      <p><span data-lang-vi>Bot được cung cấp <strong>"nguyên trạng" (as is)</strong>, không bảo đảm dưới bất kỳ hình thức nào. Chúng tôi không chịu trách nhiệm đối với:</span><span data-lang-en>The bot is provided <strong>"as is"</strong>, without any warranty. We are not responsible for:</span></p>
-      <ul>
-        <li><span data-lang-vi>Thiệt hại từ việc sử dụng hoặc không thể sử dụng bot.</span><span data-lang-en>Damages from using or being unable to use the bot.</span></li>
-        <li><span data-lang-vi>Gián đoạn, mất dữ liệu, hoặc lỗi kỹ thuật ngoài tầm kiểm soát.</span><span data-lang-en>Interruptions, data loss, or technical errors beyond our control.</span></li>
-        <li><span data-lang-vi>Nội dung hoặc hành vi của bên thứ ba (bao gồm nhà cung cấp AI).</span><span data-lang-en>Third-party content or behavior (including AI providers).</span></li>
-        <li><span data-lang-vi>Hậu quả từ việc người dùng bị ban qua tính năng Ban Zone.</span><span data-lang-en>Consequences of users being banned through Ban Zone.</span></li>
-        <li><span data-lang-vi>Tranh chấp giữa các thành viên trong server liên quan tới war/event/backup.</span><span data-lang-en>Disputes between server members regarding wars/events/backups.</span></li>
-      </ul>
-    </glass>
-  </section>
-
-  <section id="s8" class="reveal">
-    <h2><span class="num">8</span><span data-lang-vi>Chấm dứt dịch vụ</span><span data-lang-en>Termination</span></h2>
-    <glass><ul>
-      <li><span data-lang-vi>Chúng tôi có quyền tạm ngừng hoặc chấm dứt quyền truy cập bot đối với người dùng/server vi phạm mà không cần báo trước.</span><span data-lang-en>We reserve the right to suspend or terminate bot access for violating users/servers without prior notice.</span></li>
-      <li><span data-lang-vi>Bạn có thể gỡ bot khỏi server bất cứ lúc nào.</span><span data-lang-en>You can remove the bot from your server at any time.</span></li>
-      <li><span data-lang-vi>Chúng tôi có quyền ngừng vận hành bot toàn bộ hoặc một phần mà không cần báo trước.</span><span data-lang-en>We reserve the right to discontinue the bot in whole or part without notice.</span></li>
-    </ul></glass>
-  </section>
-
-  <section id="s9" class="reveal">
-    <h2><span class="num">9</span><span data-lang-vi>Dữ liệu người dùng</span><span data-lang-en>User data</span></h2>
-    <glass>
-      <p><span data-lang-vi>Việc thu thập và xử lý dữ liệu được quy định trong <a href="privacy-policy.html">Chính sách bảo mật</a>. Vui lòng đọc kỹ trước khi sử dụng.</span><span data-lang-en>Data collection and processing are governed by the <a href="privacy-policy.html">Privacy Policy</a>. Please read it carefully before use.</span></p>
-    </glass>
-  </section>
-
-  <section id="s10" class="reveal">
-    <h2><span class="num">10</span><span data-lang-vi>Thay đổi điều khoản</span><span data-lang-en>Changes to terms</span></h2>
-    <glass>
-      <p><span data-lang-vi>Điều khoản có thể được cập nhật. Phiên bản mới nhất luôn đăng tại trang này. Tiếp tục sử dụng bot sau khi cập nhật đồng nghĩa bạn chấp nhận thay đổi.</span><span data-lang-en>Terms may be updated. The latest version is always posted here. Continued use after updates means you accept the changes.</span></p>
-    </glass>
-  </section>
-
-  <section id="s11" class="reveal">
-    <h2><span class="num">11</span><span data-lang-vi>Điều khoản chung</span><span data-lang-en>General terms</span></h2>
-    <glass><ul>
-      <li><span data-lang-vi>Nếu bất kỳ điều khoản nào bị coi là không hợp lệ, các điều khoản còn lại vẫn giữ nguyên hiệu lực.</span><span data-lang-en>If any provision is deemed invalid, the remaining provisions remain in effect.</span></li>
-      <li><span data-lang-vi>Việc không thực thi một điều khoản không đồng nghĩa từ bỏ quyền thực thi trong tương lai.</span><span data-lang-en>Failure to enforce a provision does not waive the right to enforce it later.</span></li>
-      <li><span data-lang-vi>Điều khoản này không tạo ra quan hệ đối tác, đại lý hay liên doanh giữa bạn và chủ bot.</span><span data-lang-en>These terms do not create a partnership, agency or joint venture with the bot owner.</span></li>
-    </ul></glass>
-  </section>
-
-  <section id="s12" class="reveal">
-    <h2><span class="num">12</span><span data-lang-vi>Liên hệ</span><span data-lang-en>Contact</span></h2>
-    <glass>
-      <p><span data-lang-vi>Câu hỏi về điều khoản dịch vụ: <strong>Discord @moon_xd07</strong></span><span data-lang-en>Questions about the terms of service: <strong>Discord @moon_xd07</strong></span></p>
-    </glass>
-  </section>
+  <div class="section-title"><h2>Apps</h2><span>Tap để mở ứng dụng</span></div>
+  <div class="apps-grid">
+    <button class="app" onclick="openApp('war')"><div class="app-icon i-war">⚔️</div><span>War Ping</span></button>
+    <button class="app" onclick="openApp('backup')"><div class="app-icon i-backup">🛡️</div><span>Backup</span></button>
+    <button class="app" onclick="openApp('event')"><div class="app-icon i-event">🎟️</div><span>Events</span></button>
+    <button class="app" onclick="openApp('ai')"><div class="app-icon i-ai">✨</div><span>AI Studio</span></button>
+    <button class="app" onclick="openApp('config')"><div class="app-icon i-config">⚙️</div><span>Server Config</span></button>
+    <button class="app" onclick="openApp('ban')"><div class="app-icon i-ban">🛡️</div><span>Ban Guard</span></button>
+    <button class="app" onclick="openApp('keys')"><div class="app-icon i-key">🔑</div><span>Key Vault</span></button>
+    <button class="app" onclick="openApp('logs')"><div class="app-icon i-log">▤</div><span>Logs</span></button>
+    <button class="app" onclick="openApp('help')"><div class="app-icon i-help">❔</div><span>Help Desk</span></button>
+    <button class="app" onclick="openApp('settings')"><div class="app-icon i-settings">⚙︎</div><span>Settings</span></button>
+  </div>
 </main>
-</div>
 
-<footer><p>NOVA © 2026 moon_xd07 — Not affiliated with Discord Inc.</p></footer>
+<div class="dock glass"><button class="dock-item" onclick="openApp('ai')">✨</button><button class="dock-item" onclick="openApp('event')">🎟️</button><button class="dock-item" onclick="openApp('war')">⚔️</button><button class="dock-item" onclick="openApp('search')">⌕</button><button class="dock-item" onclick="openApp('settings')">⚙︎</button></div>
+
+<!-- lock screen -->
+<section class="lock" id="lock"><div class="lock-inner"><div class="lock-date" id="lockDate">Thứ Bảy, 19 tháng 9</div><div class="lock-time" id="lockTime">22:21</div><div class="lock-title">Nova · Liquid Glass</div><button class="unlock" onclick="unlock()">⌃  Mở khóa</button></div><div class="lock-bottom"><span>🔦 Flashlight</span><span>⌾ Camera</span></div></section>
+
+<!-- generic app overlay -->
+<div class="overlay" id="overlay" onclick="backdropClose(event)"><section class="window glass" id="window"><header class="win-head"><div class="win-title" id="winTitle">App</div><div class="win-tools"><button class="close" onclick="closeApp()">×</button></div></header><div class="win-body" id="winBody"></div></section></div>
+<div class="toast" id="toast"></div>
 
 <script>
-function setLang(l){
-  document.body.classList.toggle('en', l==='en');
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active', b.textContent.trim()===l.toUpperCase()));
-  try{ localStorage.setItem('nova-lang', l); }catch(e){}
+const state = {
+  wars: JSON.parse(localStorage.getItem('cos_wars')||'null') || [
+    {id:101,kind:'war',clan:'Emperor',region:'SG',server:'private://RBX-7C9',members:5,status:'ACTIVE',reported:false},
+  ],
+  backups: JSON.parse(localStorage.getItem('cos_backups')||'null') || [
+    {id:202,kind:'backup',clan:'Night Shift',region:'US',server:'private://RBX-2F1',members:8,status:'ACTIVE',reported:false},
+  ],
+  event: JSON.parse(localStorage.getItem('cos_event')||'null') || {title:'Hero Battlegrounds Event',desc:'Weekly squad event · tap Join to register.',participants:12,blacklist:[]},
+  banned: localStorage.getItem('cos_ban')==='1',
+  sharedHistory: localStorage.getItem('cos_shared')==='1',
+  aiChannel: localStorage.getItem('cos_ai')==='1',
+  glass: Number(localStorage.getItem('cos_glass')||.62),
+  tint: localStorage.getItem('cos_tint')||'ultraclear',
+  lang: localStorage.getItem('cos_lang')||'vi',
+  logs: JSON.parse(localStorage.getItem('cos_logs')||'null') || [
+    ['22:16','System','Frontend initialized'],['22:17','War Ping','War #101 active · SG'],['22:18','Backup','Backup #202 active · US'],['22:20','Event','12 participants registered']
+  ],
+  messages: JSON.parse(localStorage.getItem('cos_msgs')||'null') || [{role:'bot',text:'Chào bạn. Đây là AI Studio trong chế độ local demo. Mình mô phỏng luồng !chat, persona, language và shared history của bot.'}],
+  keys: JSON.parse(localStorage.getItem('cos_keys')||'null') || [{name:'Primary',status:'healthy',mask:'coco••••••7D'}]
+};
+
+document.documentElement.style.setProperty('--glass',state.glass);
+function persist(){for(const k of ['wars','backups','event','logs','messages','keys'])localStorage.setItem('cos_'+k,JSON.stringify(state[k])); localStorage.setItem('cos_ban',state.banned?'1':'0');localStorage.setItem('cos_shared',state.sharedHistory?'1':'0');localStorage.setItem('cos_ai',state.aiChannel?'1':'0');localStorage.setItem('cos_glass',state.glass);localStorage.setItem('cos_tint',state.tint);localStorage.setItem('cos_lang',state.lang)}
+function now(){return new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})}
+function log(area,msg){state.logs.unshift([now(),area,msg]);state.logs=state.logs.slice(0,60);persist()}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),2100)}
+function h(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function unlock(){document.getElementById('lock').classList.add('hidden');toast('Đã mở khóa workspace')}
+function closeApp(){document.getElementById('overlay').classList.remove('open')}
+function backdropClose(e){if(e.target.id==='overlay')closeApp()}
+function openApp(name){
+  const overlay=document.getElementById('overlay'),body=document.getElementById('winBody'),title=document.getElementById('winTitle');
+  const apps={war:['⚔️ War Ping',warUI],backup:['🛡️ Backup Ping',backupUI],event:['🎟️ Hero Battlegrounds Event',eventUI],ai:['✨ AI Studio',aiUI],config:['⚙️ Server Configuration',configUI],ban:['🛡️ Ban Guard',banUI],keys:['🔑 Key Vault',keysUI],logs:['▤ Activity Logs',logsUI],help:['❔ Help Desk',helpUI],settings:['⚙︎ Settings',settingsUI],control:['☷ Control Center',controlUI],search:['⌕ Spotlight Search',searchUI]};
+  const app=apps[name]; if(!app)return; title.textContent=app[0]; body.innerHTML=app[1](); overlay.classList.add('open'); if(name==='ai')setTimeout(scrollChat,40)
 }
-(function(){ try{ const s=localStorage.getItem('nova-lang'); if(s) setLang(s); }catch(e){} })();
+function updateHome(){document.getElementById('activeOps').textContent=state.wars.filter(x=>x.status==='ACTIVE').length+state.backups.filter(x=>x.status==='ACTIVE').length;document.getElementById('participantCount').textContent=state.event.participants;document.getElementById('healthBar').style.width=Math.min(96,48+state.keys.filter(k=>k.status==='healthy').length*14)+'%';}
 
-(function(){
-  const p = document.getElementById('progress'), nav = document.querySelector('nav');
-  let pending = false;
-  addEventListener('scroll', () => {
-    if(pending) return; pending = true;
-    requestAnimationFrame(() => {
-      const s = scrollY, d = document.documentElement.scrollHeight - innerHeight;
-      p.style.width = (d > 0 ? (s/d*100) : 0) + '%';
-      nav.classList.toggle('scrolled', s > 60);
-      pending = false;
-    });
-  }, { passive: true });
-})();
+function opCard(item,kind){const isWar=kind==='war';return `<div class="row"><div class="left"><div class="name">${isWar?'⚔️':'🛡️'} #${item.id} · ${h(item.clan)}</div><div class="desc">${h(item.region)} · ${h(item.server)} · ${item.members} members</div></div><span class="badge ${item.status==='ACTIVE'?'b-good':'b-warn'}">${item.status}</span></div>`}
+function requestUI(kind){const isWar=kind==='war';return `<div class="two-col"><div class="card"><h3>${isWar?'⚔️ Create War Ping':'🛡️ Create Backup Ping'}</h3><p>Giống modal trong bot: Clan, Region và Roblox Server Link/Code.</p><div class="fields"><div class="field"><label>Clan <span>required</span></label><input id="fClan" placeholder="Emperor"></div><div class="field"><label>Region <span>SG / US / JP</span></label><input id="fRegion" placeholder="SG"></div><div class="field"><label>Server Link or Code</label><textarea id="fServer" placeholder="Paste private server link or code..."></textarea></div></div><div class="actions"><button class="primary" onclick="createOp('${kind}')">${isWar?'⚔️ Create War':'🛡️ Create Backup'}</button></div></div><div class="card"><h3>Active requests</h3><p>Join · Hacker Report · Call Hacker · Win · Lose · End</p><div class="list">${(isWar?state.wars:state.backups).map(x=>opCard(x,kind)).join('')}</div></div></div><div class="footnote">Frontend demo: thao tác được lưu trong trình duyệt. Luồng Discord thật vẫn cần backend/bot để gọi Discord API.</div>`}
+function warUI(){return requestUI('war')}
+function backupUI(){return requestUI('backup')}
+function createOp(kind){const clan=document.getElementById('fClan').value.trim(),region=document.getElementById('fRegion').value.trim(),server=document.getElementById('fServer').value.trim();if(!clan||!region||!server)return toast('Vui lòng điền đủ 3 trường');const id=Math.floor(100+Math.random()*900);const item={id,kind,clan,region,server,members:0,status:'ACTIVE',reported:false};state[kind==='war'?'wars':'backups'].unshift(item);log(kind==='war'?'War Ping':'Backup',`#${id} created · ${clan} · ${region}`);persist();updateHome();openApp(kind);toast(`${kind==='war'?'War':'Backup'} #${id} đã tạo`)}
+function joinOp(kind,id){const arr=kind==='war'?state.wars:state.backups;const x=arr.find(i=>i.id===id);if(!x||x.status!=='ACTIVE')return; x.members++;log(kind==='war'?'War Ping':'Backup',`#${id} joined · ${x.members} members`);persist();openApp(kind);toast('Đã Join')}
+function reportOp(kind,id){const arr=kind==='war'?state.wars:state.backups;const x=arr.find(i=>i.id===id);if(!x)return;x.reported=true;log(kind==='war'?'War Ping':'Backup',`#${id} hacker reported`);persist();openApp(kind);toast('Đã báo Hacker')}
+function endOp(kind,id,result){const arr=kind==='war'?state.wars:state.backups;const x=arr.find(i=>i.id===id);if(!x)return;x.status=result;log(kind==='war'?'War Ping':'Backup',`#${id} → ${result}`);persist();updateHome();openApp(kind);toast(`#${id} → ${result}`)}
+function detailedOpsUI(kind){const arr=kind==='war'?state.wars:state.backups;return arr.map(x=>`<div class="card" style="margin-top:10px"><div style="display:flex;justify-content:space-between;gap:12px"><div><h3>${kind==='war'?'⚔️':'🛡️'} #${x.id} · ${h(x.clan)}</h3><p>${h(x.region)} · ${h(x.server)}</p></div><span class="badge ${x.status==='ACTIVE'?'b-good':'b-warn'}">${x.status}</span></div><div class="stat-row" style="margin-top:12px"><div class="stat"><b>${x.members}</b><small>members</small></div><div class="stat"><b>${x.reported?'🚨':'—'}</b><small>hacker</small></div><div class="stat"><b>${h(x.region)}</b><small>region</small></div></div><div class="actions"><button class="secondary" onclick="joinOp('${kind}',${x.id})">✅ Join</button><button class="danger-btn" onclick="reportOp('${kind}',${x.id})">🚨 Hacker</button><button class="secondary" onclick="endOp('${kind}',${x.id},'WIN')">🏆 Win</button><button class="danger-btn" onclick="endOp('${kind}',${x.id},'LOSS')">💀 Lose</button><button class="secondary" onclick="endOp('${kind}',${x.id},'ENDED')">🏁 End</button></div></div>`).join('')||'<div class="card"><p>Chưa có request nào.</p></div>'}
 
-(function(){
-  const els = document.querySelectorAll('.reveal');
-  if(!('IntersectionObserver' in window)){ els.forEach(el=>el.classList.add('visible')); return; }
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add('visible'); obs.unobserve(en.target); } });
-  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-  els.forEach(el => obs.observe(el));
-})();
+function eventUI(){return `<div class="card"><div style="display:flex;justify-content:space-between;gap:12px"><div><h3>🎟️ ${h(state.event.title)}</h3><p>${h(state.event.desc)}</p></div><span class="badge b-good">LIVE</span></div><div class="stat-row" style="margin:14px 0"><div class="stat"><b>${state.event.participants}</b><small>participants</small></div><div class="stat"><b>${state.event.blacklist.length}</b><small>blacklisted roles</small></div><div class="stat"><b>2</b><small>languages</small></div></div><div class="actions"><button class="primary" onclick="joinEvent()">✅ Join Event</button><button class="secondary" onclick="eventReset()">🗑 Clear Participants</button></div></div><div class="two-col" style="margin-top:14px"><div class="card"><h3>Edit Event</h3><div class="fields"><div class="field"><label>Title</label><input id="evTitle" value="${h(state.event.title)}"></div><div class="field"><label>Description</label><textarea id="evDesc">${h(state.event.desc)}</textarea></div></div><div class="actions"><button class="primary" onclick="saveEvent()">Save</button></div></div><div class="card"><h3>Blacklist Roles</h3><p>Role có trong blacklist sẽ không thể tham gia event.</p><div class="actions"><button class="secondary" onclick="addBlacklist()">＋ Add role</button></div><div class="list" style="margin-top:10px">${state.event.blacklist.map((r,i)=>`<div class="row"><div class="left"><div class="name">🚫 ${h(r)}</div><div class="desc">Blocked from event join</div></div><button class="secondary" onclick="removeBlacklist(${i})">Remove</button></div>`).join('')||'<div class="muted">Blacklist đang trống.</div>'}</div></div></div>`}
+function joinEvent(){state.event.participants++;log('Event',`Joined event · total ${state.event.participants}`);persist();updateHome();openApp('event');toast('Đã tham gia event')}
+function saveEvent(){state.event.title=document.getElementById('evTitle').value.trim()||state.event.title;state.event.desc=document.getElementById('evDesc').value.trim()||state.event.desc;log('Event','Title/description updated');persist();openApp('event');toast('Đã lưu event')}
+function eventReset(){state.event.participants=0;log('Event','Participants cleared');persist();updateHome();openApp('event');toast('Đã xóa danh sách người tham gia')}
+function addBlacklist(){const r=prompt('Tên role cần block (demo):');if(r?.trim()){state.event.blacklist.push(r.trim());log('Event',`Blacklist add · ${r.trim()}`);persist();openApp('event')}}
+function removeBlacklist(i){const r=state.event.blacklist.splice(i,1)[0];log('Event',`Blacklist remove · ${r}`);persist();openApp('event')}
 
-(function(){
-  const links = document.querySelectorAll('#sidebar a');
-  const secs = document.querySelectorAll('section');
-  if(!links.length) return;
-  let pending = false;
-  addEventListener('scroll', () => {
-    if(pending) return; pending = true;
-    requestAnimationFrame(() => {
-      let cur = '';
-      secs.forEach(s => { if(scrollY >= s.offsetTop - 160) cur = s.id; });
-      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
-      pending = false;
-    });
-  }, { passive: true });
-})();
+function aiUI(){return `<div class="two-col"><div class="card"><h3>AI Settings · Nova</h3><p>Phản ánh các lệnh <b>!chat</b>, <b>!image</b>, <b>!persona</b>, <b>!language</b>, shared history.</p><div class="fields"><div class="field"><label>AI Channel</label><div class="segmented"><button class="${state.aiChannel?'active':''}" onclick="toggleAI(true)">ON</button><button class="${!state.aiChannel?'active':''}" onclick="toggleAI(false)">OFF</button></div></div><div class="field"><label>Shared History</label><div class="segmented"><button class="${state.sharedHistory?'active':''}" onclick="toggleShared(true)">ON</button><button class="${!state.sharedHistory?'active':''}" onclick="toggleShared(false)">OFF</button></div></div><div class="field"><label>Persona</label><select id="persona"><option>Default</option><option>Friendly</option><option>Professional</option><option>Anime companion</option><option>Custom</option></select></div><div class="field"><label>Language</label><select id="lang" onchange="changeLang(this.value)"><option value="vi" ${state.lang==='vi'?'selected':''}>Tiếng Việt</option><option value="en" ${state.lang==='en'?'selected':''}>English</option></select></div></div></div><div class="card chat-shell"><div class="messages" id="messages">${state.messages.map(m=>`<div class="msg ${m.role==='user'?'user':'bot'}">${h(m.text)}</div>`).join('')}</div><div><div class="compose"><input id="chatInput" placeholder="Nhập câu hỏi như !chat ..." onkeydown="if(event.key==='Enter')sendChat()"><button class="primary" onclick="sendChat()">Send</button></div><div class="hint-row"><button class="hint" onclick="quickChat('Giải thích War Ping hoạt động thế nào?')">War Ping?</button><button class="hint" onclick="quickChat('Tạo một lời chào ngắn')">Greeting</button><button class="hint" onclick="quickChat('Lập kế hoạch event')">Event plan</button></div></div></div></div><div class="card" style="margin-top:14px"><h3>Image Studio</h3><p>Luồng tương ứng <b>!image</b> · AI provider <b>Qwen3.7-max</b> trong cấu hình Nova.</p><div class="compose"><input id="imgPrompt" placeholder="Mô tả ảnh muốn tạo..."><button class="primary" onclick="generateImageDemo()">✨ Generate</button></div></div>`}
+function scrollChat(){const el=document.getElementById('messages');if(el)el.scrollTop=el.scrollHeight}
+function quickChat(s){document.getElementById('chatInput').value=s;sendChat()}
+function sendChat(){const input=document.getElementById('chatInput');const v=input.value.trim();if(!v)return;state.messages.push({role:'user',text:v});const reply=`[Local AI demo] Mình đã nhận câu hỏi: “${v}”. Trong bot thật, nội dung sẽ đi qua AI provider <b>Qwen3.7-max</b> và lịch sử hội thoại hiện hành.`;state.messages.push({role:'bot',text:reply});log('AI',`Chat · ${v.slice(0,58)}`);persist();openApp('ai');setTimeout(scrollChat,40)}
+function generateImageDemo(){const p=document.getElementById('imgPrompt').value.trim();if(!p)return toast('Nhập prompt trước');log('AI',`Image request · ${p.slice(0,56)}`);toast('Image job queued (local demo)')}
+function toggleAI(v){state.aiChannel=v;persist();log('AI',`AI channel ${v?'enabled':'disabled'}`);openApp('ai');toast(v?'AI channel ON':'AI channel OFF')}
+function toggleShared(v){state.sharedHistory=v;persist();log('AI',`Shared history ${v?'enabled':'disabled'}`);openApp('ai')}
+function changeLang(v){state.lang=v;persist();log('AI',`Language → ${v}`);toast(v==='vi'?'Đã chuyển Tiếng Việt':'Switched to English')}
+
+function configUI(){return `<div class="card"><h3>⚙️ Guild Configuration</h3><p>Frontend tương ứng các field trong <b>/config</b>.</p><div class="fields"><div class="field"><label>Guild ID</label><input id="guildId" value="1535562410499506207"></div><div class="field"><label>Help Channel ID</label><input id="helpCh" value="1535562410499506207"></div><div class="field"><label>War Ping Role</label><input id="warRole" value="1535562410499506207"></div><div class="field"><label>Backup Ping Role</label><input id="backupRole" value="0"></div><div class="field"><label>Joined War Role</label><input id="joinedWar" value="1547572335530348565"></div><div class="field"><label>Joined Backup Role</label><input id="joinedBackup" value="1547572335530348565"></div><div class="field"><label>Hacker Role</label><input id="hackerRole" value="1547568678768349297"></div><div class="field"><label>Ban Channel ID</label><input id="banChannel" value="0"></div></div><div class="actions"><button class="primary" onclick="saveConfig()">Save Configuration</button></div></div><div class="card" style="margin-top:14px"><h3>Manager Policy</h3><p>Administrator, Manage Server, hoặc Manage Channels.</p><div class="badge b-good">Manager-only controls</div></div>`}
+function saveConfig(){log('Config','Server configuration updated');toast('Configuration saved locally')}
+
+function banUI(){return `<div class="two-col"><div class="card"><h3>🍯 Automatic Ban Channel</h3><p>Tương ứng <b>/setbanchannel</b>. Một message trong kênh sẽ được xử lý như rule auto-ban của bot.</p><div class="segmented"><button class="${state.banned?'active':''}" onclick="setBan(true)">ON</button><button class="${!state.banned?'active':''}" onclick="setBan(false)">OFF</button></div><div class="actions"><button class="danger-btn" onclick="simulateBan()">Simulate Message</button></div></div><div class="card"><h3>🔐 Whitelist</h3><p>Người được whitelist sẽ được bỏ qua auto-ban.</p><div class="actions"><button class="secondary" onclick="addWhitelist()">＋ Add user</button></div><div class="list" id="whitelist"></div></div></div><div class="card" style="margin-top:14px"><h3>Bandebug</h3><div class="list"><div class="row"><div class="left"><div class="name">Bot has Ban Members</div><div class="desc">Permission check</div></div><span class="badge b-good">PASS</span></div><div class="row"><div class="left"><div class="name">Role hierarchy</div><div class="desc">Bot top role must be above target</div></div><span class="badge b-good">CHECK</span></div><div class="row"><div class="left"><div class="name">Owner protection</div><div class="desc">Server owner cannot be banned</div></div><span class="badge b-good">ON</span></div></div></div>`}
+function setBan(v){state.banned=v;persist();log('Ban Guard',`Auto-ban channel ${v?'enabled':'disabled'}`);openApp('ban');toast(v?'Auto-ban ON':'Auto-ban OFF')}
+function addWhitelist(){const v=prompt('Discord user ID hoặc tên demo:');if(!v?.trim())return;let list=JSON.parse(localStorage.getItem('cos_whitelist')||'[]');list.unshift(v.trim());localStorage.setItem('cos_whitelist',JSON.stringify([...new Set(list)]));log('Ban Guard',`Whitelist add · ${v.trim()}`);openApp('ban')}
+function simulateBan(){if(!state.banned)return toast('Bật Auto-ban trước');toast('Demo: message intercepted → softban flow simulated');log('Ban Guard','Simulated message → softban')}
+
+function keysUI(){return `<div class="stat-row"><div class="stat"><b>${state.keys.length}</b><small>stored keys</small></div><div class="stat"><b>${state.keys.filter(x=>x.status==='healthy').length}</b><small>healthy</small></div><div class="stat"><b>${state.keys.filter(x=>x.status!=='healthy').length}</b><small>issues</small></div></div><div class="card" style="margin-top:14px"><div style="display:flex;justify-content:space-between;align-items:center"><div><h3>Key Vault</h3><p>Masking UI for cocolink key rotation.</p></div><button class="primary" onclick="addKey()">＋ Add Key</button></div><div class="list" style="margin-top:12px">${state.keys.map((k,i)=>`<div class="row"><div class="left"><div class="name">🔑 ${h(k.name)}</div><div class="desc">${h(k.mask)}</div></div><div style="display:flex;gap:7px"><span class="badge ${k.status==='healthy'?'b-good':'b-bad'}">${h(k.status)}</span><button class="secondary" onclick="testKey(${i})">Test</button><button class="secondary" onclick="delKey(${i})">Delete</button></div></div>`).join('')}</div></div><div class="footnote">Không lưu API key thật trong HTML. Chỉ nên quản lý secret ở backend.</div>`}
+function addKey(){const name=prompt('Key name:',`Key ${state.keys.length+1}`);if(!name)return;state.keys.push({name:name.trim(),status:'healthy',mask:'coco••••••'+Math.floor(10+Math.random()*89)});log('Key Vault',`Key added · ${name.trim()}`);persist();openApp('keys')}
+function testKey(i){state.keys[i].status='healthy';log('Key Vault',`Key tested · ${state.keys[i].name}`);persist();openApp('keys');toast('Key test passed (demo)')}
+function delKey(i){const k=state.keys.splice(i,1)[0];log('Key Vault',`Key deleted · ${k.name}`);persist();openApp('keys');toast('Key deleted')}
+
+function logsUI(){return `<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><div><h3>▤ Activity</h3><p>Tóm tắt hoạt động local của workspace.</p></div><button class="secondary" onclick="clearLogs()">Clear</button></div><div class="list" style="margin-top:12px">${state.logs.map(l=>`<div class="row"><div class="left"><div class="name">${h(l[1])}</div><div class="desc">${h(l[2])}</div></div><span class="badge">${h(l[0])}</span></div>`).join('')}</div></div>`}
+function clearLogs(){state.logs=[];persist();openApp('logs');toast('Logs cleared')}
+function helpUI(){return `<div class="card"><h3>꧁༺ 🛠️ HELP DESK ༻꧂</h3><p>Choose an area. Giao diện này phản ánh help panel và command surface trong bot.</p><div class="actions"><button class="primary" onclick="openApp('war')">⚔️ WAR</button><button class="primary" onclick="openApp('backup')">📞 BACKUP</button><button class="secondary" onclick="openApp('event')">🎟️ EVENT</button><button class="secondary" onclick="openApp('ai')">✨ AI</button></div></div><div class="card" style="margin-top:14px"><h3>Command map</h3><div class="list"><div class="row"><div class="left"><div class="name">/trust</div><div class="desc">Manage trusted users for War Ping</div></div><span class="badge">Manager</span></div><div class="row"><div class="left"><div class="name">/helppanel</div><div class="desc">Recreate Help Desk panel</div></div><span class="badge">Manager</span></div><div class="row"><div class="left"><div class="name">/callhacker</div><div class="desc">Show or hide Call Hacker</div></div><span class="badge">Manager</span></div><div class="row"><div class="left"><div class="name">/event …</div><div class="desc">Send, edit, participants, count, remove, clear, blacklist</div></div><span class="badge">Manager</span></div></div></div>`}
+
+function settingsUI(){return `<div class="two-col"><div class="card"><h3>Appearance</h3><p>Điều chỉnh chất liệu glass.</p><div class="field"><label>Liquid Glass opacity <span id="glassVal">${Math.round(state.glass*100)}%</span></label><input class="slider" type="range" min="0.35" max="0.86" step="0.01" value="${state.glass}" oninput="setGlass(this.value)"></div><div class="field" style="margin-top:15px"><label>Tint</label><div class="segmented"><button class="${state.tint==='ultraclear'?'active':''}" onclick="setTint('ultraclear')">Ultra Clear</button><button class="${state.tint==='tinted'?'active':''}" onclick="setTint('tinted')">Tinted</button></div></div></div><div class="card"><h3>Nova Identity</h3><div class="list"><div class="row"><div class="left"><div class="name">Bot name</div><div class="desc">Nova</div></div><span class="badge">BOT</span></div><div class="row"><div class="left"><div class="name">Owner / Discord</div><div class="desc">nova_.inovation</div></div></div><div class="row"><div class="left"><div class="name">AI provider</div><div class="desc">Qwen3.7-max</div></div></div><div class="row"><div class="left"><div class="name">Effective date</div><div class="desc">19/09/2026</div></div></div></div><div class="actions" style="margin-top:12px"><a class="secondary" style="padding:11px 14px" href="mailto:anhbao27072011@gmail.com">✉ Contact</a><a class="primary" style="padding:11px 14px" href="https://discord.gg/qkyu3G6WMa" target="_blank" rel="noopener">Discord Support</a></div></div></div><div class="card" style="margin-top:14px"><h3>Privacy & Legal</h3><p>Thông tin pháp lý của Nova.</p><div class="actions"><a class="secondary" style="padding:11px 14px" href="privacy-policy.html">Privacy Policy</a><a class="secondary" style="padding:11px 14px" href="terms-of-service.html">Terms of Service</a></div><p class="footnote">Effective date: 19/09/2026 · Independent web interface inspired by iOS 26 Liquid Glass. Not an Apple product.</p></div>`}
+function setGlass(v){state.glass=Number(v);document.documentElement.style.setProperty('--glass',v);const x=document.getElementById('glassVal');if(x)x.textContent=Math.round(v*100)+'%';persist()}
+function setTint(v){state.tint=v;document.documentElement.style.setProperty('--panel',v==='tinted'?'rgba(24,31,50,.62)':'rgba(18,20,27,.48)');persist();openApp('settings');toast('Liquid Glass style updated')}
+
+function controlUI(){return `<div class="cc-grid"><button class="cc-tile on" onclick="toast('Wi‑Fi connected')"><div class="cc-ico">⌁</div><b>Wi‑Fi</b><span>Connected</span></button><button class="cc-tile" onclick="toast('Focus toggled')"><div class="cc-ico">◉</div><b>Focus</b><span>Personal</span></button><button class="cc-tile on" onclick="setGlass(Math.min(.86,state.glass+.05));openApp('control')"><div class="cc-ico">◌</div><b>Liquid Glass</b><span>Tap to increase clarity</span></button><button class="cc-tile" onclick="toast('Screen recording simulated')"><div class="cc-ico">⦿</div><b>Record</b><span>Ready</span></button></div><div class="card" style="margin-top:12px"><h3>Glass intensity</h3><input class="slider" type="range" min=".35" max=".86" step=".01" value="${state.glass}" oninput="setGlass(this.value)"><p class="muted">iOS 26-style Liquid Glass can be tuned from ultra-clear to tinted.</p></div>`}
+function searchUI(){return `<div class="searchbar"><span>⌕</span><input id="searchInput" autofocus placeholder="Search apps, commands, logs..." oninput="renderSearch()"></div><div class="results" id="searchResults"></div>`}
+function renderSearch(){const q=(document.getElementById('searchInput')?.value||'').toLowerCase();const data=[['⚔️','War Ping','Create & manage War requests','war'],['🛡️','Backup Ping','Backup requests','backup'],['🎟️','Events','Hero Battlegrounds event controls','event'],['✨','AI Studio','Chat, image, persona, language','ai'],['⚙️','Server Config','/config fields','config'],['🍯','Ban Guard','Auto-ban + whitelist + bandebug','ban'],['🔑','Key Vault','Cocolink key rotation','keys'],['❔','Help Desk','Command map','help'],['▤','Logs','Local activity','logs']];const out=data.filter(x=>(x[1]+' '+x[2]).toLowerCase().includes(q)).map(x=>`<button class="row" style="text-align:left" onclick="openApp('${x[3]}')"><div class="left"><div class="name">${x[0]} ${x[1]}</div><div class="desc">${x[2]}</div></div><span>›</span></button>`).join('')||'<div class="muted">Không tìm thấy.</div>';document.getElementById('searchResults').innerHTML=out}
+
+function tick(){const d=new Date();const time=d.toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'}),date=d.toLocaleDateString('vi-VN',{weekday:'long',day:'numeric',month:'long'});document.getElementById('clockMini').textContent=time;document.getElementById('lockTime').textContent=time;document.getElementById('lockDate').textContent=date.charAt(0).toUpperCase()+date.slice(1)}setInterval(tick,1000);tick();updateHome();
+window.addEventListener('keydown',e=>{if(e.key==='Escape')closeApp();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openApp('search')}})
 </script>
 </body>
 </html>
