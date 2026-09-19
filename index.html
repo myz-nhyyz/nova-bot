@@ -3,250 +3,96 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#111318" />
-  <meta name="description" content="Nova Discord automation workspace · War Ping, Backup, Event, AI and server tools in an iOS 26-inspired Liquid Glass interface." />
-  <title>Nova · Liquid Glass</title>
+  <meta name="theme-color" content="#07080d" />
+  <title data-i18n="meta.homeTitle">Điều Khoản & Bảo Mật</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --glass: .62;
-      --tint: 210;
-      --blur: 26px;
-      --text: #f7f8fb;
-      --muted: rgba(247,248,251,.66);
-      --hair: rgba(255,255,255,.16);
-      --panel: rgba(18,20,27,.48);
-      --panel-strong: rgba(22,24,31,.72);
-      --shadow: 0 22px 70px rgba(0,0,0,.40);
-      --accent: #0a84ff;
-      --good: #30d158;
-      --warn: #ffd60a;
-      --danger: #ff453a;
-      --purple: #bf5af2;
-      --cyan: #64d2ff;
-      --radius-xl: 34px;
-      --radius-lg: 26px;
-      --radius-md: 20px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,system-ui,sans-serif;color:var(--text);background:#05070a}
-    button,input,textarea,select{font:inherit}
-    button{border:0;color:inherit;cursor:pointer}
-    button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid rgba(255,255,255,.88);outline-offset:2px}
-    a{color:inherit;text-decoration:none}
-
-    .wallpaper{position:fixed;inset:-12%;z-index:-3;background:
-      radial-gradient(55% 45% at 18% 12%, rgba(86,119,255,.55), transparent 68%),
-      radial-gradient(42% 34% at 82% 18%, rgba(191,90,242,.46), transparent 72%),
-      radial-gradient(44% 44% at 72% 78%, rgba(10,132,255,.40), transparent 68%),
-      radial-gradient(36% 30% at 18% 86%, rgba(48,209,88,.22), transparent 70%),
-      linear-gradient(135deg,#070910,#0e1424 40%,#08111b 75%,#06070b);
-      filter:saturate(1.18);transform:scale(1.08)}
-    .wallpaper::before{content:"";position:absolute;inset:0;background:
-      repeating-radial-gradient(circle at 30% 40%,rgba(255,255,255,.07) 0 1px,transparent 1px 16px);mix-blend-mode:overlay;opacity:.18}
-    .noise{position:fixed;inset:0;pointer-events:none;z-index:99;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E")}
-
-    .glass{background:color-mix(in srgb,var(--panel) calc(var(--glass)*100%), transparent);border:1px solid var(--hair);box-shadow:var(--shadow);backdrop-filter:blur(var(--blur)) saturate(160%);-webkit-backdrop-filter:blur(var(--blur)) saturate(160%)}
-    .glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.12),transparent 22%,transparent 65%,rgba(255,255,255,.05));opacity:.75}
-
-    /* top system chrome */
-    .statusbar{position:fixed;left:18px;right:18px;top:12px;height:36px;display:flex;align-items:center;justify-content:space-between;z-index:70;padding:0 14px;font-size:14px;font-weight:700;letter-spacing:.01em}
-    .status-left,.status-right{display:flex;align-items:center;gap:10px}
-    .island{height:25px;min-width:96px;padding:0 10px;border-radius:20px;display:flex;align-items:center;justify-content:center;gap:7px;background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.10);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
-    .dot-live{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 12px rgba(48,209,88,.8)}
-
-    .home{position:relative;width:100%;height:100%;padding:78px 6.5vw 82px;overflow:auto;scrollbar-width:none}
-    .home::-webkit-scrollbar{display:none}
-    .hero-row{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;max-width:1320px;margin:0 auto 24px}
-    .hello h1{font-size:clamp(30px,4vw,52px);line-height:.98;letter-spacing:-.055em;margin:0 0 10px;font-weight:850}
-    .hello p{margin:0;color:var(--muted);font-size:15px}
-    .hero-actions{display:flex;gap:10px}
-    .sys-btn,.pill-btn{border-radius:18px;padding:11px 14px;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(20px);box-shadow:inset 0 1px 0 rgba(255,255,255,.10);transition:.2s transform,.2s background}
-    .sys-btn:hover,.pill-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.17)}
-
-    .widget-grid{max-width:1320px;margin:0 auto 24px;display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:14px}
-    .widget{position:relative;overflow:hidden;border-radius:28px;padding:19px;min-height:150px}
-    .widget h3{margin:0 0 6px;font-size:13px;color:var(--muted);font-weight:650;letter-spacing:.01em}
-    .big{font-size:38px;line-height:1;font-weight:800;letter-spacing:-.045em}
-    .sub{margin-top:8px;color:var(--muted);font-size:13px}
-    .progress{height:6px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:15px}.progress i{display:block;height:100%;width:62%;background:linear-gradient(90deg,#64d2ff,#0a84ff,#bf5af2);border-radius:inherit}
-    .ops-list{display:flex;gap:8px;margin-top:13px;flex-wrap:wrap}.status-chip{font-size:11px;padding:6px 9px;border-radius:99px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.10)}
-
-    .section-title{max-width:1320px;margin:26px auto 12px;display:flex;justify-content:space-between;align-items:center}.section-title h2{margin:0;font-size:18px;letter-spacing:-.02em}.section-title span{font-size:12px;color:var(--muted)}
-    .apps-grid{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(9,minmax(84px,1fr));gap:20px 14px;padding-bottom:120px}
-    .app{position:relative;text-align:center;min-width:0}.app-icon{position:relative;width:min(76px,7vw);height:min(76px,7vw);min-width:64px;min-height:64px;margin:0 auto 8px;border-radius:22px;display:grid;place-items:center;font-size:31px;box-shadow:0 10px 28px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.18);overflow:hidden;transition:.2s transform,.2s filter}.app-icon::before{content:"";position:absolute;inset:-35%;background:linear-gradient(130deg,rgba(255,255,255,.38),transparent 30%,transparent 65%,rgba(255,255,255,.1));transform:rotate(14deg)}.app:hover .app-icon{transform:scale(1.07) translateY(-3px);filter:saturate(1.2)}.app span{display:block;font-size:12px;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 12px rgba(0,0,0,.6)}
-    .i-war{background:linear-gradient(145deg,#ff453a,#9f1d33)}.i-backup{background:linear-gradient(145deg,#0a84ff,#1633a5)}.i-event{background:linear-gradient(145deg,#bf5af2,#7a25a4)}.i-ai{background:linear-gradient(145deg,#64d2ff,#0a84ff)}.i-config{background:linear-gradient(145deg,#8e8e93,#36363b)}.i-ban{background:linear-gradient(145deg,#ff9f0a,#842e0a)}.i-key{background:linear-gradient(145deg,#ffd60a,#9a6b00)}.i-log{background:linear-gradient(145deg,#30d158,#17662d)}.i-help{background:linear-gradient(145deg,#c7c7cc,#6b6b70)}.i-settings{background:linear-gradient(145deg,#b8b8be,#54545a)}
-
-    /* dock */
-    .dock{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:65;display:flex;gap:12px;padding:10px 12px;border-radius:30px;width:min(620px,calc(100vw - 30px));justify-content:center}.dock .dock-item{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:24px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(28px);transition:.2s transform,.2s background}.dock .dock-item:hover{transform:translateY(-4px) scale(1.05);background:rgba(255,255,255,.22)}
-
-    /* modal / app windows */
-    .overlay{position:fixed;inset:0;display:none;place-items:center;z-index:80;background:rgba(0,0,0,.26);backdrop-filter:blur(4px)}.overlay.open{display:grid}
-    .window{position:relative;width:min(1020px,calc(100vw - 28px));max-height:min(760px,calc(100vh - 42px));overflow:hidden;border-radius:var(--radius-xl);animation:pop .25s ease-out}.window::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 80% at 0 0,rgba(255,255,255,.15),transparent 65%)}
-    @keyframes pop{from{opacity:0;transform:scale(.965) translateY(10px)}to{opacity:1;transform:none}}
-    .win-head{height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 18px 0 22px;border-bottom:1px solid var(--hair);position:relative}.win-title{display:flex;align-items:center;gap:10px;font-weight:780;letter-spacing:-.01em}.win-tools{display:flex;align-items:center;gap:8px}.close{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.13);font-size:18px}.win-body{padding:22px;overflow:auto;max-height:calc(min(760px,100vh - 42px) - 66px)}
-    .two-col{display:grid;grid-template-columns:.82fr 1.18fr;gap:18px}.card{position:relative;overflow:hidden;border:1px solid var(--hair);border-radius:24px;background:rgba(255,255,255,.06);padding:18px}.card h3{margin:0 0 4px;font-size:15px}.card p,.muted{color:var(--muted);font-size:13px}.fields{display:grid;gap:11px}.field label{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted);margin:0 0 6px}.field input,.field textarea,.field select{width:100%;border:1px solid rgba(255,255,255,.13);background:rgba(0,0,0,.20);color:var(--text);border-radius:16px;padding:12px 13px;outline:none}.field textarea{min-height:90px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:rgba(100,210,255,.62);box-shadow:0 0 0 3px rgba(10,132,255,.11)}
-    .actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.primary,.secondary,.danger-btn{padding:11px 14px;border-radius:15px;font-weight:730;border:1px solid rgba(255,255,255,.13);transition:.18s transform}.primary{background:linear-gradient(145deg,#0a84ff,#1366d6)}.secondary{background:rgba(255,255,255,.10)}.danger-btn{background:linear-gradient(145deg,#ff453a,#b4252e)}.primary:hover,.secondary:hover,.danger-btn:hover{transform:translateY(-1px)}
-    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{padding:14px;border-radius:19px;background:rgba(255,255,255,.065);border:1px solid rgba(255,255,255,.10)}.stat b{font-size:23px}.stat small{display:block;color:var(--muted);margin-top:3px}
-    .list{display:grid;gap:9px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 13px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.055);border-radius:17px}.row .left{min-width:0}.row .name{font-size:13px;font-weight:700}.row .desc{font-size:11px;color:var(--muted);margin-top:2px}.badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,.10);white-space:nowrap}.b-good{color:#b7f7c5;background:rgba(48,209,88,.13);border-color:rgba(48,209,88,.18)}.b-warn{color:#fff0aa;background:rgba(255,214,10,.12);border-color:rgba(255,214,10,.18)}.b-bad{color:#ffd0cd;background:rgba(255,69,58,.12);border-color:rgba(255,69,58,.18)}
-    .segmented{display:flex;padding:4px;border-radius:16px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.10);gap:4px}.segmented button{flex:1;padding:9px;border-radius:12px;background:transparent;color:var(--muted);font-size:12px}.segmented button.active{background:rgba(255,255,255,.15);color:#fff;font-weight:720}
-
-    /* lockscreen */
-    .lock{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:
-      radial-gradient(80% 55% at 50% 4%,rgba(106,119,255,.55),transparent 60%),
-      linear-gradient(140deg,#060811,#101b2d 55%,#06070c);transition:.55s ease}.lock.hidden{opacity:0;pointer-events:none;transform:scale(1.02)}.lock-inner{text-align:center;transform:translateY(-3vh)}.lock-date{font-size:14px;font-weight:700;color:rgba(255,255,255,.78);margin-bottom:9px}.lock-time{font-size:clamp(72px,12vw,150px);font-weight:820;letter-spacing:-.07em;line-height:.9}.lock-title{font-size:14px;color:rgba(255,255,255,.66);margin-top:16px}.unlock{margin-top:34px;padding:13px 20px;border-radius:20px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.19);backdrop-filter:blur(24px);font-weight:760}.lock-bottom{position:absolute;left:24px;right:24px;bottom:22px;display:flex;justify-content:space-between;color:rgba(255,255,255,.82);font-size:12px}.lock-bottom span{display:flex;align-items:center;gap:7px}
-
-    /* control center */
-    .cc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.cc-tile{min-height:110px;border-radius:23px;padding:15px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.13)}.cc-tile.on{background:rgba(10,132,255,.30)}.cc-tile .cc-ico{font-size:24px}.cc-tile b{display:block;margin-top:11px;font-size:13px}.cc-tile span{font-size:11px;color:var(--muted)}.slider{width:100%;accent-color:#fff}
-
-    /* spotlight */
-    .searchbar{display:flex;align-items:center;gap:9px;padding:12px 15px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.13);border-radius:17px}.searchbar input{flex:1;background:transparent;border:0;outline:0;color:white}.results{margin-top:12px;display:grid;gap:7px}
-
-    /* chat */
-    .chat-shell{display:grid;grid-template-rows:1fr auto;min-height:510px}.messages{display:flex;flex-direction:column;gap:10px;overflow:auto;padding:6px}.msg{max-width:78%;padding:12px 14px;border-radius:19px;line-height:1.42;font-size:13px}.msg.user{margin-left:auto;background:linear-gradient(145deg,#0a84ff,#1768cf);border-bottom-right-radius:7px}.msg.bot{margin-right:auto;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.10);border-bottom-left-radius:7px}.compose{display:flex;gap:8px;margin-top:12px}.compose input{flex:1}.hint-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}.hint{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);font-size:11px;color:var(--muted)}
-
-    .toast{position:fixed;top:58px;left:50%;transform:translateX(-50%) translateY(-14px);z-index:300;opacity:0;pointer-events:none;padding:11px 14px;border-radius:16px;background:rgba(22,24,30,.84);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(24px);box-shadow:0 16px 50px rgba(0,0,0,.35);font-size:12px;font-weight:720;transition:.28s}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-    .footnote{margin-top:12px;font-size:11px;color:rgba(255,255,255,.48);line-height:1.5}.footnote a{text-decoration:underline;color:rgba(255,255,255,.68)}
-
-    @media(max-width:1050px){.apps-grid{grid-template-columns:repeat(6,1fr)}.widget-grid{grid-template-columns:1fr 1fr}.widget:first-child{grid-column:1/-1}.two-col{grid-template-columns:1fr}.hero-row{align-items:flex-start;flex-direction:column}.hero-actions{width:100%}}
-    @media(max-width:650px){.statusbar{top:8px;left:8px;right:8px}.home{padding:70px 16px 90px}.apps-grid{grid-template-columns:repeat(4,1fr);gap:18px 10px}.widget-grid{grid-template-columns:1fr}.widget:first-child{grid-column:auto}.app-icon{width:64px;height:64px;font-size:27px}.dock .dock-item{width:50px;height:50px}.dock{gap:7px}.window{width:calc(100vw - 14px);max-height:calc(100vh - 24px);border-radius:28px}.win-body{padding:15px}.stat-row{grid-template-columns:1fr 1fr 1fr}.status-left .island{min-width:78px}.status-right .hide-mobile{display:none}}
-    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+    :root{--bg:#07080d;--bg2:#0c0f18;--fg:#f6f6f8;--muted:#9ea3b4;--line:rgba(255,255,255,.1);--glass:rgba(255,255,255,.055);--glass2:rgba(255,255,255,.085);--accent:#8e86ff;--accent2:#6d86ff;--good:#6ee7b7;--warn:#f6c76a;--radius:28px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--fg);font-family:Manrope,system-ui,sans-serif;overflow-x:hidden}
+    body::before,body::after{content:"";position:fixed;inset:-18%;pointer-events:none;z-index:-4}.bg-a{background:radial-gradient(circle at 22% 18%,rgba(105,91,255,.17),transparent 26%),radial-gradient(circle at 80% 8%,rgba(83,129,255,.1),transparent 20%),radial-gradient(circle at 50% 90%,rgba(109,134,255,.07),transparent 30%);filter:blur(40px);animation:drift 16s ease-in-out infinite alternate}.bg-b{background:radial-gradient(circle at 65% 55%,rgba(255,255,255,.025),transparent 24%),radial-gradient(circle at 34% 75%,rgba(125,99,255,.045),transparent 28%);filter:blur(10px);animation:drift2 19s ease-in-out infinite alternate}
+    @keyframes drift{to{transform:translate3d(4%,-2%,0) scale(1.04)}}@keyframes drift2{to{transform:translate3d(-2%,3%,0) scale(1.06)}}
+    .grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.035;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
+    .wrap{max-width:1220px;margin:0 auto;padding:0 24px}.topbar{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(1170px,calc(100% - 24px));z-index:40;display:flex;align-items:center;justify-content:space-between;padding:10px 12px 10px 16px;border:1px solid transparent;border-radius:24px;background:rgba(7,8,13,.28);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);transition:.38s cubic-bezier(.2,.8,.2,1)}.topbar.scrolled{background:rgba(10,11,17,.68);border-color:var(--line);box-shadow:0 14px 40px rgba(0,0,0,.22)}.brand{display:flex;align-items:center;gap:10px;color:var(--fg);text-decoration:none;font-weight:700;letter-spacing:.01em}.orb{width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0 8%,#b9b5ff 12%,#6f75ff 40%,rgba(111,117,255,.1) 72%,transparent 74%);box-shadow:0 0 22px rgba(126,119,255,.55)}.nav{display:flex;align-items:center;gap:8px}.nav a,.seg button,.menu-btn,.glass-btn{color:var(--fg);text-decoration:none;border:1px solid transparent;background:transparent;font:600 13px/1 Manrope,sans-serif}.nav a{padding:10px 13px;border-radius:14px;opacity:.82;transition:.25s}.nav a:hover{opacity:1;background:rgba(255,255,255,.05)}
+    .seg{position:relative;display:flex;align-items:center;padding:3px;border-radius:999px;background:rgba(255,255,255,.045);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 10px 24px rgba(0,0,0,.15);overflow:hidden}.seg::after{content:"";position:absolute;inset:3px auto 3px 3px;width:50%;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.07));box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 4px 18px rgba(85,85,160,.22);transform:translateX(0);transition:transform .52s cubic-bezier(.17,.89,.22,1.08),width .48s cubic-bezier(.17,.89,.22,1.08)}.seg.en::after{transform:translateX(100%)}.seg.stretch-right::after{width:72%;transform:translateX(38%)}.seg.stretch-left::after{width:72%;transform:translateX(-10%)}.seg button{position:relative;z-index:1;min-width:42px;padding:8px 10px;border-radius:999px;cursor:pointer;opacity:.62;transition:opacity .25s,transform .18s}.seg button.active{opacity:1}.seg button:active{transform:scale(.93)}
+    .menu-btn{display:none;padding:11px 13px;border-radius:14px;background:rgba(255,255,255,.05);border-color:var(--line);cursor:pointer}.mobile-sheet{position:fixed;inset:auto 10px 10px;z-index:45;padding:16px;border-radius:30px;border:1px solid var(--line);background:rgba(10,12,18,.78);backdrop-filter:blur(30px) saturate(170%);-webkit-backdrop-filter:blur(30px) saturate(170%);box-shadow:0 30px 80px rgba(0,0,0,.48);transform:translateY(calc(100% + 30px));opacity:0;pointer-events:none;transition:.48s cubic-bezier(.2,.8,.2,1)}.mobile-sheet.open{transform:none;opacity:1;pointer-events:auto}.sheet-handle{width:42px;height:5px;border-radius:5px;background:rgba(255,255,255,.16);margin:0 auto 16px}.mobile-links{display:grid;gap:8px}.mobile-links a{padding:16px 14px;border-radius:18px;color:var(--fg);text-decoration:none;background:rgba(255,255,255,.035);border:1px solid transparent}.mobile-links a:hover{border-color:var(--line)}
+    main{padding-top:120px}.hero{min-height:calc(100svh - 120px);display:grid;align-items:center;padding:48px 0 88px;position:relative}.hero-glow{position:absolute;width:44vw;height:44vw;min-width:420px;min-height:420px;right:-6vw;top:4vh;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(165,157,255,.25),rgba(105,118,255,.09) 36%,transparent 68%);filter:blur(18px);opacity:.65;animation:orbPulse 9s ease-in-out infinite alternate}.hero-glow::after{content:"";position:absolute;inset:18%;border:1px solid rgba(255,255,255,.055);border-radius:40% 60% 55% 45%;animation:morph 11s ease-in-out infinite}.hero-inner{position:relative;z-index:2;max-width:930px}.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#b5b6c2;opacity:.88}.title{font-family:"DM Serif Display",serif;font-size:clamp(58px,9vw,120px);line-height:.91;font-weight:400;letter-spacing:-.045em;margin:14px 0 22px;max-width:980px}.title em{color:#c4c0ff}.lede{font-size:clamp(17px,1.65vw,21px);line-height:1.7;color:#c4c6d1;max-width:760px}.meta{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 30px}.chip{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.035);font-size:12px;color:#b8bbc8}.actions{display:flex;flex-wrap:wrap;gap:10px}.glass-btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:14px 17px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(180deg,rgba(255,255,255,.105),rgba(255,255,255,.04));box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 12px 28px rgba(0,0,0,.16);cursor:pointer;overflow:hidden;transition:transform .2s cubic-bezier(.2,.8,.2,1),filter .2s,box-shadow .3s}.glass-btn::before{content:"";position:absolute;inset:-45%;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.16),transparent 24%);opacity:0;transition:opacity .2s}.glass-btn:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 18px 34px rgba(0,0,0,.2)}.glass-btn:hover::before{opacity:1}.glass-btn:active{transform:translateY(1px) scale(.975)}
+    .section{padding:96px 0}.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:26px}.section-kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9296a5}.section-title{font-family:"DM Serif Display",serif;font-size:clamp(36px,5vw,66px);line-height:1;margin:6px 0 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.feature{position:relative;min-height:260px;padding:24px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);overflow:hidden;transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .3s,background .3s}.feature::before{content:"";position:absolute;inset:0;background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.11),transparent 65%);opacity:.8;pointer-events:none}.feature:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.14);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.028))}.feature-top{display:flex;justify-content:space-between;gap:12px;align-items:start}.feature-icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-size:22px;background:rgba(255,255,255,.055);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}.feature h3{margin:22px 0 10px;font-size:22px}.feature p{margin:0;color:var(--muted);line-height:1.7}.arrow{font-size:21px;opacity:.5;transition:transform .3s}.feature:hover .arrow{transform:translate(3px,-3px);opacity:.9}.band{margin-top:16px;padding:20px 22px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.03);display:flex;flex-wrap:wrap;justify-content:space-between;gap:15px;align-items:center}.band strong{font-size:14px}.band span{font-size:13px;color:var(--muted)}
+    footer{padding:90px 0 50px;color:#8f93a2}.footer-line{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px}.footer-brand{font-family:"DM Serif Display",serif;font-size:clamp(40px,9vw,110px);line-height:.85;opacity:.1;letter-spacing:-.05em;margin-top:28px}
+    .veil{position:fixed;inset:0;z-index:90;background:radial-gradient(circle at 50% 20%,rgba(144,135,255,.11),transparent 30%),rgba(5,6,10,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .25s}.veil.show{opacity:1;pointer-events:auto}
+    @keyframes orbPulse{to{transform:scale(1.08) translate3d(-2%,2%,0);opacity:.8}}@keyframes morph{0%,100%{border-radius:40% 60% 55% 45%;transform:rotate(0deg) scale(1)}50%{border-radius:58% 42% 48% 52%;transform:rotate(14deg) scale(1.04)}}
+    @media (max-width:900px){.nav{display:none}.menu-btn{display:block}.topbar{padding:9px 10px 9px 13px}.hero{min-height:auto;padding:56px 0 78px}.grid{grid-template-columns:1fr}.section{padding:76px 0}.section-head{align-items:start;flex-direction:column}.hero-glow{right:-28vw;top:10vh}.wrap{padding:0 18px}}
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bg-a,.bg-b,.hero-glow,.hero-glow::after{animation:none}.glass-btn,.feature,.seg::after,.mobile-sheet,.topbar{transition:none!important}}
   </style>
 </head>
-<body>
-<div class="wallpaper"></div><div class="noise"></div>
+<body data-page="home">
+  <div class="bg-a"></div><div class="bg-b"></div><div class="grain"></div><div class="veil" id="veil"></div>
+  <header class="topbar" id="topbar">
+    <a class="brand" href="./index.html"><span class="orb"></span><span data-bind="botName">NOVA</span></a>
+    <nav class="nav">
+      <a href="./index.html" data-i18n="nav.home">Trang chủ</a>
+      <a href="./terms-of-service.html" data-i18n="nav.terms">Điều khoản</a>
+      <a href="./privacy-policy.html" data-i18n="nav.privacy">Bảo mật</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="seg" id="langSeg" aria-label="Language selector">
+        <button data-lang="vi" class="active">VI</button><button data-lang="en">EN</button>
+      </div>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+    </div>
+  </header>
 
-<div class="statusbar">
-  <div class="status-left"><span id="clockMini">22:21</span><span class="island"><i class="dot-live"></i>Nova</span></div>
-  <div class="status-right"><span class="hide-mobile">5G</span><span>⌁</span><span>▰</span></div>
-</div>
-
-<main class="home" id="home">
-  <div class="hero-row">
-    <div class="hello"><h1>Xin chào.<br><span style="opacity:.64">Control Center</span></h1><p>Nova Discord automation suite · Liquid Glass workspace</p></div>
-    <div class="hero-actions"><button class="sys-btn" onclick="openApp('search')">⌕ Tìm kiếm</button><button class="sys-btn" onclick="openApp('control')">☷ Trung tâm điều khiển</button></div>
+  <div class="mobile-sheet" id="mobileSheet" aria-hidden="true">
+    <div class="sheet-handle"></div>
+    <div class="mobile-links">
+      <a href="./index.html" data-i18n="nav.home">Trang chủ</a>
+      <a href="./terms-of-service.html" data-i18n="nav.terms">Điều khoản</a>
+      <a href="./privacy-policy.html" data-i18n="nav.privacy">Bảo mật</a>
+      <div style="display:flex;justify-content:flex-end;padding-top:4px"><div class="seg" id="mobileLangSeg"><button data-lang="vi" class="active">VI</button><button data-lang="en">EN</button></div></div>
+    </div>
   </div>
 
-  <div class="widget-grid">
-    <section class="widget glass"><h3>Nova Status</h3><div class="big" id="statusText">Online</div><div class="sub">Local demo mode · Frontend ready</div><div class="progress"><i id="healthBar"></i></div><div class="ops-list"><span class="status-chip">⚔️ War Ping</span><span class="status-chip">🛡️ Backup</span><span class="status-chip">🤖 AI</span><span class="status-chip">🎟 Event</span></div></section>
-    <section class="widget glass"><h3>Active Operations</h3><div class="big" id="activeOps">2</div><div class="sub">War + Backup</div></section>
-    <section class="widget glass"><h3>Event Participants</h3><div class="big" id="participantCount">12</div><div class="sub">Registered for current event</div></section>
-  </div>
+  <main>
+    <section class="hero wrap">
+      <div class="hero-glow"></div>
+      <div class="hero-inner">
+        <div class="eyebrow" data-i18n="home.eyebrow">DISCORD BOT · LEGAL PORTAL</div>
+        <h1 class="title" data-i18n="home.title">Điều Khoản <em>&amp; Bảo Mật</em></h1>
+        <p class="lede" data-i18n="home.lede">Minh bạch, rõ ràng và dễ hiểu — để bạn biết bot làm gì, dữ liệu nào có thể được xử lý và các tính năng hoạt động ra sao.</p>
+        <div class="meta"><span class="chip"><span data-i18n="meta.effective">Ngày hiệu lực</span>: <b data-bind="effectiveDate">[EFFECTIVE DATE]</b></span><span class="chip" data-i18n="meta.static">Static · GitHub Pages</span></div>
+        <div class="actions">
+          <a class="glass-btn" href="./terms-of-service.html"><span data-i18n="home.termsCta">Đọc Điều Khoản</span><span>↗</span></a>
+          <a class="glass-btn" href="./privacy-policy.html"><span data-i18n="home.privacyCta">Đọc Chính Sách Bảo Mật</span><span>↗</span></a>
+        </div>
+      </div>
+    </section>
 
-  <div class="section-title"><h2>Apps</h2><span>Tap để mở ứng dụng</span></div>
-  <div class="apps-grid">
-    <button class="app" onclick="openApp('war')"><div class="app-icon i-war">⚔️</div><span>War Ping</span></button>
-    <button class="app" onclick="openApp('backup')"><div class="app-icon i-backup">🛡️</div><span>Backup</span></button>
-    <button class="app" onclick="openApp('event')"><div class="app-icon i-event">🎟️</div><span>Events</span></button>
-    <button class="app" onclick="openApp('ai')"><div class="app-icon i-ai">✨</div><span>AI Studio</span></button>
-    <button class="app" onclick="openApp('config')"><div class="app-icon i-config">⚙️</div><span>Server Config</span></button>
-    <button class="app" onclick="openApp('ban')"><div class="app-icon i-ban">🛡️</div><span>Ban Guard</span></button>
-    <button class="app" onclick="openApp('keys')"><div class="app-icon i-key">🔑</div><span>Key Vault</span></button>
-    <button class="app" onclick="openApp('logs')"><div class="app-icon i-log">▤</div><span>Logs</span></button>
-    <button class="app" onclick="openApp('help')"><div class="app-icon i-help">❔</div><span>Help Desk</span></button>
-    <button class="app" onclick="openApp('settings')"><div class="app-icon i-settings">⚙︎</div><span>Settings</span></button>
-  </div>
-</main>
+    <section class="section wrap">
+      <div class="section-head"><div><div class="section-kicker" data-i18n="home.featuresKicker">HỆ THỐNG</div><h2 class="section-title" data-i18n="home.featuresTitle">Một nơi để hiểu toàn bộ bot.</h2></div><div style="max-width:420px;color:var(--muted);line-height:1.7" data-i18n="home.featuresIntro">Các tính năng được trình bày theo đúng cách người dùng và quản lý tương tác với bot trên Discord.</div></div>
+      <div class="grid">
+        <article class="feature tilt"><div class="feature-top"><div class="feature-icon">🤖</div><div class="arrow">↗</div></div><h3 data-i18n="features.ai.title">AI Chatbot</h3><p data-i18n="features.ai.desc">Chat với AI, lịch sử riêng từng người, shared history, persona và ngôn ngữ giao diện.</p></article>
+        <article class="feature tilt"><div class="feature-top"><div class="feature-icon">⚔️</div><div class="arrow">↗</div></div><h3 data-i18n="features.war.title">War Ping / Backup</h3><p data-i18n="features.war.desc">Tạo request WAR hoặc BACKUP, tham gia, báo hacker và quản lý trạng thái war.</p></article>
+        <article class="feature tilt"><div class="feature-top"><div class="feature-icon">🏆</div><div class="arrow">↗</div></div><h3 data-i18n="features.event.title">Hero Battlegrounds Event</h3><p data-i18n="features.event.desc">Tham gia event bằng panel, quản lý người tham gia, blacklist và kết thúc event.</p></article>
+        <article class="feature tilt"><div class="feature-top"><div class="feature-icon">☠️</div><div class="arrow">↗</div></div><h3 data-i18n="features.ban.title">Automatic Ban Channel</h3><p data-i18n="features.ban.desc">Kênh ban tự động, debug điều kiện ban và whitelist, luôn tuân theo role hierarchy của Discord.</p></article>
+      </div>
+      <div class="band"><strong data-i18n="home.aiProviderLabel">AI Provider</strong><span data-bind="aiProvider">[AI PROVIDER]</span></div>
+    </section>
+  </main>
+  <footer class="wrap"><div class="footer-line"><span>© 2026 <span data-bind="botName">NOVA</span></span><span><span data-bind="owner">[BOT OWNER NAME / DISCORD]</span> · <span data-bind="support">[SUPPORT SERVER]</span></span></div><div class="footer-brand" data-bind="botName">NOVA</div></footer>
 
-<div class="dock glass"><button class="dock-item" onclick="openApp('ai')">✨</button><button class="dock-item" onclick="openApp('event')">🎟️</button><button class="dock-item" onclick="openApp('war')">⚔️</button><button class="dock-item" onclick="openApp('search')">⌕</button><button class="dock-item" onclick="openApp('settings')">⚙︎</button></div>
-
-<!-- lock screen -->
-<section class="lock" id="lock"><div class="lock-inner"><div class="lock-date" id="lockDate">Thứ Bảy, 19 tháng 9</div><div class="lock-time" id="lockTime">22:21</div><div class="lock-title">Nova · Liquid Glass</div><button class="unlock" onclick="unlock()">⌃  Mở khóa</button></div><div class="lock-bottom"><span>🔦 Flashlight</span><span>⌾ Camera</span></div></section>
-
-<!-- generic app overlay -->
-<div class="overlay" id="overlay" onclick="backdropClose(event)"><section class="window glass" id="window"><header class="win-head"><div class="win-title" id="winTitle">App</div><div class="win-tools"><button class="close" onclick="closeApp()">×</button></div></header><div class="win-body" id="winBody"></div></section></div>
-<div class="toast" id="toast"></div>
-
-<script>
-const state = {
-  wars: JSON.parse(localStorage.getItem('cos_wars')||'null') || [
-    {id:101,kind:'war',clan:'Emperor',region:'SG',server:'private://RBX-7C9',members:5,status:'ACTIVE',reported:false},
-  ],
-  backups: JSON.parse(localStorage.getItem('cos_backups')||'null') || [
-    {id:202,kind:'backup',clan:'Night Shift',region:'US',server:'private://RBX-2F1',members:8,status:'ACTIVE',reported:false},
-  ],
-  event: JSON.parse(localStorage.getItem('cos_event')||'null') || {title:'Hero Battlegrounds Event',desc:'Weekly squad event · tap Join to register.',participants:12,blacklist:[]},
-  banned: localStorage.getItem('cos_ban')==='1',
-  sharedHistory: localStorage.getItem('cos_shared')==='1',
-  aiChannel: localStorage.getItem('cos_ai')==='1',
-  glass: Number(localStorage.getItem('cos_glass')||.62),
-  tint: localStorage.getItem('cos_tint')||'ultraclear',
-  lang: localStorage.getItem('cos_lang')||'vi',
-  logs: JSON.parse(localStorage.getItem('cos_logs')||'null') || [
-    ['22:16','System','Frontend initialized'],['22:17','War Ping','War #101 active · SG'],['22:18','Backup','Backup #202 active · US'],['22:20','Event','12 participants registered']
-  ],
-  messages: JSON.parse(localStorage.getItem('cos_msgs')||'null') || [{role:'bot',text:'Chào bạn. Đây là AI Studio trong chế độ local demo. Mình mô phỏng luồng !chat, persona, language và shared history của bot.'}],
-  keys: JSON.parse(localStorage.getItem('cos_keys')||'null') || [{name:'Primary',status:'healthy',mask:'coco••••••7D'}]
-};
-
-document.documentElement.style.setProperty('--glass',state.glass);
-function persist(){for(const k of ['wars','backups','event','logs','messages','keys'])localStorage.setItem('cos_'+k,JSON.stringify(state[k])); localStorage.setItem('cos_ban',state.banned?'1':'0');localStorage.setItem('cos_shared',state.sharedHistory?'1':'0');localStorage.setItem('cos_ai',state.aiChannel?'1':'0');localStorage.setItem('cos_glass',state.glass);localStorage.setItem('cos_tint',state.tint);localStorage.setItem('cos_lang',state.lang)}
-function now(){return new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})}
-function log(area,msg){state.logs.unshift([now(),area,msg]);state.logs=state.logs.slice(0,60);persist()}
-function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),2100)}
-function h(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-function unlock(){document.getElementById('lock').classList.add('hidden');toast('Đã mở khóa workspace')}
-function closeApp(){document.getElementById('overlay').classList.remove('open')}
-function backdropClose(e){if(e.target.id==='overlay')closeApp()}
-function openApp(name){
-  const overlay=document.getElementById('overlay'),body=document.getElementById('winBody'),title=document.getElementById('winTitle');
-  const apps={war:['⚔️ War Ping',warUI],backup:['🛡️ Backup Ping',backupUI],event:['🎟️ Hero Battlegrounds Event',eventUI],ai:['✨ AI Studio',aiUI],config:['⚙️ Server Configuration',configUI],ban:['🛡️ Ban Guard',banUI],keys:['🔑 Key Vault',keysUI],logs:['▤ Activity Logs',logsUI],help:['❔ Help Desk',helpUI],settings:['⚙︎ Settings',settingsUI],control:['☷ Control Center',controlUI],search:['⌕ Spotlight Search',searchUI]};
-  const app=apps[name]; if(!app)return; title.textContent=app[0]; body.innerHTML=app[1](); overlay.classList.add('open'); if(name==='ai')setTimeout(scrollChat,40)
-}
-function updateHome(){document.getElementById('activeOps').textContent=state.wars.filter(x=>x.status==='ACTIVE').length+state.backups.filter(x=>x.status==='ACTIVE').length;document.getElementById('participantCount').textContent=state.event.participants;document.getElementById('healthBar').style.width=Math.min(96,48+state.keys.filter(k=>k.status==='healthy').length*14)+'%';}
-
-function opCard(item,kind){const isWar=kind==='war';return `<div class="row"><div class="left"><div class="name">${isWar?'⚔️':'🛡️'} #${item.id} · ${h(item.clan)}</div><div class="desc">${h(item.region)} · ${h(item.server)} · ${item.members} members</div></div><span class="badge ${item.status==='ACTIVE'?'b-good':'b-warn'}">${item.status}</span></div>`}
-function requestUI(kind){const isWar=kind==='war';return `<div class="two-col"><div class="card"><h3>${isWar?'⚔️ Create War Ping':'🛡️ Create Backup Ping'}</h3><p>Giống modal trong bot: Clan, Region và Roblox Server Link/Code.</p><div class="fields"><div class="field"><label>Clan <span>required</span></label><input id="fClan" placeholder="Emperor"></div><div class="field"><label>Region <span>SG / US / JP</span></label><input id="fRegion" placeholder="SG"></div><div class="field"><label>Server Link or Code</label><textarea id="fServer" placeholder="Paste private server link or code..."></textarea></div></div><div class="actions"><button class="primary" onclick="createOp('${kind}')">${isWar?'⚔️ Create War':'🛡️ Create Backup'}</button></div></div><div class="card"><h3>Active requests</h3><p>Join · Hacker Report · Call Hacker · Win · Lose · End</p><div class="list">${(isWar?state.wars:state.backups).map(x=>opCard(x,kind)).join('')}</div></div></div><div class="footnote">Frontend demo: thao tác được lưu trong trình duyệt. Luồng Discord thật vẫn cần backend/bot để gọi Discord API.</div>`}
-function warUI(){return requestUI('war')}
-function backupUI(){return requestUI('backup')}
-function createOp(kind){const clan=document.getElementById('fClan').value.trim(),region=document.getElementById('fRegion').value.trim(),server=document.getElementById('fServer').value.trim();if(!clan||!region||!server)return toast('Vui lòng điền đủ 3 trường');const id=Math.floor(100+Math.random()*900);const item={id,kind,clan,region,server,members:0,status:'ACTIVE',reported:false};state[kind==='war'?'wars':'backups'].unshift(item);log(kind==='war'?'War Ping':'Backup',`#${id} created · ${clan} · ${region}`);persist();updateHome();openApp(kind);toast(`${kind==='war'?'War':'Backup'} #${id} đã tạo`)}
-function joinOp(kind,id){const arr=kind==='war'?state.wars:state.backups;const x=arr.find(i=>i.id===id);if(!x||x.status!=='ACTIVE')return; x.members++;log(kind==='war'?'War Ping':'Backup',`#${id} joined · ${x.members} members`);persist();openApp(kind);toast('Đã Join')}
-function reportOp(kind,id){const arr=kind==='war'?state.wars:state.backups;const x=arr.find(i=>i.id===id);if(!x)return;x.reported=true;log(kind==='war'?'War Ping':'Backup',`#${id} hacker reported`);persist();openApp(kind);toast('Đã báo Hacker')}
-function endOp(kind,id,result){const arr=kind==='war'?state.wars:state.backups;const x=arr.find(i=>i.id===id);if(!x)return;x.status=result;log(kind==='war'?'War Ping':'Backup',`#${id} → ${result}`);persist();updateHome();openApp(kind);toast(`#${id} → ${result}`)}
-function detailedOpsUI(kind){const arr=kind==='war'?state.wars:state.backups;return arr.map(x=>`<div class="card" style="margin-top:10px"><div style="display:flex;justify-content:space-between;gap:12px"><div><h3>${kind==='war'?'⚔️':'🛡️'} #${x.id} · ${h(x.clan)}</h3><p>${h(x.region)} · ${h(x.server)}</p></div><span class="badge ${x.status==='ACTIVE'?'b-good':'b-warn'}">${x.status}</span></div><div class="stat-row" style="margin-top:12px"><div class="stat"><b>${x.members}</b><small>members</small></div><div class="stat"><b>${x.reported?'🚨':'—'}</b><small>hacker</small></div><div class="stat"><b>${h(x.region)}</b><small>region</small></div></div><div class="actions"><button class="secondary" onclick="joinOp('${kind}',${x.id})">✅ Join</button><button class="danger-btn" onclick="reportOp('${kind}',${x.id})">🚨 Hacker</button><button class="secondary" onclick="endOp('${kind}',${x.id},'WIN')">🏆 Win</button><button class="danger-btn" onclick="endOp('${kind}',${x.id},'LOSS')">💀 Lose</button><button class="secondary" onclick="endOp('${kind}',${x.id},'ENDED')">🏁 End</button></div></div>`).join('')||'<div class="card"><p>Chưa có request nào.</p></div>'}
-
-function eventUI(){return `<div class="card"><div style="display:flex;justify-content:space-between;gap:12px"><div><h3>🎟️ ${h(state.event.title)}</h3><p>${h(state.event.desc)}</p></div><span class="badge b-good">LIVE</span></div><div class="stat-row" style="margin:14px 0"><div class="stat"><b>${state.event.participants}</b><small>participants</small></div><div class="stat"><b>${state.event.blacklist.length}</b><small>blacklisted roles</small></div><div class="stat"><b>2</b><small>languages</small></div></div><div class="actions"><button class="primary" onclick="joinEvent()">✅ Join Event</button><button class="secondary" onclick="eventReset()">🗑 Clear Participants</button></div></div><div class="two-col" style="margin-top:14px"><div class="card"><h3>Edit Event</h3><div class="fields"><div class="field"><label>Title</label><input id="evTitle" value="${h(state.event.title)}"></div><div class="field"><label>Description</label><textarea id="evDesc">${h(state.event.desc)}</textarea></div></div><div class="actions"><button class="primary" onclick="saveEvent()">Save</button></div></div><div class="card"><h3>Blacklist Roles</h3><p>Role có trong blacklist sẽ không thể tham gia event.</p><div class="actions"><button class="secondary" onclick="addBlacklist()">＋ Add role</button></div><div class="list" style="margin-top:10px">${state.event.blacklist.map((r,i)=>`<div class="row"><div class="left"><div class="name">🚫 ${h(r)}</div><div class="desc">Blocked from event join</div></div><button class="secondary" onclick="removeBlacklist(${i})">Remove</button></div>`).join('')||'<div class="muted">Blacklist đang trống.</div>'}</div></div></div>`}
-function joinEvent(){state.event.participants++;log('Event',`Joined event · total ${state.event.participants}`);persist();updateHome();openApp('event');toast('Đã tham gia event')}
-function saveEvent(){state.event.title=document.getElementById('evTitle').value.trim()||state.event.title;state.event.desc=document.getElementById('evDesc').value.trim()||state.event.desc;log('Event','Title/description updated');persist();openApp('event');toast('Đã lưu event')}
-function eventReset(){state.event.participants=0;log('Event','Participants cleared');persist();updateHome();openApp('event');toast('Đã xóa danh sách người tham gia')}
-function addBlacklist(){const r=prompt('Tên role cần block (demo):');if(r?.trim()){state.event.blacklist.push(r.trim());log('Event',`Blacklist add · ${r.trim()}`);persist();openApp('event')}}
-function removeBlacklist(i){const r=state.event.blacklist.splice(i,1)[0];log('Event',`Blacklist remove · ${r}`);persist();openApp('event')}
-
-function aiUI(){return `<div class="two-col"><div class="card"><h3>AI Settings · Nova</h3><p>Phản ánh các lệnh <b>!chat</b>, <b>!image</b>, <b>!persona</b>, <b>!language</b>, shared history.</p><div class="fields"><div class="field"><label>AI Channel</label><div class="segmented"><button class="${state.aiChannel?'active':''}" onclick="toggleAI(true)">ON</button><button class="${!state.aiChannel?'active':''}" onclick="toggleAI(false)">OFF</button></div></div><div class="field"><label>Shared History</label><div class="segmented"><button class="${state.sharedHistory?'active':''}" onclick="toggleShared(true)">ON</button><button class="${!state.sharedHistory?'active':''}" onclick="toggleShared(false)">OFF</button></div></div><div class="field"><label>Persona</label><select id="persona"><option>Default</option><option>Friendly</option><option>Professional</option><option>Anime companion</option><option>Custom</option></select></div><div class="field"><label>Language</label><select id="lang" onchange="changeLang(this.value)"><option value="vi" ${state.lang==='vi'?'selected':''}>Tiếng Việt</option><option value="en" ${state.lang==='en'?'selected':''}>English</option></select></div></div></div><div class="card chat-shell"><div class="messages" id="messages">${state.messages.map(m=>`<div class="msg ${m.role==='user'?'user':'bot'}">${h(m.text)}</div>`).join('')}</div><div><div class="compose"><input id="chatInput" placeholder="Nhập câu hỏi như !chat ..." onkeydown="if(event.key==='Enter')sendChat()"><button class="primary" onclick="sendChat()">Send</button></div><div class="hint-row"><button class="hint" onclick="quickChat('Giải thích War Ping hoạt động thế nào?')">War Ping?</button><button class="hint" onclick="quickChat('Tạo một lời chào ngắn')">Greeting</button><button class="hint" onclick="quickChat('Lập kế hoạch event')">Event plan</button></div></div></div></div><div class="card" style="margin-top:14px"><h3>Image Studio</h3><p>Luồng tương ứng <b>!image</b> · AI provider <b>Qwen3.7-max</b> trong cấu hình Nova.</p><div class="compose"><input id="imgPrompt" placeholder="Mô tả ảnh muốn tạo..."><button class="primary" onclick="generateImageDemo()">✨ Generate</button></div></div>`}
-function scrollChat(){const el=document.getElementById('messages');if(el)el.scrollTop=el.scrollHeight}
-function quickChat(s){document.getElementById('chatInput').value=s;sendChat()}
-function sendChat(){const input=document.getElementById('chatInput');const v=input.value.trim();if(!v)return;state.messages.push({role:'user',text:v});const reply=`[Local AI demo] Mình đã nhận câu hỏi: “${v}”. Trong bot thật, nội dung sẽ đi qua AI provider <b>Qwen3.7-max</b> và lịch sử hội thoại hiện hành.`;state.messages.push({role:'bot',text:reply});log('AI',`Chat · ${v.slice(0,58)}`);persist();openApp('ai');setTimeout(scrollChat,40)}
-function generateImageDemo(){const p=document.getElementById('imgPrompt').value.trim();if(!p)return toast('Nhập prompt trước');log('AI',`Image request · ${p.slice(0,56)}`);toast('Image job queued (local demo)')}
-function toggleAI(v){state.aiChannel=v;persist();log('AI',`AI channel ${v?'enabled':'disabled'}`);openApp('ai');toast(v?'AI channel ON':'AI channel OFF')}
-function toggleShared(v){state.sharedHistory=v;persist();log('AI',`Shared history ${v?'enabled':'disabled'}`);openApp('ai')}
-function changeLang(v){state.lang=v;persist();log('AI',`Language → ${v}`);toast(v==='vi'?'Đã chuyển Tiếng Việt':'Switched to English')}
-
-function configUI(){return `<div class="card"><h3>⚙️ Guild Configuration</h3><p>Frontend tương ứng các field trong <b>/config</b>.</p><div class="fields"><div class="field"><label>Guild ID</label><input id="guildId" value="1535562410499506207"></div><div class="field"><label>Help Channel ID</label><input id="helpCh" value="1535562410499506207"></div><div class="field"><label>War Ping Role</label><input id="warRole" value="1535562410499506207"></div><div class="field"><label>Backup Ping Role</label><input id="backupRole" value="0"></div><div class="field"><label>Joined War Role</label><input id="joinedWar" value="1547572335530348565"></div><div class="field"><label>Joined Backup Role</label><input id="joinedBackup" value="1547572335530348565"></div><div class="field"><label>Hacker Role</label><input id="hackerRole" value="1547568678768349297"></div><div class="field"><label>Ban Channel ID</label><input id="banChannel" value="0"></div></div><div class="actions"><button class="primary" onclick="saveConfig()">Save Configuration</button></div></div><div class="card" style="margin-top:14px"><h3>Manager Policy</h3><p>Administrator, Manage Server, hoặc Manage Channels.</p><div class="badge b-good">Manager-only controls</div></div>`}
-function saveConfig(){log('Config','Server configuration updated');toast('Configuration saved locally')}
-
-function banUI(){return `<div class="two-col"><div class="card"><h3>🍯 Automatic Ban Channel</h3><p>Tương ứng <b>/setbanchannel</b>. Một message trong kênh sẽ được xử lý như rule auto-ban của bot.</p><div class="segmented"><button class="${state.banned?'active':''}" onclick="setBan(true)">ON</button><button class="${!state.banned?'active':''}" onclick="setBan(false)">OFF</button></div><div class="actions"><button class="danger-btn" onclick="simulateBan()">Simulate Message</button></div></div><div class="card"><h3>🔐 Whitelist</h3><p>Người được whitelist sẽ được bỏ qua auto-ban.</p><div class="actions"><button class="secondary" onclick="addWhitelist()">＋ Add user</button></div><div class="list" id="whitelist"></div></div></div><div class="card" style="margin-top:14px"><h3>Bandebug</h3><div class="list"><div class="row"><div class="left"><div class="name">Bot has Ban Members</div><div class="desc">Permission check</div></div><span class="badge b-good">PASS</span></div><div class="row"><div class="left"><div class="name">Role hierarchy</div><div class="desc">Bot top role must be above target</div></div><span class="badge b-good">CHECK</span></div><div class="row"><div class="left"><div class="name">Owner protection</div><div class="desc">Server owner cannot be banned</div></div><span class="badge b-good">ON</span></div></div></div>`}
-function setBan(v){state.banned=v;persist();log('Ban Guard',`Auto-ban channel ${v?'enabled':'disabled'}`);openApp('ban');toast(v?'Auto-ban ON':'Auto-ban OFF')}
-function addWhitelist(){const v=prompt('Discord user ID hoặc tên demo:');if(!v?.trim())return;let list=JSON.parse(localStorage.getItem('cos_whitelist')||'[]');list.unshift(v.trim());localStorage.setItem('cos_whitelist',JSON.stringify([...new Set(list)]));log('Ban Guard',`Whitelist add · ${v.trim()}`);openApp('ban')}
-function simulateBan(){if(!state.banned)return toast('Bật Auto-ban trước');toast('Demo: message intercepted → softban flow simulated');log('Ban Guard','Simulated message → softban')}
-
-function keysUI(){return `<div class="stat-row"><div class="stat"><b>${state.keys.length}</b><small>stored keys</small></div><div class="stat"><b>${state.keys.filter(x=>x.status==='healthy').length}</b><small>healthy</small></div><div class="stat"><b>${state.keys.filter(x=>x.status!=='healthy').length}</b><small>issues</small></div></div><div class="card" style="margin-top:14px"><div style="display:flex;justify-content:space-between;align-items:center"><div><h3>Key Vault</h3><p>Masking UI for cocolink key rotation.</p></div><button class="primary" onclick="addKey()">＋ Add Key</button></div><div class="list" style="margin-top:12px">${state.keys.map((k,i)=>`<div class="row"><div class="left"><div class="name">🔑 ${h(k.name)}</div><div class="desc">${h(k.mask)}</div></div><div style="display:flex;gap:7px"><span class="badge ${k.status==='healthy'?'b-good':'b-bad'}">${h(k.status)}</span><button class="secondary" onclick="testKey(${i})">Test</button><button class="secondary" onclick="delKey(${i})">Delete</button></div></div>`).join('')}</div></div><div class="footnote">Không lưu API key thật trong HTML. Chỉ nên quản lý secret ở backend.</div>`}
-function addKey(){const name=prompt('Key name:',`Key ${state.keys.length+1}`);if(!name)return;state.keys.push({name:name.trim(),status:'healthy',mask:'coco••••••'+Math.floor(10+Math.random()*89)});log('Key Vault',`Key added · ${name.trim()}`);persist();openApp('keys')}
-function testKey(i){state.keys[i].status='healthy';log('Key Vault',`Key tested · ${state.keys[i].name}`);persist();openApp('keys');toast('Key test passed (demo)')}
-function delKey(i){const k=state.keys.splice(i,1)[0];log('Key Vault',`Key deleted · ${k.name}`);persist();openApp('keys');toast('Key deleted')}
-
-function logsUI(){return `<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><div><h3>▤ Activity</h3><p>Tóm tắt hoạt động local của workspace.</p></div><button class="secondary" onclick="clearLogs()">Clear</button></div><div class="list" style="margin-top:12px">${state.logs.map(l=>`<div class="row"><div class="left"><div class="name">${h(l[1])}</div><div class="desc">${h(l[2])}</div></div><span class="badge">${h(l[0])}</span></div>`).join('')}</div></div>`}
-function clearLogs(){state.logs=[];persist();openApp('logs');toast('Logs cleared')}
-function helpUI(){return `<div class="card"><h3>꧁༺ 🛠️ HELP DESK ༻꧂</h3><p>Choose an area. Giao diện này phản ánh help panel và command surface trong bot.</p><div class="actions"><button class="primary" onclick="openApp('war')">⚔️ WAR</button><button class="primary" onclick="openApp('backup')">📞 BACKUP</button><button class="secondary" onclick="openApp('event')">🎟️ EVENT</button><button class="secondary" onclick="openApp('ai')">✨ AI</button></div></div><div class="card" style="margin-top:14px"><h3>Command map</h3><div class="list"><div class="row"><div class="left"><div class="name">/trust</div><div class="desc">Manage trusted users for War Ping</div></div><span class="badge">Manager</span></div><div class="row"><div class="left"><div class="name">/helppanel</div><div class="desc">Recreate Help Desk panel</div></div><span class="badge">Manager</span></div><div class="row"><div class="left"><div class="name">/callhacker</div><div class="desc">Show or hide Call Hacker</div></div><span class="badge">Manager</span></div><div class="row"><div class="left"><div class="name">/event …</div><div class="desc">Send, edit, participants, count, remove, clear, blacklist</div></div><span class="badge">Manager</span></div></div></div>`}
-
-function settingsUI(){return `<div class="two-col"><div class="card"><h3>Appearance</h3><p>Điều chỉnh chất liệu glass.</p><div class="field"><label>Liquid Glass opacity <span id="glassVal">${Math.round(state.glass*100)}%</span></label><input class="slider" type="range" min="0.35" max="0.86" step="0.01" value="${state.glass}" oninput="setGlass(this.value)"></div><div class="field" style="margin-top:15px"><label>Tint</label><div class="segmented"><button class="${state.tint==='ultraclear'?'active':''}" onclick="setTint('ultraclear')">Ultra Clear</button><button class="${state.tint==='tinted'?'active':''}" onclick="setTint('tinted')">Tinted</button></div></div></div><div class="card"><h3>Nova Identity</h3><div class="list"><div class="row"><div class="left"><div class="name">Bot name</div><div class="desc">Nova</div></div><span class="badge">BOT</span></div><div class="row"><div class="left"><div class="name">Owner / Discord</div><div class="desc">nova_.inovation</div></div></div><div class="row"><div class="left"><div class="name">AI provider</div><div class="desc">Qwen3.7-max</div></div></div><div class="row"><div class="left"><div class="name">Effective date</div><div class="desc">19/09/2026</div></div></div></div><div class="actions" style="margin-top:12px"><a class="secondary" style="padding:11px 14px" href="mailto:anhbao27072011@gmail.com">✉ Contact</a><a class="primary" style="padding:11px 14px" href="https://discord.gg/qkyu3G6WMa" target="_blank" rel="noopener">Discord Support</a></div></div></div><div class="card" style="margin-top:14px"><h3>Privacy & Legal</h3><p>Thông tin pháp lý của Nova.</p><div class="actions"><a class="secondary" style="padding:11px 14px" href="privacy-policy.html">Privacy Policy</a><a class="secondary" style="padding:11px 14px" href="terms-of-service.html">Terms of Service</a></div><p class="footnote">Effective date: 19/09/2026 · Independent web interface inspired by iOS 26 Liquid Glass. Not an Apple product.</p></div>`}
-function setGlass(v){state.glass=Number(v);document.documentElement.style.setProperty('--glass',v);const x=document.getElementById('glassVal');if(x)x.textContent=Math.round(v*100)+'%';persist()}
-function setTint(v){state.tint=v;document.documentElement.style.setProperty('--panel',v==='tinted'?'rgba(24,31,50,.62)':'rgba(18,20,27,.48)');persist();openApp('settings');toast('Liquid Glass style updated')}
-
-function controlUI(){return `<div class="cc-grid"><button class="cc-tile on" onclick="toast('Wi‑Fi connected')"><div class="cc-ico">⌁</div><b>Wi‑Fi</b><span>Connected</span></button><button class="cc-tile" onclick="toast('Focus toggled')"><div class="cc-ico">◉</div><b>Focus</b><span>Personal</span></button><button class="cc-tile on" onclick="setGlass(Math.min(.86,state.glass+.05));openApp('control')"><div class="cc-ico">◌</div><b>Liquid Glass</b><span>Tap to increase clarity</span></button><button class="cc-tile" onclick="toast('Screen recording simulated')"><div class="cc-ico">⦿</div><b>Record</b><span>Ready</span></button></div><div class="card" style="margin-top:12px"><h3>Glass intensity</h3><input class="slider" type="range" min=".35" max=".86" step=".01" value="${state.glass}" oninput="setGlass(this.value)"><p class="muted">iOS 26-style Liquid Glass can be tuned from ultra-clear to tinted.</p></div>`}
-function searchUI(){return `<div class="searchbar"><span>⌕</span><input id="searchInput" autofocus placeholder="Search apps, commands, logs..." oninput="renderSearch()"></div><div class="results" id="searchResults"></div>`}
-function renderSearch(){const q=(document.getElementById('searchInput')?.value||'').toLowerCase();const data=[['⚔️','War Ping','Create & manage War requests','war'],['🛡️','Backup Ping','Backup requests','backup'],['🎟️','Events','Hero Battlegrounds event controls','event'],['✨','AI Studio','Chat, image, persona, language','ai'],['⚙️','Server Config','/config fields','config'],['🍯','Ban Guard','Auto-ban + whitelist + bandebug','ban'],['🔑','Key Vault','Cocolink key rotation','keys'],['❔','Help Desk','Command map','help'],['▤','Logs','Local activity','logs']];const out=data.filter(x=>(x[1]+' '+x[2]).toLowerCase().includes(q)).map(x=>`<button class="row" style="text-align:left" onclick="openApp('${x[3]}')"><div class="left"><div class="name">${x[0]} ${x[1]}</div><div class="desc">${x[2]}</div></div><span>›</span></button>`).join('')||'<div class="muted">Không tìm thấy.</div>';document.getElementById('searchResults').innerHTML=out}
-
-function tick(){const d=new Date();const time=d.toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'}),date=d.toLocaleDateString('vi-VN',{weekday:'long',day:'numeric',month:'long'});document.getElementById('clockMini').textContent=time;document.getElementById('lockTime').textContent=time;document.getElementById('lockDate').textContent=date.charAt(0).toUpperCase()+date.slice(1)}setInterval(tick,1000);tick();updateHome();
-window.addEventListener('keydown',e=>{if(e.key==='Escape')closeApp();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openApp('search')}})
-</script>
-</body>
-</html>
+  <script>
+  const CONFIG={botName:'NOVA',owner:'[BOT OWNER NAME / DISCORD]',support:'[SUPPORT SERVER]',aiProvider:'[AI PROVIDER]',effectiveDate:'[EFFECTIVE DATE]'};
+  const I18N={vi:{meta:{homeTitle:'Điều Khoản & Bảo Mật',effective:'Ngày hiệu lực',static:'Static · GitHub Pages'},nav:{home:'Trang chủ',terms:'Điều khoản',privacy:'Bảo mật'},home:{eyebrow:'DISCORD BOT · LEGAL PORTAL',title:'Điều Khoản & Bảo Mật',lede:'Minh bạch, rõ ràng và dễ hiểu — để bạn biết bot làm gì, dữ liệu nào có thể được xử lý và các tính năng hoạt động ra sao.',termsCta:'Đọc Điều Khoản',privacyCta:'Đọc Chính Sách Bảo Mật',featuresKicker:'HỆ THỐNG',featuresTitle:'Một nơi để hiểu toàn bộ bot.',featuresIntro:'Các tính năng được trình bày theo đúng cách người dùng và quản lý tương tác với bot trên Discord.',aiProviderLabel:'AI Provider'},features:{ai:{title:'AI Chatbot',desc:'Chat với AI, lịch sử riêng từng người, shared history, persona và ngôn ngữ giao diện.'},war:{title:'War Ping / Backup',desc:'Tạo request WAR hoặc BACKUP, tham gia, báo hacker và quản lý trạng thái war.'},event:{title:'Hero Battlegrounds Event',desc:'Tham gia event bằng panel, quản lý người tham gia, blacklist và kết thúc event.'},ban:{title:'Automatic Ban Channel',desc:'Kênh ban tự động, debug điều kiện ban và whitelist, luôn tuân theo role hierarchy của Discord.'}}},en:{meta:{homeTitle:'Terms & Privacy',effective:'Effective Date',static:'Static · GitHub Pages'},nav:{home:'Home',terms:'Terms',privacy:'Privacy'},home:{eyebrow:'DISCORD BOT · LEGAL PORTAL',title:'Terms & Privacy',lede:'Clear, transparent policies explaining what the bot does, what information may be processed, and how its features work.',termsCta:'Read Terms of Service',privacyCta:'Read Privacy Policy',featuresKicker:'SYSTEMS',featuresTitle:'One place to understand the whole bot.',featuresIntro:'Features are presented around the way users and moderators actually interact with the bot on Discord.',aiProviderLabel:'AI Provider'},features:{ai:{title:'AI Chatbot',desc:'Chat with AI, per-user history, shared channel history, personas and interface language.'},war:{title:'War Ping / Backup',desc:'Create WAR or BACKUP requests, join, report hackers and manage war state.'},event:{title:'Hero Battlegrounds Event',desc:'Join events through a panel, manage participants, blacklist roles and end an event.'},ban:{title:'Automatic Ban Channel',desc:'Automatic moderation channel, ban debugging and whitelist controls, respecting Discord role hierarchy.'}}}};
+  const saved=localStorage.getItem('site-language')||'vi';
+  function getPath(obj,path){return path.split('.').reduce((a,k)=>a?.[k],obj)}
+  function applyI18n(lang){document.documentElement.lang=lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const v=getPath(I18N[lang],el.dataset.i18n);if(v)el.textContent=v});document.title=I18N[lang].meta.homeTitle;document.querySelectorAll('[data-bind]').forEach(el=>{const k=el.dataset.bind;el.textContent=CONFIG[k]??''});document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));document.querySelectorAll('.seg').forEach(s=>s.classList.toggle('en',lang==='en'));localStorage.setItem('site-language',lang)}
+  function switchLang(lang,source){document.querySelectorAll('.seg').forEach(seg=>{const current=seg.classList.contains('en')?'en':'vi';if(current!==lang){seg.classList.remove('stretch-right','stretch-left');void seg.offsetWidth;seg.classList.add(lang==='en'?'stretch-right':'stretch-left');setTimeout(()=>{seg.classList.remove('stretch-right','stretch-left');applyI18n(lang)},190)}})}
+  document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>switchLang(b.dataset.lang,b.closest('.seg'))));
+  applyI18n(saved);
+  const topbar=document.getElementById('topbar');window.addEventListener('scroll',()=>topbar.classList.toggle('scrolled',scrollY>20),{passive:true});
+  const menu=document.getElementById('mobileSheet'),veil=document.getElementById('veil');document.getElementById('menuBtn').addEventListener('click',()=>{menu.classList.toggle('open');menu.setAttribute('aria-hidden',String(!menu.classList.contains('open')));veil.classList.toggle('show');document.body.style.overflow=menu.classList.contains('open')?'hidden':''});veil.addEventListener('click',()=>{menu.classList.remove('open');veil.classList.remove('show');document.body.style.overflow=''});
+  document.querySelectorAll('.tilt,.glass-btn').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');el.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%')});el.addEventListener('pointerdown',()=>el.animate([{transform:'scale(.985)'},{transform:'scale(1)'}],{duration:360,easing:'cubic-bezier(.2,.9,.2,1)'}))});
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!reduce){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.animate([{opacity:0,transform:'translateY(18px)',filter:'blur(6px)'},{opacity:1,transform:'translateY(0)',filter:'blur(0)'}],{duration:720,easing:'cubic-bezier(.2,.8,.2,1)',fill:'forwards'});io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.feature,.band,.section-head').forEach(el=>{el.style.opacity=0;io.observe(el)})}
+  </script>
+</body></html>
