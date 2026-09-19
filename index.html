@@ -3,204 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nova — Bot Discord cho server thật</title>
-<meta name="description" content="Nova — bot Discord với AI Chatbot, War Ping, Backup Ping, Event Management và Ban Zone. Miễn phí.">
+<title>Điều khoản dịch vụ — Nova Bot</title>
+<meta name="description" content="Điều khoản dịch vụ của Nova Bot Discord.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fraunces:ital,wght@1,400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#050508;--bg-2:#0a0a14;
-  --border:rgba(255,255,255,0.07);--text:#e8eaf0;
-  --text-dim:#6b7084;--text-mid:#9ca0b4;
-  --cyan:#00e5ff;--purple:#a855f7;--amber:#ffb347;
-}
+:root{--bg:#050508;--bg-2:#0a0a14;--surface:rgba(255,255,255,0.025);--border:rgba(255,255,255,0.07);
+  --text:#e8eaf0;--text-dim:#6b7084;--text-mid:#9ca0b4;--cyan:#00e5ff;--purple:#a855f7;--amber:#ffb347;
+  --warn:#f59e0b;--glow-cyan:rgba(0,229,255,0.15)}
 html{scroll-behavior:smooth}
-body{
-  font-family:'Inter',system-ui,sans-serif;color:var(--text);line-height:1.65;
-  overflow-x:hidden;-webkit-font-smoothing:antialiased;
-  /* 1 background tĩnh duy nhất — không animation, không DOM layer */
-  background:
-    radial-gradient(circle at 50% 12%, rgba(0,229,255,0.10), transparent 32%),
-    radial-gradient(circle at 80% 55%, rgba(168,85,247,0.06), transparent 42%),
-    radial-gradient(circle at 15% 88%, rgba(255,179,71,0.05), transparent 45%),
-    var(--bg);
-  background-attachment:fixed;
-}
-a{color:inherit;text-decoration:none}
-em{font-family:'Fraunces',serif;font-style:italic;font-weight:400}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--cyan);transition:opacity .2s;text-decoration:none}
+a:hover{opacity:.75}
+em{font-family:'Fraunces',serif;font-style:italic;font-weight:400;color:var(--amber)}
 img{display:block;max-width:100%;height:auto}
 
-/* ==== PROGRESS — dùng transform thay vì width (không trigger layout) ==== */
-.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:100;
-  background:linear-gradient(90deg,var(--cyan),var(--purple),var(--amber));
-  transform:scaleX(0);transform-origin:0 50%;will-change:transform}
-
-/* ==== NAV — không backdrop-filter, dùng background đặc ==== */
-nav{position:fixed;top:0;left:0;right:0;z-index:60;padding:18px clamp(20px,5vw,72px);
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(5,5,8,0.55);border-bottom:1px solid transparent;
-  transition:background .25s,padding .25s,border-color .25s}
-nav.scrolled{background:rgba(5,5,8,0.92);border-bottom-color:var(--border);padding:10px clamp(20px,5vw,72px)}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px;letter-spacing:.14em;text-transform:uppercase;transition:font-size .25s}
-nav.scrolled .brand{font-size:13px}
-.brand-orb{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px rgba(0,229,255,0.5)}
-.nav-links{display:flex;gap:26px;font-size:12.5px;color:var(--text-dim);font-weight:600;letter-spacing:.02em}
-.nav-links a{position:relative;transition:color .2s}
-.nav-links a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:1px;background:var(--cyan);transition:width .25s}
-.nav-links a:hover{color:var(--text)}.nav-links a:hover::after{width:100%}
-.lang-toggle{display:flex;gap:2px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:2px}
-.lang-btn{font-size:10.5px;font-weight:600;padding:5px 11px;border-radius:6px;border:none;background:transparent;color:var(--text-dim);cursor:pointer;transition:background .2s,color .2s;letter-spacing:.06em}
-.lang-btn.active{background:var(--cyan);color:#050508}
-@media(max-width:820px){.nav-links{display:none}}
-
-/* ==== SECTION — browser bỏ qua layout/paint ngoài viewport ==== */
-main{position:relative;z-index:2}
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
-section{position:relative;padding:120px 0;
-  content-visibility:auto;
-  contain-intrinsic-size:auto 800px}
-
-/* ==== HERO ==== */
-.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:140px 24px 100px;position:relative;overflow:hidden}
-.hero-bg{position:absolute;inset:0;z-index:-1;overflow:hidden}
-.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.32}
-.hero-bg::after{content:'';position:absolute;inset:0;
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(ellipse at 50% 40%, transparent 0%, rgba(5,5,8,0.55) 55%, var(--bg) 90%),
-    linear-gradient(180deg, rgba(5,5,8,0.7) 0%, transparent 25%, transparent 70%, var(--bg) 100%)}
-.hero-badge{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;font-weight:600;letter-spacing:.22em;
-  text-transform:uppercase;color:var(--cyan);padding:8px 18px;border:1px solid rgba(0,229,255,0.15);
-  border-radius:100px;background:rgba(0,229,255,0.04);margin-bottom:40px}
-.hero-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--cyan)}
-.hero h1{font-size:clamp(42px,9vw,110px);font-weight:800;letter-spacing:-.045em;line-height:.96;margin-bottom:32px;color:#fff}
-.hero h1 em{color:var(--amber)}
-.hero p.sub{font-size:clamp(15px,1.6vw,17px);color:var(--text-mid);max-width:600px;line-height:1.75;margin-bottom:48px}
-.cta-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
-.btn{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;letter-spacing:.02em;
-  padding:15px 30px;border-radius:100px;border:1px solid var(--border);background:rgba(255,255,255,0.02);
-  color:var(--text);cursor:pointer;transition:background .25s,border-color .25s,box-shadow .25s}
-.btn:hover{background:rgba(255,255,255,0.06);border-color:rgba(0,229,255,0.35);
-  box-shadow:0 8px 30px -12px rgba(0,229,255,0.4)}
-.btn.primary{background:var(--cyan);color:#050508;border-color:var(--cyan)}
-.btn.primary:hover{background:#22ecff}
-.btn-arrow{transition:transform .25s}.btn:hover .btn-arrow{transform:translateX(4px)}
+    radial-gradient(circle at 70% 25%, hsla(28,90%,58%,0.07), transparent 38%),
+    radial-gradient(circle at 25% 70%, hsla(270,80%,55%,0.05), transparent 42%),
+    var(--bg);}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.4}
+.orb-1{width:400px;height:400px;top:15%;right:-5%;background:radial-gradient(circle,rgba(255,179,71,0.10),transparent 70%)}
+.orb-2{width:440px;height:440px;bottom:-8%;left:-5%;background:radial-gradient(circle,var(--glow-cyan),transparent 70%)}
 
-/* ==== REVEAL — chỉ opacity, không transform, không filter ==== */
-.reveal{opacity:0;transition:opacity .6s ease}
-.reveal.visible{opacity:1}
+.grain{position:fixed;inset:0;z-index:80;pointer-events:none;opacity:.04;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>")}
+.stars{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='900' height='900'><g fill='white'><circle cx='80' cy='120' r='1.2' opacity='0.7'/><circle cx='320' cy='90' r='0.8' opacity='0.5'/><circle cx='560' cy='200' r='1' opacity='0.6'/><circle cx='780' cy='150' r='0.7' opacity='0.4'/><circle cx='150' cy='380' r='0.9' opacity='0.5'/><circle cx='450' cy='420' r='1.1' opacity='0.65'/><circle cx='700' cy='360' r='0.8' opacity='0.45'/><circle cx='250' cy='620' r='1' opacity='0.55'/><circle cx='540' cy='680' r='0.7' opacity='0.4'/><circle cx='820' cy='580' r='1.1' opacity='0.6'/><circle cx='120' cy='820' r='0.8' opacity='0.5'/><circle cx='420' cy='800' r='1' opacity='0.55'/><circle cx='700' cy='850' r='0.9' opacity='0.5'/><circle cx='880' cy='760' r='0.7' opacity='0.4'/></g></svg>");
+  background-size:900px 900px}
 
-/* ==== HEADINGS ==== */
-.section-label{display:inline-flex;align-items:center;gap:12px;font-size:10.5px;font-weight:600;
-  letter-spacing:.24em;text-transform:uppercase;color:var(--text-dim);margin-bottom:24px}
-.section-label::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--cyan),transparent)}
-.section-title{font-size:clamp(32px,5.5vw,68px);font-weight:800;letter-spacing:-.035em;line-height:1.02;margin-bottom:24px;color:#fff}
-.section-title em{color:var(--amber)}
-.section-desc{font-size:16px;color:var(--text-mid);max-width:640px;line-height:1.8;margin-bottom:60px}
+.progress{position:fixed;top:0;left:0;height:2px;z-index:100;width:0;
+  background:linear-gradient(90deg,var(--amber),var(--cyan),var(--purple))}
 
-/* ==== OVERVIEW ==== */
-.feature-overview{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-  background:var(--border);border:1px solid var(--border);border-radius:20px;overflow:hidden}
-@media(max-width:860px){.feature-overview{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.feature-overview{grid-template-columns:1fr}}
-.overview-card{background:var(--bg-2);padding:32px 26px;transition:background .25s}
-.overview-card:hover{background:rgba(255,255,255,0.025)}
-.overview-num{font-family:'Fraunces',serif;font-style:italic;font-size:34px;color:var(--text-dim);opacity:.4;line-height:1;margin-bottom:20px}
-.overview-card h3{font-size:16px;font-weight:800;margin-bottom:10px;letter-spacing:-.01em}
-.overview-card p{font-size:13px;color:var(--text-dim);line-height:1.7}
+nav{position:fixed;top:0;left:0;right:0;z-index:60;padding:14px clamp(20px,5vw,60px);
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(5,5,8,0.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);transition:background .4s}
+nav.scrolled{background:rgba(5,5,8,0.92)}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:14px;letter-spacing:.14em;text-transform:uppercase}
+.brand-orb{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--glow-cyan)}
+.nav-links{display:flex;gap:24px;font-size:12.5px;color:var(--text-dim);font-weight:600}
+.nav-links a{color:inherit}.nav-links a:hover{color:var(--text);opacity:1}
+.lang-toggle{display:flex;gap:2px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:2px}
+.lang-btn{font-size:10.5px;font-weight:600;padding:5px 11px;border-radius:6px;border:none;background:transparent;color:var(--text-dim);cursor:pointer;transition:background .3s,color .3s;letter-spacing:.06em}
+.lang-btn.active{background:var(--cyan);color:#050508}
+@media(max-width:700px){.nav-links{display:none}}
 
-/* ==== FEATURE ==== */
-.feature{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:160px}
-.feature.reverse{direction:rtl}.feature.reverse>*{direction:ltr}
-@media(max-width:900px){.feature,.feature.reverse{grid-template-columns:1fr;gap:48px;margin-bottom:110px;direction:ltr}}
-.feature-visual{position:relative;aspect-ratio:1/1.05;border-radius:24px;overflow:hidden;
-  border:1px solid var(--border);background:var(--bg-2)}
-.feature-visual img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
-.feature-visual:hover img{transform:scale(1.03)}
-.feature-visual::after{content:'';position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg, rgba(5,5,8,0.15) 0%, transparent 30%, transparent 65%, rgba(5,5,8,0.85) 100%)}
-.feature-visual .tag{position:absolute;left:24px;bottom:24px;z-index:2;font-size:10.5px;font-weight:600;
-  letter-spacing:.24em;text-transform:uppercase;color:var(--cyan);
-  padding:7px 14px;border:1px solid rgba(0,229,255,0.25);border-radius:100px;
-  background:rgba(5,5,8,0.7)}
-.feature-num{font-family:'Fraunces',serif;font-style:italic;font-size:20px;color:var(--cyan);opacity:.6;margin-bottom:12px;letter-spacing:.05em}
-.feature h2{font-size:clamp(26px,3.5vw,42px);font-weight:800;letter-spacing:-.03em;line-height:1.08;margin-bottom:20px;color:#fff}
-.feature h2 em{color:var(--amber)}
-.feature p{font-size:15px;color:var(--text-mid);line-height:1.8;margin-bottom:24px}
-.feature-list{list-style:none;display:flex;flex-direction:column;gap:12px}
-.feature-list li{font-size:14px;color:var(--text-dim);padding-left:24px;position:relative;line-height:1.6}
-.feature-list li::before{content:'→';position:absolute;left:0;top:0;color:var(--cyan);font-weight:600}
-.feature-list code{font-size:12.5px;background:rgba(0,229,255,0.07);color:var(--cyan);padding:2px 8px;border-radius:5px;font-family:'Inter',monospace;border:1px solid rgba(0,229,255,0.12);white-space:nowrap}
+.banner{position:relative;height:340px;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover;opacity:.4}
+.banner::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(5,5,8,0.7) 0%, transparent 30%, transparent 60%, var(--bg) 100%)}
 
-/* ==== COMMANDS ==== */
-.commands-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px 60px}
-@media(max-width:820px){.commands-grid{grid-template-columns:1fr;gap:32px}}
-.command-group{border-top:1px solid var(--border);padding-top:24px}
-.command-group h4{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:20px}
-.command{display:flex;align-items:flex-start;gap:16px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.03);transition:padding-left .25s}
-.command:hover{padding-left:6px}
-.command code{font-size:12.5px;font-family:'Inter',monospace;color:var(--text);background:rgba(255,255,255,0.03);
-  padding:4px 10px;border-radius:6px;border:1px solid var(--border);white-space:nowrap;flex-shrink:0}
-.command span{font-size:13px;color:var(--text-dim);line-height:1.55;padding-top:3px}
+.layout{display:grid;grid-template-columns:240px 1fr;max-width:1080px;margin:0 auto;
+  padding:60px 24px 100px;gap:60px;position:relative;z-index:2}
+@media(max-width:900px){.layout{grid-template-columns:1fr;gap:32px;padding-top:40px}}
+.sidebar{position:sticky;top:110px;height:fit-content}
+@media(max-width:900px){.sidebar{position:static;display:flex;flex-wrap:wrap;gap:6px}}
+.sidebar a{display:block;font-size:12.5px;color:var(--text-dim);padding:7px 0 7px 14px;
+  transition:color .3s,border-color .3s;border-left:1px solid transparent;margin-left:-14px;line-height:1.5}
+.sidebar a.active,.sidebar a:hover{color:var(--amber);border-left-color:var(--amber)}
+@media(max-width:900px){.sidebar a{border-left:none;padding:6px 14px;background:var(--surface);
+  border-radius:100px;font-size:11.5px;margin-left:0}
+.sidebar a.active{background:rgba(255,179,71,0.08);border-left:none}}
 
-/* ==== LEGAL ==== */
-.legal-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media(max-width:640px){.legal-cards{grid-template-columns:1fr}}
-.legal-card{padding:36px 32px;border:1px solid var(--border);border-radius:20px;
-  background:linear-gradient(135deg,rgba(255,255,255,0.015),rgba(255,255,255,0.005));
-  transition:border-color .25s,background .25s;position:relative;overflow:hidden}
-.legal-card::after{content:'→';position:absolute;bottom:32px;right:32px;font-size:20px;
-  color:var(--text-dim);transition:transform .25s,opacity .25s,color .25s;opacity:0;transform:translateX(-10px)}
-.legal-card:hover{border-color:rgba(0,229,255,0.25);background:rgba(255,255,255,0.03)}
-.legal-card:hover::after{opacity:1;transform:translateX(0);color:var(--cyan)}
-.legal-card .icon{font-size:28px;margin-bottom:16px}
-.legal-card h3{font-size:18px;font-weight:800;margin-bottom:8px}
-.legal-card p{font-size:13.5px;color:var(--text-dim);line-height:1.7}
+.content h1{font-size:clamp(30px,5.5vw,52px);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin-bottom:14px}
+.subtitle{color:var(--text-mid);font-size:14.5px;margin-bottom:48px;line-height:1.7}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--amber);padding:7px 16px;border:1px solid rgba(255,179,71,0.2);
+  border-radius:100px;background:rgba(255,179,71,0.05);margin-bottom:24px}
+.badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber)}
 
-/* ==== CTA ==== */
-.cta-final{text-align:center;padding:130px 24px 100px}
-.cta-final h2{font-size:clamp(30px,5vw,56px);font-weight:800;letter-spacing:-.035em;line-height:1.1;margin-bottom:24px;color:#fff}
-.cta-final h2 em{color:var(--amber)}
-.cta-final p{font-size:15.5px;color:var(--text-mid);max-width:520px;margin:0 auto 40px;line-height:1.75}
+section{margin-bottom:60px;scroll-margin-top:110px;content-visibility:auto;contain-intrinsic-size:auto 320px}
+section h2{font-size:clamp(20px,2.8vw,26px);font-weight:800;color:#fff;margin-bottom:18px;
+  display:flex;align-items:center;gap:14px;letter-spacing:-.015em}
+section h2 .num{font-family:'Fraunces',serif;font-style:italic;font-size:14px;font-weight:400;
+  color:var(--amber);background:rgba(255,179,71,0.07);border:1px solid rgba(255,179,71,0.15);
+  width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+section p{font-size:14.5px;color:var(--text);margin-bottom:14px;line-height:1.85}
+section ul{padding-left:22px;margin-bottom:18px;list-style:none}
+section li{font-size:14px;color:var(--text-mid);margin-bottom:10px;line-height:1.75;position:relative;padding-left:6px}
+section li::before{content:'·';position:absolute;left:-14px;color:var(--amber);font-weight:700;font-size:18px}
+section strong{color:#fff;font-weight:600}
 
-/* ==== FOOTER ==== */
-footer{position:relative;border-top:1px solid var(--border);padding:80px 24px 40px;overflow:hidden}
-.footer-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;margin-bottom:60px}
-@media(max-width:700px){.footer-grid{grid-template-columns:1fr;gap:40px}}
-.footer-grid h5{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px}
-.footer-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-.footer-grid li a{font-size:13.5px;color:var(--text-mid);transition:color .25s}
-.footer-grid li a:hover{color:var(--cyan)}
-.footer-signature{font-size:13.5px;color:var(--text-mid);line-height:1.8}
-.giant-word{font-size:clamp(80px,20vw,260px);font-weight:800;letter-spacing:-.06em;line-height:.85;
-  color:rgba(255,255,255,0.05);text-align:center;user-select:none;pointer-events:none;margin-top:40px}
-.footer-bottom{max-width:1180px;margin:40px auto 0;padding-top:32px;border-top:1px solid var(--border);
-  display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:12px;color:#3a3d4a;letter-spacing:.02em}
+glass{display:block;background:linear-gradient(135deg,rgba(255,255,255,0.02),rgba(255,255,255,0.005));
+  border:1px solid var(--border);border-radius:16px;padding:28px 32px;margin:20px 0;transition:border-color .3s}
+glass:hover{border-color:rgba(255,179,71,0.15)}
+glass.warn{border-left:3px solid var(--warn);background:linear-gradient(90deg,rgba(245,158,11,0.04),rgba(255,255,255,0.005))}
+glass p:last-child,glass ul:last-child{margin-bottom:0}
+glass ul li:last-child{margin-bottom:0}
+glass code,section code{font-size:12.5px;background:rgba(0,229,255,0.07);color:var(--cyan);
+  padding:2px 8px;border-radius:6px;font-family:'Inter',monospace;
+  border:1px solid rgba(0,229,255,0.12);white-space:nowrap}
 
-/* ==== LANG ==== */
+.reveal{opacity:0;transform:translate3d(0,20px,0);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:translate3d(0,0,0)}
+
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--text-dim);
+  margin-bottom:28px;transition:color .3s}
+.back-link:hover{color:var(--amber);opacity:1}
+
+footer{position:relative;z-index:2;border-top:1px solid var(--border);
+  padding:40px clamp(20px,5vw,60px);text-align:center;margin-top:60px}
+footer p{font-size:11.5px;color:#3a3d4a;letter-spacing:.03em}
+
 [data-lang-en]{display:none}
 body.en [data-lang-vi]{display:none}
 body.en [data-lang-en]{display:block}
 body.en span[data-lang-en]{display:inline}
 body.en span[data-lang-vi]{display:none}
 span[data-lang-en]{display:none}
-
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;scroll-behavior:auto!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
+<div class="ambient" aria-hidden="true"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+<div class="stars" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
-<nav id="nav">
-  <a href="#" class="brand"><span class="brand-orb"></span>NOVA</a>
+<nav>
+  <a href="index.html" class="brand"><span class="brand-orb"></span>NOVA</a>
   <div class="nav-links">
-    <a href="#features">Tính năng</a>
-    <a href="#commands">Lệnh</a>
-    <a href="#legal">Pháp lý</a>
-    <a href="https://discord.com" target="_blank" rel="noopener">Add to Discord</a>
+    <a href="index.html"><span data-lang-vi>Trang chủ</span><span data-lang-en>Home</span></a>
+    <a href="privacy-policy.html"><span data-lang-vi>Bảo mật</span><span data-lang-en>Privacy</span></a>
   </div>
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLang('vi')">VI</button>
@@ -208,292 +137,167 @@ span[data-lang-en]{display:none}
   </div>
 </nav>
 
-<main>
+<div class="banner" aria-hidden="true">
+  <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=70&auto=format&fit=crop"
+       alt="" loading="eager" fetchpriority="high" decoding="async"
+       onerror="this.onerror=null;this.src='https://picsum.photos/seed/nova-terms/1600/400'">
+</div>
 
-<section class="hero">
-  <div class="hero-bg">
-    <img src="https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?w=1400&q=65&auto=format&fit=crop"
-         alt="" loading="eager" fetchpriority="high" decoding="async" width="1400" height="800"
-         onerror="this.onerror=null;this.src='https://picsum.photos/seed/nova-hero/1400/800'">
-  </div>
-  <span class="hero-badge reveal" data-lang-vi>Bot Discord · v2026 · Made in Việt Nam</span>
-  <span class="hero-badge reveal" data-lang-en>Discord Bot · v2026 · Made in Vietnam</span>
-  <h1 class="reveal">
-    <span data-lang-vi>A quieter bot<br><em>for louder servers.</em></span>
-    <span data-lang-en>A quieter bot<br><em>for louder servers.</em></span>
-  </h1>
-  <p class="sub reveal" data-lang-vi>Nova lo AI chat, war ping, event management và auto-moderation — để cộng đồng của bạn tập trung vào trận đấu.</p>
-  <p class="sub reveal" data-lang-en>Nova handles AI chat, war pings, event management and auto-moderation — so your community can focus on the game.</p>
-  <div class="cta-row reveal">
-    <a class="btn primary" href="https://discord.com" target="_blank" rel="noopener">
-      <span data-lang-vi>Thêm vào Discord</span><span data-lang-en>Add to Discord</span>
-      <span class="btn-arrow">→</span>
-    </a>
-    <a class="btn" href="#features">
-      <span data-lang-vi>Xem tính năng</span><span data-lang-en>View features</span>
-    </a>
-  </div>
-</section>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <a href="#s1"><span data-lang-vi>1. Mô tả dịch vụ</span><span data-lang-en>1. Service description</span></a>
+  <a href="#s2"><span data-lang-vi>2. Điều kiện sử dụng</span><span data-lang-en>2. Usage conditions</span></a>
+  <a href="#s3"><span data-lang-vi>3. Nội dung AI</span><span data-lang-en>3. AI content</span></a>
+  <a href="#s4"><span data-lang-vi>4. War / Backup Ping</span><span data-lang-en>4. War / Backup</span></a>
+  <a href="#s5"><span data-lang-vi>5. Ban Zone</span><span data-lang-en>5. Ban Zone</span></a>
+  <a href="#s6"><span data-lang-vi>6. Event</span><span data-lang-en>6. Event</span></a>
+  <a href="#s7"><span data-lang-vi>7. Giới hạn trách nhiệm</span><span data-lang-en>7. Liability</span></a>
+  <a href="#s8"><span data-lang-vi>8. Chấm dứt</span><span data-lang-en>8. Termination</span></a>
+  <a href="#s9"><span data-lang-vi>9. Dữ liệu</span><span data-lang-en>9. Data</span></a>
+  <a href="#s10"><span data-lang-vi>10. Thay đổi</span><span data-lang-en>10. Changes</span></a>
+  <a href="#s11"><span data-lang-vi>11. Chung</span><span data-lang-en>11. General</span></a>
+  <a href="#s12"><span data-lang-vi>12. Liên hệ</span><span data-lang-en>12. Contact</span></a>
+</aside>
 
-<section id="features">
-  <div class="wrap">
-    <span class="section-label reveal">Tính năng · Features</span>
-    <h2 class="section-title reveal" data-lang-vi>Bốn hệ thống.<br>Một <em>bot duy nhất.</em></h2>
-    <h2 class="section-title reveal" data-lang-en>Four systems.<br>One <em>single bot.</em></h2>
-    <p class="section-desc reveal" data-lang-vi>Mỗi tính năng của Nova được thiết kế riêng cho cộng đồng game thủ — không dư thừa, không làm phiền, chỉ hoạt động khi bạn cần.</p>
-    <p class="section-desc reveal" data-lang-en>Every Nova feature is designed for gamer communities — nothing extra, no noise, working only when you need it.</p>
+<main class="content">
+  <a href="index.html" class="back-link reveal">← <span data-lang-vi>Về trang chủ</span><span data-lang-en>Back to home</span></a>
+  <span class="badge reveal"><span data-lang-vi>Có hiệu lực: 19/09/2026</span><span data-lang-en>Effective: Sep 19, 2026</span></span>
+  <h1 class="reveal"><span data-lang-vi>Điều khoản <em>dịch vụ</em></span><span data-lang-en>Terms of <em>Service</em></span></h1>
+  <p class="subtitle reveal"><span data-lang-vi>Áp dụng cho bot Discord "Nova" — AI Chatbot, War Ping, Backup Ping, Event và Ban Zone.</span><span data-lang-en>Applies to the "Nova" Discord bot — AI Chatbot, War Ping, Backup Ping, Event, and Ban Zone.</span></p>
 
-    <div class="feature-overview reveal">
-      <a href="#f-ai" class="overview-card">
-        <div class="overview-num">01</div>
-        <h3>AI Chatbot</h3>
-        <p data-lang-vi>Trò chuyện với AI, nhớ lịch sử riêng từng người, tùy chỉnh phong cách và ngôn ngữ.</p>
-        <p data-lang-en>Chat with AI, remembers per-user history, customize persona and language.</p>
-      </a>
-      <a href="#f-war" class="overview-card">
-        <div class="overview-num">02</div>
-        <h3>War Ping</h3>
-        <p data-lang-vi>Gọi quân bằng một nút bấm. Tạo thread riêng, ping role, theo dõi thành viên.</p>
-        <p data-lang-en>Call reinforcements with one click. Thread, ping, track members.</p>
-      </a>
-      <a href="#f-event" class="overview-card">
-        <div class="overview-num">03</div>
-        <h3>Event</h3>
-        <p data-lang-vi>Quản lý sự kiện với nút Join, danh sách tham gia, blacklist role, trao giải.</p>
-        <p data-lang-en>Event management with Join button, participant list, role blacklist, rewards.</p>
-      </a>
-      <a href="#f-ban" class="overview-card">
-        <div class="overview-num">04</div>
-        <h3>Ban Zone</h3>
-        <p data-lang-vi>Kênh auto-ban. Ai nhắn tin vào là bị ban ngay, xóa sạch tin nhắn trong ngày.</p>
-        <p data-lang-en>Auto-ban channel. Message it, get banned, all messages purged.</p>
-      </a>
-    </div>
-  </div>
-</section>
+  <section id="s1" class="reveal">
+    <h2><span class="num">1</span><span data-lang-vi>Mô tả dịch vụ</span><span data-lang-en>Service description</span></h2>
+    <glass>
+      <p><span data-lang-vi>Nova là bot Discord cung cấp các tính năng:</span><span data-lang-en>Nova is a Discord bot providing these features:</span></p>
+      <ul>
+        <li><span data-lang-vi>Trò chuyện AI với ngữ cảnh riêng từng người, tùy chỉnh persona và ngôn ngữ (<code>/chat</code>, <code>/persona</code>, <code>/language</code>).</span><span data-lang-en>AI chat with per-user context, persona and language customization (<code>/chat</code>, <code>/persona</code>, <code>/language</code>).</span></li>
+        <li><span data-lang-vi>War Ping / Backup Ping — điều phối chiến đấu, gọi cứu viện, quản lý thread, danh sách Trusted.</span><span data-lang-en>War Ping / Backup Ping — combat coordination, backup calls, thread management, trusted list.</span></li>
+        <li><span data-lang-vi>Event Management — panel join, danh sách tham gia, blacklist role, trao giải.</span><span data-lang-en>Event Management — join panel, participant list, role blacklist, winner announcement.</span></li>
+        <li><span data-lang-vi>Ban Zone — kênh auto-ban, xóa tin nhắn, DM thông báo, whitelist.</span><span data-lang-en>Ban Zone — auto-ban channel, message purge, DM notification, whitelist.</span></li>
+        <li><span data-lang-vi>Tạo ảnh AI theo mô tả (<code>/image</code>).</span><span data-lang-en>AI image generation from prompt (<code>/image</code>).</span></li>
+      </ul>
+      <p><span data-lang-vi><strong>Bot hoàn toàn miễn phí</strong> — không có tính năng trả phí hay gói nâng cấp.</span><span data-lang-en><strong>The bot is completely free</strong> — no paid features or upgrade tiers.</span></p>
+    </glass>
+  </section>
 
-<section>
-  <div class="wrap">
+  <section id="s2" class="reveal">
+    <h2><span class="num">2</span><span data-lang-vi>Điều kiện sử dụng</span><span data-lang-en>Usage conditions</span></h2>
+    <glass><ul>
+      <li><span data-lang-vi>Tuân thủ <a href="https://discord.com/terms" target="_blank" rel="noopener">Điều khoản Discord</a> và <a href="https://discord.com/guidelines" target="_blank" rel="noopener">Nguyên tắc Cộng đồng</a>.</span><span data-lang-en>Comply with <a href="https://discord.com/terms" target="_blank" rel="noopener">Discord Terms</a> and <a href="https://discord.com/guidelines" target="_blank" rel="noopener">Community Guidelines</a>.</span></li>
+      <li><span data-lang-vi>Đủ tuổi theo quy định của Discord.</span><span data-lang-en>Meet Discord's minimum age requirements.</span></li>
+      <li><span data-lang-vi>Không dùng bot cho mục đích bất hợp pháp, quấy rối, spam, hoặc lạm dụng.</span><span data-lang-en>Do not use the bot for illegal purposes, harassment, spam, or abuse.</span></li>
+      <li><span data-lang-vi>Không khai thác lỗi hoặc can thiệp trái phép vào bot.</span><span data-lang-en>Do not exploit bugs or interfere with the bot.</span></li>
+      <li><span data-lang-vi>Không spam lệnh <code>/chat</code> hay <code>/image</code> để làm cạn quota hệ thống.</span><span data-lang-en>Do not spam <code>/chat</code> or <code>/image</code> to drain system quotas.</span></li>
+    </ul></glass>
+  </section>
 
-    <div class="feature reveal" id="f-ai">
-      <div>
-        <div class="feature-num">01 / AI Chatbot</div>
-        <h2 data-lang-vi>Nói chuyện với<br>thứ <em>nhớ bạn.</em></h2>
-        <h2 data-lang-en>Talk to something<br>that <em>remembers.</em></h2>
-        <p data-lang-vi>Nova nhớ lịch sử hội thoại riêng cho từng người, reset tự động sau 40 lượt. Có thể đặt thành kênh AI để bot tự trả lời mọi tin nhắn, hoặc bật lịch sử chung cho cả kênh.</p>
-        <p data-lang-en>Nova remembers a private conversation history per user, auto-resetting every 40 turns. Turn any channel into an AI channel, or enable shared history for the whole channel.</p>
-        <ul class="feature-list">
-          <li><code>/chat</code> <span data-lang-vi>— Trò chuyện với AI, độ khó tự động điều chỉnh.</span><span data-lang-en>— Chat with AI, difficulty auto-adjusts.</span></li>
-          <li><code>/persona</code> <span data-lang-vi>— 10 preset: GenZ, nghiêm túc, tsundere, quý tộc…</span><span data-lang-en>— 10 presets: GenZ, serious, tsundere, luxurious…</span></li>
-          <li><code>/setai</code> <span data-lang-vi>— Biến kênh thành AI channel, tự trả lời.</span><span data-lang-en>— Turn a channel into an AI channel.</span></li>
-          <li><code>/image</code> <span data-lang-vi>— Tạo ảnh bằng AI theo mô tả.</span><span data-lang-en>— Generate an image from a prompt.</span></li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=700&q=65&auto=format&fit=crop"
-             alt="AI Chatbot" loading="lazy" decoding="async" width="700" height="740"
-             onerror="this.onerror=null;this.src='https://picsum.photos/seed/nova-ai/700/740'">
-        <span class="tag">AI · Qwen</span>
-      </div>
-    </div>
+  <section id="s3" class="reveal">
+    <h2><span class="num">3</span><span data-lang-vi>Nội dung do AI tạo ra</span><span data-lang-en>AI-generated content</span></h2>
+    <glass class="warn">
+      <p><span data-lang-vi>Nova sử dụng mô hình AI bên thứ ba (cocolink.ai — Qwen) để tạo phản hồi. Nội dung AI:</span><span data-lang-en>Nova uses a third-party AI model (cocolink.ai — Qwen) to generate responses. AI content:</span></p>
+      <ul>
+        <li><span data-lang-vi><strong>Có thể không chính xác</strong> — không nên coi là lời khuyên chuyên môn (y tế, pháp lý, tài chính).</span><span data-lang-en><strong>May be inaccurate</strong> — should not be treated as professional advice (medical, legal, financial).</span></li>
+        <li><span data-lang-vi><strong>Không phản ánh quan điểm của chủ bot</strong> — được tạo tự động, không xét duyệt trước.</span><span data-lang-en><strong>Does not reflect the bot owner's views</strong> — generated automatically, not pre-screened.</span></li>
+        <li><span data-lang-vi>Người dùng chịu trách nhiệm về cách sử dụng thông tin nhận được.</span><span data-lang-en>Users are responsible for how they use received information.</span></li>
+      </ul>
+    </glass>
+  </section>
 
-    <div class="feature reverse reveal" id="f-war">
-      <div>
-        <div class="feature-num">02 / War Ping · Backup Ping</div>
-        <h2 data-lang-vi>Gọi quân.<br>Không cần <em>gõ lệnh.</em></h2>
-        <h2 data-lang-en>Call the squad.<br>No <em>typing needed.</em></h2>
-        <p data-lang-vi>Bấm nút WAR hoặc BACKUP trên panel. Nova hỏi clan, region, server link, rồi tự ping role và tạo thread riêng cho trận đó. Xong trận thì thread tự khóa.</p>
-        <p data-lang-en>Click WAR or BACKUP on the panel. Nova asks for clan, region, server link, pings the role and creates a dedicated thread. When the fight ends, the thread locks automatically.</p>
-        <ul class="feature-list">
-          <li><span data-lang-vi>✅ Join · 🚨 Hacker showed up · 💀 Call hacker · 🏆 Win · 🏁 End</span><span data-lang-en>✅ Join · 🚨 Hacker showed up · 💀 Call hacker · 🏆 Win · 🏁 End</span></li>
-          <li><span data-lang-vi>Win/Lose/End chỉ Manager hoặc Trusted mới bấm được.</span><span data-lang-en>Win/Lose/End are Manager or Trusted only.</span></li>
-          <li><code>/trust</code> <span data-lang-vi>— Quản lý danh sách Trusted.</span><span data-lang-en>— Manage trusted users.</span></li>
-          <li><code>/config</code> <span data-lang-vi>— Đổi role ping, kênh help ngay trong Discord.</span><span data-lang-en>— Change ping roles and help channel in Discord.</span></li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <img src="https://images.unsplash.com/photo-1587095951604-b9d924a3f523?w=700&q=65&auto=format&fit=crop"
-             alt="War Ping" loading="lazy" decoding="async" width="700" height="740"
-             onerror="this.onerror=null;this.src='https://picsum.photos/seed/nova-war/700/740'">
-        <span class="tag">War · Backup</span>
-      </div>
-    </div>
+  <section id="s4" class="reveal">
+    <h2><span class="num">4</span><span data-lang-vi>War Ping &amp; Backup Ping</span><span data-lang-en>War Ping &amp; Backup Ping</span></h2>
+    <glass>
+      <p><span data-lang-vi>Khi sử dụng War Ping / Backup Ping, bạn đồng ý rằng:</span><span data-lang-en>By using War Ping / Backup Ping, you agree that:</span></p>
+      <ul>
+        <li><span data-lang-vi>Dữ liệu war/backup (tên clan, link server, danh sách tham gia) được lưu trong database cục bộ.</span><span data-lang-en>War/backup data (clan name, server link, join list) is stored in a local database.</span></li>
+        <li><span data-lang-vi>Bot sẽ ping role được cấu hình khi có yêu cầu mới.</span><span data-lang-en>The bot pings the configured role when a new request is created.</span></li>
+        <li><span data-lang-vi>Thread war/backup tự khóa khi kết thúc, không ai nhắn được nữa.</span><span data-lang-en>The war/backup thread is auto-locked when ended.</span></li>
+        <li><span data-lang-vi>Chỉ Manager hoặc Trusted user mới được Win / Lose / End / Call Hacker.</span><span data-lang-en>Only Managers or Trusted users can Win / Lose / End / Call Hacker.</span></li>
+      </ul>
+    </glass>
+  </section>
 
-    <div class="feature reveal" id="f-event">
-      <div>
-        <div class="feature-num">03 / Event Management</div>
-        <h2 data-lang-vi>Sự kiện gọn gàng,<br><em>không drama.</em></h2>
-        <h2 data-lang-en>Events that run<br><em>without drama.</em></h2>
-        <p data-lang-vi>Tạo panel event với tiêu đề và mô tả tùy chỉnh. Người chơi bấm Join để đăng ký, admin xem danh sách, chặn role, kết thúc event và trao giải.</p>
-        <p data-lang-en>Create an event panel with custom title and description. Players click Join, admins view the list, blacklist roles, end the event and announce the winner.</p>
-        <ul class="feature-list">
-          <li><code>/event send</code> <span data-lang-vi>— Gửi panel vào kênh event cố định.</span><span data-lang-en>— Post panel to the fixed event channel.</span></li>
-          <li><code>/event edit</code> <span data-lang-vi>— Chỉnh tiêu đề hoặc mô tả.</span><span data-lang-en>— Edit title or description.</span></li>
-          <li><code>/event blacklist</code> <span data-lang-vi>— Chặn role khỏi event, kể cả mod.</span><span data-lang-en>— Block a role from joining, even mods.</span></li>
-          <li><code>/event participants</code> <span data-lang-vi>— Xem ai đã đăng ký.</span><span data-lang-en>— See who joined.</span></li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=700&q=65&auto=format&fit=crop"
-             alt="Event" loading="lazy" decoding="async" width="700" height="740"
-             onerror="this.onerror=null;this.src='https://picsum.photos/seed/nova-event/700/740'">
-        <span class="tag">Events</span>
-      </div>
-    </div>
+  <section id="s5" class="reveal">
+    <h2><span class="num">5</span><span data-lang-vi>Ban Zone</span><span data-lang-en>Ban Zone</span></h2>
+    <glass class="warn">
+      <p><span data-lang-vi>Khi quản trị viên đặt một kênh làm Ban Zone bằng <code>/setbanchannel</code>:</span><span data-lang-en>When an admin sets a channel as Ban Zone via <code>/setbanchannel</code>:</span></p>
+      <ul>
+        <li><span data-lang-vi>Bất kỳ ai gửi tin nhắn vào kênh đó sẽ bị <strong>ban ngay lập tức</strong>, kể cả người có quyền quản lý, miễn role bot cao hơn.</span><span data-lang-en>Anyone who messages there is <strong>instantly banned</strong>, even admins, if the bot's role is higher.</span></li>
+        <li><span data-lang-vi>Toàn bộ tin nhắn trong ngày của người bị ban sẽ bị xóa.</span><span data-lang-en>All their messages from that day are purged.</span></li>
+        <li><span data-lang-vi>Bot gửi DM thông báo bằng embed cho người bị ban.</span><span data-lang-en>The bot DMs the banned user a notification embed.</span></li>
+        <li><span data-lang-vi>Người trong whitelist (<code>/banwhitelist</code>) được miễn trừ — chỉ owner bot mới quản lý whitelist.</span><span data-lang-en>Whitelisted users (<code>/banwhitelist</code>) are exempt — only the bot owner manages the whitelist.</span></li>
+      </ul>
+      <p><span data-lang-vi><strong>Sử dụng tính năng này đồng nghĩa bạn chấp nhận rủi ro bị ban nếu nhắn tin nhầm kênh.</strong></span><span data-lang-en><strong>Using this feature means you accept the risk of being banned if you message the wrong channel.</strong></span></p>
+    </glass>
+  </section>
 
-    <div class="feature reverse reveal" id="f-ban">
-      <div>
-        <div class="feature-num">04 / Ban Zone</div>
-        <h2 data-lang-vi>Kênh cấm.<br>Nhắn là <em>bay màu.</em></h2>
-        <h2 data-lang-en>The ban zone.<br>Message it, <em>get banned.</em></h2>
-        <p data-lang-vi>Đặt một kênh làm Ban Zone. Ai nhắn vào đó — dù có quyền quản lý — sẽ bị ban tức thì nếu role bot cao hơn. Tin nhắn của họ trong ngày cũng bị xóa sạch.</p>
-        <p data-lang-en>Set a channel as Ban Zone. Anyone who messages there — even admins — gets banned instantly if the bot's role is higher. All their messages from that day get purged too.</p>
-        <ul class="feature-list">
-          <li><code>/setbanchannel</code> <span data-lang-vi>— Đặt kênh hiện tại làm Ban Zone.</span><span data-lang-en>— Set the current channel as Ban Zone.</span></li>
-          <li><code>/banwhitelist</code> <span data-lang-vi>— Danh sách người được miễn ban.</span><span data-lang-en>— Whitelist immune users.</span></li>
-          <li><span data-lang-vi>Bot tự DM người bị ban kèm lý do và số tin nhắn đã xóa.</span><span data-lang-en>Bot DMs the banned user with reason and message count.</span></li>
-          <li><span data-lang-vi>Panel hiển thị tổng số người đã bị ban.</span><span data-lang-en>Panel shows total ban count.</span></li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=700&q=65&auto=format&fit=crop"
-             alt="Ban Zone" loading="lazy" decoding="async" width="700" height="740"
-             onerror="this.onerror=null;this.src='https://picsum.photos/seed/nova-ban/700/740'">
-        <span class="tag">Ban Zone</span>
-      </div>
-    </div>
+  <section id="s6" class="reveal">
+    <h2><span class="num">6</span><span data-lang-vi>Event</span><span data-lang-en>Event</span></h2>
+    <glass>
+      <p><span data-lang-vi>Khi tham gia event qua bot:</span><span data-lang-en>When joining an event through the bot:</span></p>
+      <ul>
+        <li><span data-lang-vi>ID Discord của bạn được lưu vào danh sách tham gia.</span><span data-lang-en>Your Discord ID is stored in the participant list.</span></li>
+        <li><span data-lang-vi>Role bị blacklist sẽ không thể tham gia, bất kể quyền hạn khác (kể cả role quản lý).</span><span data-lang-en>Blacklisted roles cannot join regardless of other permissions (even management roles).</span></li>
+        <li><span data-lang-vi>Quản trị viên server có quyền kết thúc event và trao giải.</span><span data-lang-en>Server admins can end the event and announce the winner.</span></li>
+      </ul>
+    </glass>
+  </section>
 
-  </div>
-</section>
+  <section id="s7" class="reveal">
+    <h2><span class="num">7</span><span data-lang-vi>Giới hạn trách nhiệm</span><span data-lang-en>Liability limits</span></h2>
+    <glass>
+      <p><span data-lang-vi>Bot được cung cấp <strong>"nguyên trạng" (as is)</strong>, không bảo đảm dưới bất kỳ hình thức nào. Chúng tôi không chịu trách nhiệm đối với:</span><span data-lang-en>The bot is provided <strong>"as is"</strong>, without any warranty. We are not responsible for:</span></p>
+      <ul>
+        <li><span data-lang-vi>Thiệt hại từ việc sử dụng hoặc không thể sử dụng bot.</span><span data-lang-en>Damages from using or being unable to use the bot.</span></li>
+        <li><span data-lang-vi>Gián đoạn, mất dữ liệu, hoặc lỗi kỹ thuật ngoài tầm kiểm soát.</span><span data-lang-en>Interruptions, data loss, or technical errors beyond our control.</span></li>
+        <li><span data-lang-vi>Nội dung hoặc hành vi của bên thứ ba (bao gồm nhà cung cấp AI).</span><span data-lang-en>Third-party content or behavior (including AI providers).</span></li>
+        <li><span data-lang-vi>Hậu quả từ việc người dùng bị ban qua tính năng Ban Zone.</span><span data-lang-en>Consequences of users being banned through Ban Zone.</span></li>
+        <li><span data-lang-vi>Tranh chấp giữa các thành viên trong server liên quan tới war/event/backup.</span><span data-lang-en>Disputes between server members regarding wars/events/backups.</span></li>
+      </ul>
+    </glass>
+  </section>
 
-<section id="commands">
-  <div class="wrap">
-    <span class="section-label reveal">Lệnh · Commands</span>
-    <h2 class="section-title reveal" data-lang-vi>Toàn bộ lệnh slash.<br>Không cần nhớ prefix.</h2>
-    <h2 class="section-title reveal" data-lang-en>All slash commands.<br>No prefix needed.</h2>
-    <p class="section-desc reveal" data-lang-vi>Mọi tính năng đều có slash command. Gõ <code style="font-size:14px;background:rgba(0,229,255,0.07);color:var(--cyan);padding:2px 8px;border-radius:5px">/</code> trong Discord để xem danh sách.</p>
-    <p class="section-desc reveal" data-lang-en>Every feature has a slash command. Type <code style="font-size:14px;background:rgba(0,229,255,0.07);color:var(--cyan);padding:2px 8px;border-radius:5px">/</code> in Discord to see the list.</p>
+  <section id="s8" class="reveal">
+    <h2><span class="num">8</span><span data-lang-vi>Chấm dứt dịch vụ</span><span data-lang-en>Termination</span></h2>
+    <glass><ul>
+      <li><span data-lang-vi>Chúng tôi có quyền tạm ngừng hoặc chấm dứt quyền truy cập bot đối với người dùng/server vi phạm mà không cần báo trước.</span><span data-lang-en>We reserve the right to suspend or terminate bot access for violating users/servers without prior notice.</span></li>
+      <li><span data-lang-vi>Bạn có thể gỡ bot khỏi server bất cứ lúc nào.</span><span data-lang-en>You can remove the bot from your server at any time.</span></li>
+      <li><span data-lang-vi>Chúng tôi có quyền ngừng vận hành bot toàn bộ hoặc một phần mà không cần báo trước.</span><span data-lang-en>We reserve the right to discontinue the bot in whole or part without notice.</span></li>
+    </ul></glass>
+  </section>
 
-    <div class="commands-grid">
-      <div class="command-group reveal">
-        <h4>AI Chatbot</h4>
-        <div class="command"><code>/chat</code><span data-lang-vi>Trò chuyện với AI (Qwen)</span><span data-lang-en>Chat with AI (Qwen)</span></div>
-        <div class="command"><code>/image</code><span data-lang-vi>Tạo ảnh bằng AI theo mô tả</span><span data-lang-en>Generate an image from a prompt</span></div>
-        <div class="command"><code>/persona</code><span data-lang-vi>Đặt phong cách nói chuyện riêng</span><span data-lang-en>Set your own speaking style</span></div>
-        <div class="command"><code>/mypersona</code><span data-lang-vi>Xem phong cách hiện tại</span><span data-lang-en>View your current persona</span></div>
-        <div class="command"><code>/clearchat</code><span data-lang-vi>Xóa lịch sử trò chuyện của bạn</span><span data-lang-en>Clear your chat history</span></div>
-        <div class="command"><code>/setai</code><span data-lang-vi>Bật/tắt kênh AI tự động trả lời</span><span data-lang-en>Toggle AI auto-reply channel</span></div>
-        <div class="command"><code>/language</code><span data-lang-vi>Đổi ngôn ngữ giao diện (vi/en)</span><span data-lang-en>Change interface language (vi/en)</span></div>
-      </div>
+  <section id="s9" class="reveal">
+    <h2><span class="num">9</span><span data-lang-vi>Dữ liệu người dùng</span><span data-lang-en>User data</span></h2>
+    <glass>
+      <p><span data-lang-vi>Việc thu thập và xử lý dữ liệu được quy định trong <a href="privacy-policy.html">Chính sách bảo mật</a>. Vui lòng đọc kỹ trước khi sử dụng.</span><span data-lang-en>Data collection and processing are governed by the <a href="privacy-policy.html">Privacy Policy</a>. Please read it carefully before use.</span></p>
+    </glass>
+  </section>
 
-      <div class="command-group reveal">
-        <h4>War Ping / Backup Ping</h4>
-        <div class="command"><code>/trust</code><span data-lang-vi>Thêm/xóa/xem danh sách Trusted</span><span data-lang-en>Add/remove/view trusted users</span></div>
-        <div class="command"><code>/helppanel</code><span data-lang-vi>Đưa panel HELP DESK xuống cuối kênh</span><span data-lang-en>Move HELP DESK panel to bottom</span></div>
-        <div class="command"><code>/callhacker</code><span data-lang-vi>Hiện/ẩn nút Call hacker</span><span data-lang-en>Show/hide Call hacker button</span></div>
-        <div class="command"><code>/config view</code><span data-lang-vi>Xem cấu hình hiện tại</span><span data-lang-en>View current configuration</span></div>
-        <div class="command"><code>/config help_channel</code><span data-lang-vi>Đổi kênh help</span><span data-lang-en>Change help channel</span></div>
-        <div class="command"><code>/config war_ping_role</code><span data-lang-vi>Đổi role được ping khi mở war</span><span data-lang-en>Change war ping role</span></div>
-        <div class="command"><code>/log</code><span data-lang-vi>Xem lịch sử kick voice</span><span data-lang-en>View voice kick history</span></div>
-      </div>
+  <section id="s10" class="reveal">
+    <h2><span class="num">10</span><span data-lang-vi>Thay đổi điều khoản</span><span data-lang-en>Changes to terms</span></h2>
+    <glass>
+      <p><span data-lang-vi>Điều khoản có thể được cập nhật. Phiên bản mới nhất luôn đăng tại trang này. Tiếp tục sử dụng bot sau khi cập nhật đồng nghĩa bạn chấp nhận thay đổi.</span><span data-lang-en>Terms may be updated. The latest version is always posted here. Continued use after updates means you accept the changes.</span></p>
+    </glass>
+  </section>
 
-      <div class="command-group reveal">
-        <h4>Event</h4>
-        <div class="command"><code>/event send</code><span data-lang-vi>Gửi panel event vào kênh cố định</span><span data-lang-en>Post event panel to fixed channel</span></div>
-        <div class="command"><code>/event test</code><span data-lang-vi>Gửi panel event test tại kênh hiện tại</span><span data-lang-en>Post test event panel</span></div>
-        <div class="command"><code>/event edit title</code><span data-lang-vi>Chỉnh tiêu đề event</span><span data-lang-en>Edit event title</span></div>
-        <div class="command"><code>/event edit description</code><span data-lang-vi>Chỉnh mô tả event</span><span data-lang-en>Edit event description</span></div>
-        <div class="command"><code>/event participants</code><span data-lang-vi>Xem danh sách người tham gia</span><span data-lang-en>List event participants</span></div>
-        <div class="command"><code>/event count</code><span data-lang-vi>Đếm số người tham gia</span><span data-lang-en>Count participants</span></div>
-        <div class="command"><code>/event blacklist</code><span data-lang-vi>Chặn role khỏi event</span><span data-lang-en>Block a role from event</span></div>
-      </div>
+  <section id="s11" class="reveal">
+    <h2><span class="num">11</span><span data-lang-vi>Điều khoản chung</span><span data-lang-en>General terms</span></h2>
+    <glass><ul>
+      <li><span data-lang-vi>Nếu bất kỳ điều khoản nào bị coi là không hợp lệ, các điều khoản còn lại vẫn giữ nguyên hiệu lực.</span><span data-lang-en>If any provision is deemed invalid, the remaining provisions remain in effect.</span></li>
+      <li><span data-lang-vi>Việc không thực thi một điều khoản không đồng nghĩa từ bỏ quyền thực thi trong tương lai.</span><span data-lang-en>Failure to enforce a provision does not waive the right to enforce it later.</span></li>
+      <li><span data-lang-vi>Điều khoản này không tạo ra quan hệ đối tác, đại lý hay liên doanh giữa bạn và chủ bot.</span><span data-lang-en>These terms do not create a partnership, agency or joint venture with the bot owner.</span></li>
+    </ul></glass>
+  </section>
 
-      <div class="command-group reveal">
-        <h4>Ban Zone &amp; Admin</h4>
-        <div class="command"><code>/setbanchannel</code><span data-lang-vi>Đặt kênh hiện tại làm Ban Zone</span><span data-lang-en>Set current channel as Ban Zone</span></div>
-        <div class="command"><code>/banwhitelist</code><span data-lang-vi>Quản lý whitelist ban</span><span data-lang-en>Manage ban whitelist</span></div>
-        <div class="command"><code>/reg</code><span data-lang-vi>[Owner] Tự tạo key cocolink.ai</span><span data-lang-en>[Owner] Auto-create cocolink.ai keys</span></div>
-        <div class="command"><code>/balance</code><span data-lang-vi>[Owner] Tra quota các key</span><span data-lang-en>[Owner] Check key quotas</span></div>
-        <div class="command"><code>/testkey</code><span data-lang-vi>[Owner] Kiểm tra key còn sống không</span><span data-lang-en>[Owner] Test keys</span></div>
-        <div class="command"><code>/sync</code><span data-lang-vi>[Owner] Restart bot nạp code mới</span><span data-lang-en>[Owner] Restart bot</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="legal">
-  <div class="wrap">
-    <span class="section-label reveal">Pháp lý · Legal</span>
-    <h2 class="section-title reveal" data-lang-vi>Minh bạch từ <em>đầu.</em></h2>
-    <h2 class="section-title reveal" data-lang-en>Transparent from <em>day one.</em></h2>
-    <p class="section-desc reveal" data-lang-vi>Nova lưu trữ dữ liệu cục bộ trên máy chủ chạy bot. Chúng tôi không bán, không chia sẻ dữ liệu của bạn cho bên thứ ba ngoài mục đích vận hành.</p>
-    <p class="section-desc reveal" data-lang-en>Nova stores data locally on the bot host machine. We do not sell or share your data with third parties beyond bot operation.</p>
-
-    <div class="legal-cards">
-      <a href="privacy-policy.html" class="legal-card reveal">
-        <div class="icon">🔒</div>
-        <h3 data-lang-vi>Chính sách bảo mật</h3>
-        <h3 data-lang-en>Privacy Policy</h3>
-        <p data-lang-vi>Dữ liệu thu thập, mục đích sử dụng, lưu trữ, quyền của bạn và bên thứ ba.</p>
-        <p data-lang-en>Data collection, usage purposes, retention, your rights, and third parties.</p>
-      </a>
-      <a href="terms-of-service.html" class="legal-card reveal">
-        <div class="icon">📜</div>
-        <h3 data-lang-vi>Điều khoản dịch vụ</h3>
-        <h3 data-lang-en>Terms of Service</h3>
-        <p data-lang-vi>Quy tắc sử dụng, nội dung AI, giới hạn trách nhiệm và chấm dứt dịch vụ.</p>
-        <p data-lang-en>Usage rules, AI content, liability limits, and termination rights.</p>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="cta-final">
-  <h2 class="reveal" data-lang-vi>Sẵn sàng <em>thắp sáng</em><br>server của bạn?</h2>
-  <h2 class="reveal" data-lang-en>Ready to <em>light up</em><br>your server?</h2>
-  <p class="reveal" data-lang-vi>Miễn phí. Không quảng cáo. Không giới hạn tính năng. Cài trong 30 giây.</p>
-  <p class="reveal" data-lang-en>Free. No ads. No feature limits. Install in 30 seconds.</p>
-  <div class="cta-row reveal">
-    <a class="btn primary" href="https://discord.com" target="_blank" rel="noopener">
-      <span data-lang-vi>Thêm Nova vào Discord</span><span data-lang-en>Add Nova to Discord</span>
-      <span class="btn-arrow">→</span>
-    </a>
-  </div>
-</section>
-
+  <section id="s12" class="reveal">
+    <h2><span class="num">12</span><span data-lang-vi>Liên hệ</span><span data-lang-en>Contact</span></h2>
+    <glass>
+      <p><span data-lang-vi>Câu hỏi về điều khoản dịch vụ: <strong>Discord @moon_xd07</strong></span><span data-lang-en>Questions about the terms of service: <strong>Discord @moon_xd07</strong></span></p>
+    </glass>
+  </section>
 </main>
+</div>
 
-<footer>
-  <div class="footer-grid">
-    <div>
-      <h5>Nova</h5>
-      <p class="footer-signature" data-lang-vi>Bot Discord cho cộng đồng game thủ. AI chat, war coordination, event management và auto-moderation — gọn trong một bot.</p>
-      <p class="footer-signature" data-lang-en>A Discord bot for gamer communities. AI chat, war coordination, event management and auto-moderation — all in one bot.</p>
-    </div>
-    <div>
-      <h5 data-lang-vi>Điều hướng</h5><h5 data-lang-en>Navigate</h5>
-      <ul>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#commands">Commands</a></li>
-        <li><a href="#legal">Legal</a></li>
-      </ul>
-    </div>
-    <div>
-      <h5 data-lang-vi>Liên hệ</h5><h5 data-lang-en>Contact</h5>
-      <ul>
-        <li><a href="#">Discord: @moon_xd07</a></li>
-        <li><a href="privacy-policy.html">Privacy</a></li>
-        <li><a href="terms-of-service.html">Terms</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="giant-word">NOVA</div>
-  <div class="footer-bottom">
-    <span>NOVA © 2026 moon_xd07 — Not affiliated with Discord Inc.</span>
-    <span data-lang-vi>Made with care in Việt Nam</span>
-    <span data-lang-en>Made with care in Vietnam</span>
-  </div>
-</footer>
+<footer><p>NOVA © 2026 moon_xd07 — Not affiliated with Discord Inc.</p></footer>
 
 <script>
 function setLang(l){
@@ -503,41 +307,43 @@ function setLang(l){
 }
 (function(){ try{ const s=localStorage.getItem('nova-lang'); if(s) setLang(s); }catch(e){} })();
 
-// Scroll progress + nav — throttle rAF
 (function(){
-  const progress = document.getElementById('progress'), nav = document.getElementById('nav');
-  let pending = false, lastWidth = -1;
-  function update(){
-    const s = scrollY, d = document.documentElement.scrollHeight - innerHeight;
-    const p = d > 0 ? s / d : 0;
-    if(Math.abs(p - lastWidth) > 0.005){
-      progress.style.transform = 'scaleX(' + p + ')';
-      lastWidth = p;
-    }
-    nav.classList.toggle('scrolled', s > 60);
-    pending = false;
-  }
+  const p = document.getElementById('progress'), nav = document.querySelector('nav');
+  let pending = false;
   addEventListener('scroll', () => {
-    if(pending) return;
-    pending = true;
-    requestAnimationFrame(update);
+    if(pending) return; pending = true;
+    requestAnimationFrame(() => {
+      const s = scrollY, d = document.documentElement.scrollHeight - innerHeight;
+      p.style.width = (d > 0 ? (s/d*100) : 0) + '%';
+      nav.classList.toggle('scrolled', s > 60);
+      pending = false;
+    });
   }, { passive: true });
-  update();
 })();
 
-// Reveal — IntersectionObserver, unobserve sau khi hiện
 (function(){
   const els = document.querySelectorAll('.reveal');
   if(!('IntersectionObserver' in window)){ els.forEach(el=>el.classList.add('visible')); return; }
   const obs = new IntersectionObserver(entries => {
-    entries.forEach(en => {
-      if(en.isIntersecting){
-        en.target.classList.add('visible');
-        obs.unobserve(en.target);
-      }
-    });
+    entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add('visible'); obs.unobserve(en.target); } });
   }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
   els.forEach(el => obs.observe(el));
+})();
+
+(function(){
+  const links = document.querySelectorAll('#sidebar a');
+  const secs = document.querySelectorAll('section');
+  if(!links.length) return;
+  let pending = false;
+  addEventListener('scroll', () => {
+    if(pending) return; pending = true;
+    requestAnimationFrame(() => {
+      let cur = '';
+      secs.forEach(s => { if(scrollY >= s.offsetTop - 160) cur = s.id; });
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
+      pending = false;
+    });
+  }, { passive: true });
 })();
 </script>
 </body>
