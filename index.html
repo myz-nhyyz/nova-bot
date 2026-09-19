@@ -1,98 +1,253 @@
 <!doctype html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#07080d" />
-  <title data-i18n="meta.homeTitle">Điều Khoản & Bảo Mật</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#0b1535" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="description" content="Nova — a cinematic iOS 26-inspired Liquid Glass web interface for the Nova Discord bot." />
+  <title>Nova — Liquid Glass</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    :root{--bg:#07080d;--bg2:#0c0f18;--fg:#f6f6f8;--muted:#9ea3b4;--line:rgba(255,255,255,.1);--glass:rgba(255,255,255,.055);--glass2:rgba(255,255,255,.085);--accent:#8e86ff;--accent2:#6d86ff;--good:#6ee7b7;--warn:#f6c76a;--radius:28px}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--fg);font-family:Manrope,system-ui,sans-serif;overflow-x:hidden}
-    body::before,body::after{content:"";position:fixed;inset:-18%;pointer-events:none;z-index:-4}.bg-a{background:radial-gradient(circle at 22% 18%,rgba(105,91,255,.17),transparent 26%),radial-gradient(circle at 80% 8%,rgba(83,129,255,.1),transparent 20%),radial-gradient(circle at 50% 90%,rgba(109,134,255,.07),transparent 30%);filter:blur(40px);animation:drift 16s ease-in-out infinite alternate}.bg-b{background:radial-gradient(circle at 65% 55%,rgba(255,255,255,.025),transparent 24%),radial-gradient(circle at 34% 75%,rgba(125,99,255,.045),transparent 28%);filter:blur(10px);animation:drift2 19s ease-in-out infinite alternate}
-    @keyframes drift{to{transform:translate3d(4%,-2%,0) scale(1.04)}}@keyframes drift2{to{transform:translate3d(-2%,3%,0) scale(1.06)}}
-    .grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.035;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
-    .wrap{max-width:1220px;margin:0 auto;padding:0 24px}.topbar{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(1170px,calc(100% - 24px));z-index:40;display:flex;align-items:center;justify-content:space-between;padding:10px 12px 10px 16px;border:1px solid transparent;border-radius:24px;background:rgba(7,8,13,.28);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);transition:.38s cubic-bezier(.2,.8,.2,1)}.topbar.scrolled{background:rgba(10,11,17,.68);border-color:var(--line);box-shadow:0 14px 40px rgba(0,0,0,.22)}.brand{display:flex;align-items:center;gap:10px;color:var(--fg);text-decoration:none;font-weight:700;letter-spacing:.01em}.orb{width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0 8%,#b9b5ff 12%,#6f75ff 40%,rgba(111,117,255,.1) 72%,transparent 74%);box-shadow:0 0 22px rgba(126,119,255,.55)}.nav{display:flex;align-items:center;gap:8px}.nav a,.seg button,.menu-btn,.glass-btn{color:var(--fg);text-decoration:none;border:1px solid transparent;background:transparent;font:600 13px/1 Manrope,sans-serif}.nav a{padding:10px 13px;border-radius:14px;opacity:.82;transition:.25s}.nav a:hover{opacity:1;background:rgba(255,255,255,.05)}
-    .seg{position:relative;display:flex;align-items:center;padding:3px;border-radius:999px;background:rgba(255,255,255,.045);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 10px 24px rgba(0,0,0,.15);overflow:hidden}.seg::after{content:"";position:absolute;inset:3px auto 3px 3px;width:50%;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.07));box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 4px 18px rgba(85,85,160,.22);transform:translateX(0);transition:transform .52s cubic-bezier(.17,.89,.22,1.08),width .48s cubic-bezier(.17,.89,.22,1.08)}.seg.en::after{transform:translateX(100%)}.seg.stretch-right::after{width:72%;transform:translateX(38%)}.seg.stretch-left::after{width:72%;transform:translateX(-10%)}.seg button{position:relative;z-index:1;min-width:42px;padding:8px 10px;border-radius:999px;cursor:pointer;opacity:.62;transition:opacity .25s,transform .18s}.seg button.active{opacity:1}.seg button:active{transform:scale(.93)}
-    .menu-btn{display:none;padding:11px 13px;border-radius:14px;background:rgba(255,255,255,.05);border-color:var(--line);cursor:pointer}.mobile-sheet{position:fixed;inset:auto 10px 10px;z-index:45;padding:16px;border-radius:30px;border:1px solid var(--line);background:rgba(10,12,18,.78);backdrop-filter:blur(30px) saturate(170%);-webkit-backdrop-filter:blur(30px) saturate(170%);box-shadow:0 30px 80px rgba(0,0,0,.48);transform:translateY(calc(100% + 30px));opacity:0;pointer-events:none;transition:.48s cubic-bezier(.2,.8,.2,1)}.mobile-sheet.open{transform:none;opacity:1;pointer-events:auto}.sheet-handle{width:42px;height:5px;border-radius:5px;background:rgba(255,255,255,.16);margin:0 auto 16px}.mobile-links{display:grid;gap:8px}.mobile-links a{padding:16px 14px;border-radius:18px;color:var(--fg);text-decoration:none;background:rgba(255,255,255,.035);border:1px solid transparent}.mobile-links a:hover{border-color:var(--line)}
-    main{padding-top:120px}.hero{min-height:calc(100svh - 120px);display:grid;align-items:center;padding:48px 0 88px;position:relative}.hero-glow{position:absolute;width:44vw;height:44vw;min-width:420px;min-height:420px;right:-6vw;top:4vh;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(165,157,255,.25),rgba(105,118,255,.09) 36%,transparent 68%);filter:blur(18px);opacity:.65;animation:orbPulse 9s ease-in-out infinite alternate}.hero-glow::after{content:"";position:absolute;inset:18%;border:1px solid rgba(255,255,255,.055);border-radius:40% 60% 55% 45%;animation:morph 11s ease-in-out infinite}.hero-inner{position:relative;z-index:2;max-width:930px}.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#b5b6c2;opacity:.88}.title{font-family:"DM Serif Display",serif;font-size:clamp(58px,9vw,120px);line-height:.91;font-weight:400;letter-spacing:-.045em;margin:14px 0 22px;max-width:980px}.title em{color:#c4c0ff}.lede{font-size:clamp(17px,1.65vw,21px);line-height:1.7;color:#c4c6d1;max-width:760px}.meta{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 30px}.chip{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.035);font-size:12px;color:#b8bbc8}.actions{display:flex;flex-wrap:wrap;gap:10px}.glass-btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:14px 17px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(180deg,rgba(255,255,255,.105),rgba(255,255,255,.04));box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 12px 28px rgba(0,0,0,.16);cursor:pointer;overflow:hidden;transition:transform .2s cubic-bezier(.2,.8,.2,1),filter .2s,box-shadow .3s}.glass-btn::before{content:"";position:absolute;inset:-45%;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.16),transparent 24%);opacity:0;transition:opacity .2s}.glass-btn:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 18px 34px rgba(0,0,0,.2)}.glass-btn:hover::before{opacity:1}.glass-btn:active{transform:translateY(1px) scale(.975)}
-    .section{padding:96px 0}.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:26px}.section-kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9296a5}.section-title{font-family:"DM Serif Display",serif;font-size:clamp(36px,5vw,66px);line-height:1;margin:6px 0 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.feature{position:relative;min-height:260px;padding:24px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);overflow:hidden;transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .3s,background .3s}.feature::before{content:"";position:absolute;inset:0;background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.11),transparent 65%);opacity:.8;pointer-events:none}.feature:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.14);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.028))}.feature-top{display:flex;justify-content:space-between;gap:12px;align-items:start}.feature-icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-size:22px;background:rgba(255,255,255,.055);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}.feature h3{margin:22px 0 10px;font-size:22px}.feature p{margin:0;color:var(--muted);line-height:1.7}.arrow{font-size:21px;opacity:.5;transition:transform .3s}.feature:hover .arrow{transform:translate(3px,-3px);opacity:.9}.band{margin-top:16px;padding:20px 22px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.03);display:flex;flex-wrap:wrap;justify-content:space-between;gap:15px;align-items:center}.band strong{font-size:14px}.band span{font-size:13px;color:var(--muted)}
-    footer{padding:90px 0 50px;color:#8f93a2}.footer-line{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px}.footer-brand{font-family:"DM Serif Display",serif;font-size:clamp(40px,9vw,110px);line-height:.85;opacity:.1;letter-spacing:-.05em;margin-top:28px}
-    .veil{position:fixed;inset:0;z-index:90;background:radial-gradient(circle at 50% 20%,rgba(144,135,255,.11),transparent 30%),rgba(5,6,10,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .25s}.veil.show{opacity:1;pointer-events:auto}
-    @keyframes orbPulse{to{transform:scale(1.08) translate3d(-2%,2%,0);opacity:.8}}@keyframes morph{0%,100%{border-radius:40% 60% 55% 45%;transform:rotate(0deg) scale(1)}50%{border-radius:58% 42% 48% 52%;transform:rotate(14deg) scale(1.04)}}
-    @media (max-width:900px){.nav{display:none}.menu-btn{display:block}.topbar{padding:9px 10px 9px 13px}.hero{min-height:auto;padding:56px 0 78px}.grid{grid-template-columns:1fr}.section{padding:76px 0}.section-head{align-items:start;flex-direction:column}.hero-glow{right:-28vw;top:10vh}.wrap{padding:0 18px}}
-    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bg-a,.bg-b,.hero-glow,.hero-glow::after{animation:none}.glass-btn,.feature,.seg::after,.mobile-sheet,.topbar{transition:none!important}}
+    :root{
+      --bg:#0b1228; --text:#f8fbff; --muted:rgba(248,251,255,.66); --soft:rgba(248,251,255,.48);
+      --glass:rgba(54,81,145,.26); --glass2:rgba(31,49,97,.34); --stroke:rgba(255,255,255,.16);
+      --blue:#8bc7ff; --blue2:#3d8dff; --violet:#bb8dff; --green:#79e9bb; --red:#ff8b9c;
+      --shadow:0 35px 100px rgba(0,0,0,.46), inset 0 1px 0 rgba(255,255,255,.08);
+      --spring:cubic-bezier(.16,1.15,.3,1); --ease:cubic-bezier(.2,.8,.2,1);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;font-family:Inter,-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;color:var(--text);background:#071027}
+    body{overflow-x:hidden}
+    button,input,textarea,select{font:inherit}
+    button{color:inherit;border:0;cursor:pointer}
+    a{color:inherit;text-decoration:none}
+
+    .scene{position:fixed;inset:0;z-index:-20;overflow:hidden;background:#071127}
+    .scene-photo{position:absolute;inset:-6%;background:url('./wallpaper.jpg') center/cover no-repeat;filter:saturate(1.14) contrast(.96) brightness(.88);transform:scale(1.08);animation:photoDrift 22s ease-in-out infinite alternate;will-change:transform}
+    .scene-photo::after{content:"";position:absolute;inset:0;background:radial-gradient(80% 85% at 50% 43%,transparent 20%,rgba(5,10,30,.22) 65%,rgba(3,7,19,.58) 100%),linear-gradient(90deg,rgba(7,16,45,.72),rgba(8,13,34,.18) 45%,rgba(11,16,44,.34));}
+    .aurora{position:absolute;inset:-18%;background:radial-gradient(30% 24% at 24% 16%,rgba(77,142,255,.35),transparent 68%),radial-gradient(28% 22% at 82% 16%,rgba(197,130,255,.36),transparent 70%),radial-gradient(25% 25% at 76% 78%,rgba(69,171,255,.18),transparent 72%),radial-gradient(28% 23% at 15% 86%,rgba(63,255,191,.09),transparent 70%);filter:blur(40px);animation:aurora 16s ease-in-out infinite alternate;pointer-events:none}
+    .grain{position:absolute;inset:0;opacity:.045;mix-blend-mode:screen;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.85'/%3E%3C/svg%3E")}
+    .pointer-glow{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:-2;background:radial-gradient(circle,rgba(115,177,255,.18),transparent 70%);filter:blur(16px);transform:translate(-50%,-50%);left:50%;top:50%;mix-blend-mode:screen;transition:left .25s ease-out,top .25s ease-out}
+    @keyframes photoDrift{0%{transform:scale(1.07) translate3d(-.4%,0,0)}100%{transform:scale(1.12) translate3d(.8%,-.8%,0)}}
+    @keyframes aurora{0%{transform:translate3d(-2%,1%,0) scale(.96);opacity:.72}100%{transform:translate3d(2%,-1.5%,0) scale(1.05);opacity:1}}
+
+    .nav{position:fixed;z-index:60;left:2.2vw;right:2.2vw;top:20px;height:68px;border-radius:38px;padding:0 20px 0 28px;display:flex;align-items:center;gap:28px;background:rgba(65,88,145,.33);border:1px solid rgba(255,255,255,.16);box-shadow:0 18px 50px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.12);backdrop-filter:blur(30px) saturate(175%);-webkit-backdrop-filter:blur(30px) saturate(175%);overflow:hidden}
+    .nav::before,.hero::before,.feature-card::before,.side::before,.commands::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(125deg,rgba(255,255,255,.14),transparent 23%,transparent 72%,rgba(255,255,255,.055));opacity:.8}
+    .brand{display:flex;align-items:center;gap:12px;font-size:24px;font-weight:800;letter-spacing:-.04em;flex:0 0 auto}
+    .spark{width:26px;height:26px;display:grid;place-items:center;font-size:23px;filter:drop-shadow(0 0 13px rgba(97,173,255,.9));animation:sparkPulse 3.8s ease-in-out infinite}
+    @keyframes sparkPulse{0%,100%{transform:scale(1) rotate(0);filter:drop-shadow(0 0 10px rgba(97,173,255,.8))}50%{transform:scale(1.08) rotate(8deg);filter:drop-shadow(0 0 18px rgba(97,173,255,1))}}
+    .nav-links{display:flex;align-items:center;gap:8px}
+    .nav-links a{position:relative;padding:12px 22px;border-radius:26px;color:rgba(248,251,255,.86);font-size:14px;transition:all .45s var(--spring)}
+    .nav-links a:hover{background:rgba(255,255,255,.10);transform:translateY(-1px)}
+    .nav-links a.active{background:linear-gradient(180deg,rgba(143,192,255,.28),rgba(95,133,205,.22));box-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 7px 20px rgba(42,84,175,.20)}
+    .lang-toggle{margin-left:auto;display:flex;align-items:center;padding:4px;border-radius:30px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.13)}
+    .lang-toggle button{min-width:72px;padding:10px 14px;border-radius:24px;background:transparent;font-size:13px;color:rgba(248,251,255,.72);transition:all .4s var(--spring)}
+    .lang-toggle button.active{background:rgba(255,255,255,.62);color:#2f437b;box-shadow:0 4px 18px rgba(255,255,255,.11)}
+
+    .page{min-height:100vh;padding:122px 4vw 44px;display:flex;flex-direction:column;align-items:center}
+    .hero{position:relative;width:min(860px,92vw);min-height:585px;border-radius:34px;background:linear-gradient(145deg,rgba(45,69,130,.34),rgba(14,22,56,.45));border:1px solid rgba(159,204,255,.40);box-shadow:0 45px 120px rgba(0,0,0,.50),inset 0 1px 0 rgba(255,255,255,.14);backdrop-filter:blur(38px) saturate(180%);-webkit-backdrop-filter:blur(38px) saturate(180%);padding:30px;overflow:hidden;animation:heroIn .9s var(--spring) both}
+    .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:180px;background:linear-gradient(180deg,transparent,rgba(117,171,255,.10));pointer-events:none}
+    @keyframes heroIn{0%{opacity:0;transform:translateY(22px) scale(.94);filter:blur(10px)}65%{opacity:1;transform:translateY(-3px) scale(1.008);filter:none}100%{transform:none}}
+
+    .hero-top{display:grid;grid-template-columns:90px 1fr auto;align-items:center;gap:18px;position:relative;z-index:1}
+    .bot-icon{width:90px;height:90px;border-radius:27px;display:grid;place-items:center;position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(117,193,255,.92),rgba(56,104,255,.72) 55%,rgba(113,77,255,.70));border:1px solid rgba(216,239,255,.62);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 14px 42px rgba(53,125,255,.32);font-size:52px}
+    .bot-icon::after{content:"";position:absolute;inset:-55%;background:linear-gradient(120deg,transparent 42%,rgba(255,255,255,.28) 52%,transparent 62%);animation:shine 4s linear infinite}
+    @keyframes shine{to{transform:translateX(120%) rotate(8deg)}}
+    .hero-title{font-size:31px;font-weight:800;letter-spacing:-.045em;margin:0 0 7px}.hero-sub{font-size:14px;line-height:1.55;color:var(--muted);max-width:420px}
+    .featured{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:20px;font-size:11px;font-weight:700;background:linear-gradient(180deg,rgba(105,161,255,.30),rgba(57,92,172,.28));border:1px solid rgba(145,193,255,.22);white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,.11)}
+    .xbtn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);font-size:24px;color:rgba(255,255,255,.88);transition:all .35s var(--spring)}.xbtn:hover{transform:scale(1.1) rotate(5deg);background:rgba(255,255,255,.12)}
+
+    .hero-main{position:relative;z-index:2;display:grid;grid-template-columns:180px 1fr 230px;gap:16px;margin-top:18px;min-height:388px}
+    .side,.commands{position:relative;border-radius:26px;background:rgba(14,23,57,.34);border:1px solid rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.07);overflow:hidden}
+    .side{padding:14px 10px}.side-btn{width:100%;display:flex;align-items:center;gap:12px;padding:14px 12px;margin-bottom:7px;border-radius:22px;background:transparent;color:rgba(248,251,255,.76);text-align:left;transition:all .42s var(--spring)}.side-btn:hover{transform:translateX(2px);background:rgba(255,255,255,.06)}.side-btn.active{background:linear-gradient(180deg,rgba(111,165,255,.34),rgba(67,111,198,.22));box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 8px 28px rgba(32,90,186,.14);color:#fff}.side-ico{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.11);flex:0 0 auto}.side-btn.active .side-ico{background:rgba(163,210,255,.22);box-shadow:0 0 22px rgba(105,172,255,.22)}
+    .commands{padding:22px 22px 18px;overflow:auto}.panel-view{height:100%;position:relative;z-index:1;animation:viewIn .5s var(--spring) both}.panel-view h3{font-size:18px;letter-spacing:-.035em;margin:0 0 4px}.panel-view .lead{font-size:12px;color:var(--muted);margin:0 0 17px;line-height:1.5}.cmd-row{display:grid;grid-template-columns:160px 1fr;gap:14px;align-items:center;padding:10px 3px;border-bottom:1px solid rgba(255,255,255,.08)}.cmd-row:last-child{border-bottom:0}.cmd-pill{justify-self:start;font-size:11px;font-weight:700;padding:6px 10px;border-radius:9px;background:linear-gradient(180deg,rgba(66,109,204,.54),rgba(30,54,112,.50));border:1px solid rgba(126,168,255,.20);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;box-shadow:inset 0 1px 0 rgba(255,255,255,.11)}.cmd-desc{font-size:11px;line-height:1.45;color:rgba(248,251,255,.76)}
+    .art{position:relative;overflow:hidden;border-radius:26px;background:radial-gradient(circle at 50% 34%,rgba(116,191,255,.24),transparent 42%),linear-gradient(145deg,rgba(57,82,151,.26),rgba(26,35,74,.18));border:1px solid rgba(255,255,255,.10);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}.art::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 28%,rgba(114,200,255,.22),transparent 36%),radial-gradient(circle at 72% 78%,rgba(173,117,255,.12),transparent 42%)}.planet{position:absolute;width:170px;height:170px;border-radius:50%;top:18px;left:34px;background:radial-gradient(circle at 35% 27%,rgba(194,231,255,.95),rgba(101,157,247,.68) 38%,rgba(60,86,162,.28) 72%,transparent 73%);filter:blur(.3px);box-shadow:0 0 46px rgba(108,189,255,.26)}.robot{position:absolute;left:26px;right:8px;bottom:10px;width:calc(100% - 34px);height:310px;object-fit:cover;object-position:50% 44%;mix-blend-mode:screen;filter:saturate(1.05) contrast(1.04) drop-shadow(0 18px 35px rgba(84,170,255,.20));animation:robotFloat 5.5s ease-in-out infinite}.robot-glow{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);width:160px;height:70px;border-radius:50%;background:radial-gradient(circle,rgba(106,191,255,.26),transparent 70%);filter:blur(12px)}.quote{position:absolute;right:13px;bottom:23px;width:178px;text-align:center;font-size:12px;line-height:1.45;color:rgba(247,250,255,.80);font-style:italic}.quote span{display:block;margin-top:6px;font-style:normal;color:rgba(247,250,255,.48);font-size:11px}@keyframes robotFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(1.5deg)}}
+
+    .hero-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;z-index:2;margin-top:14px;padding:11px 15px;border-radius:20px;background:rgba(99,144,225,.16);border:1px solid rgba(159,201,255,.13);font-size:10px;color:var(--muted)}.hero-footer .status{display:flex;align-items:center;gap:8px}.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 15px rgba(121,233,187,.75)}
+
+    .feature-row{width:min(860px,92vw);display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+    .feature-card{position:relative;min-height:122px;border-radius:25px;padding:17px 17px 15px;background:rgba(39,57,104,.34);border:1px solid rgba(255,255,255,.13);box-shadow:0 24px 60px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(27px) saturate(170%);-webkit-backdrop-filter:blur(27px) saturate(170%);overflow:hidden;transition:transform .45s var(--spring),box-shadow .45s ease,background .35s ease;animation:cardIn .8s var(--spring) both}.feature-card:nth-child(2){animation-delay:.06s}.feature-card:nth-child(3){animation-delay:.12s}.feature-card:nth-child(4){animation-delay:.18s}.feature-card:hover{transform:translateY(-5px) scale(1.012);box-shadow:0 28px 70px rgba(0,0,0,.31),inset 0 1px 0 rgba(255,255,255,.10)}.feature-card.active{background:linear-gradient(150deg,rgba(101,153,238,.30),rgba(47,63,120,.25));border-color:rgba(172,214,255,.38);box-shadow:0 30px 78px rgba(55,116,228,.18),inset 0 1px 0 rgba(255,255,255,.16)}
+    @keyframes cardIn{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+    .fc-top{display:flex;justify-content:space-between;align-items:center}.fc-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-size:20px;background:rgba(117,155,228,.14);border:1px solid rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}.fc-arrow{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.11);font-size:16px;transition:transform .35s var(--spring)}.feature-card:hover .fc-arrow{transform:translateX(2px)}.fc-title{font-size:12px;font-weight:700;margin-top:10px}.fc-desc{font-size:10px;color:var(--muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    .floating{position:fixed;z-index:70;right:20px;bottom:18px;padding:10px 13px;border-radius:18px;background:rgba(24,35,70,.55);border:1px solid rgba(255,255,255,.13);box-shadow:0 18px 55px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(24px);font-size:11px;color:rgba(248,251,255,.72);opacity:0;transform:translateY(12px);pointer-events:none;transition:all .42s var(--spring)}.floating.show{opacity:1;transform:none}
+
+    .sheet-backdrop{position:fixed;inset:0;background:rgba(3,7,18,.44);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .4s ease;z-index:90}.sheet-backdrop.open{opacity:1;pointer-events:auto}
+    .sheet{position:fixed;left:50%;top:50%;transform:translate(-50%,-44%) scale(.92);width:min(720px,92vw);max-height:82vh;overflow:auto;z-index:91;border-radius:32px;background:linear-gradient(150deg,rgba(31,46,93,.72),rgba(12,20,47,.84));border:1px solid rgba(177,214,255,.24);box-shadow:0 44px 120px rgba(0,0,0,.50),inset 0 1px 0 rgba(255,255,255,.12);backdrop-filter:blur(34px) saturate(175%);-webkit-backdrop-filter:blur(34px) saturate(175%);opacity:0;pointer-events:none;transition:opacity .45s ease,transform .62s var(--spring)}.sheet.open{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto}.sheet-head{display:flex;align-items:center;justify-content:space-between;padding:18px 21px;border-bottom:1px solid rgba(255,255,255,.10)}.sheet-head h3{margin:0;font-size:16px}.sheet-body{padding:20px}.section-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin:14px 0 9px}.mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.mini-card{padding:14px;border-radius:20px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09)}.mini-card b{display:block;font-size:12px}.mini-card span{display:block;margin-top:4px;font-size:11px;color:var(--muted);line-height:1.45}
+
+    .chat{display:flex;flex-direction:column;height:480px}.messages{flex:1;overflow:auto;padding-right:4px;display:flex;flex-direction:column;gap:10px}.msg{max-width:82%;padding:10px 12px;border-radius:17px;font-size:12px;line-height:1.5;white-space:pre-wrap;animation:msgIn .36s var(--spring) both}.msg.bot{align-self:flex-start;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08)}.msg.user{align-self:flex-end;background:linear-gradient(150deg,rgba(93,151,255,.48),rgba(62,93,182,.36));border:1px solid rgba(151,203,255,.22)}@keyframes msgIn{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:none}}
+    .compose{display:flex;gap:8px;margin-top:12px}.compose input{flex:1;min-width:0;padding:12px 13px;border-radius:16px;background:rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.12);color:#fff;outline:none}.compose input:focus{border-color:rgba(139,199,255,.56);box-shadow:0 0 0 4px rgba(96,160,255,.10)}.primary,.secondary{padding:11px 15px;border-radius:16px;font-size:11px;font-weight:700;transition:all .35s var(--spring)}.primary{background:linear-gradient(180deg,rgba(123,184,255,.42),rgba(74,122,215,.34));border:1px solid rgba(165,212,255,.25)}.secondary{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10)}.primary:hover,.secondary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.18)}.primary:active,.secondary:active{transform:scale(.96)}
+    .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.chip{font-size:10px;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);color:var(--muted)}
+
+    @media(max-width:980px){.hero-main{grid-template-columns:145px 1fr}.art{display:none}.feature-row{grid-template-columns:repeat(2,1fr)}.nav{gap:16px}.nav-links a{padding:11px 16px}.lang-toggle button{min-width:56px}}
+    @media(max-width:680px){.nav{left:10px;right:10px;top:10px;height:58px;padding:0 12px 0 15px;border-radius:30px}.brand{font-size:18px}.spark{width:20px;height:20px;font-size:18px}.nav-links{display:none}.page{padding:88px 12px 28px}.hero{width:100%;padding:17px;border-radius:28px;min-height:620px}.hero-top{grid-template-columns:60px 1fr auto;gap:12px}.bot-icon{width:60px;height:60px;border-radius:19px;font-size:34px}.hero-title{font-size:22px}.hero-sub{font-size:11px}.featured{font-size:9px;padding:6px 8px}.hero-main{grid-template-columns:1fr;min-height:0}.side{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;padding:10px}.side-btn{margin:0;padding:10px 9px;font-size:10px}.side-ico{width:28px;height:28px}.commands{min-height:330px;padding:15px}.cmd-row{grid-template-columns:1fr;gap:6px;padding:9px 0}.cmd-pill{justify-self:start}.hero-footer{font-size:9px}.feature-row{width:100%;gap:10px;grid-template-columns:repeat(2,1fr);margin-top:14px}.feature-card{min-height:112px;padding:14px}.fc-title{font-size:11px}.fc-desc{font-size:9px}.floating{right:10px;bottom:10px}.sheet{width:calc(100vw - 18px);max-height:88vh}.mini-grid{grid-template-columns:1fr}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}}
   </style>
 </head>
-<body data-page="home">
-  <div class="bg-a"></div><div class="bg-b"></div><div class="grain"></div><div class="veil" id="veil"></div>
-  <header class="topbar" id="topbar">
-    <a class="brand" href="./index.html"><span class="orb"></span><span data-bind="botName">NOVA</span></a>
-    <nav class="nav">
-      <a href="./index.html" data-i18n="nav.home">Trang chủ</a>
-      <a href="./terms-of-service.html" data-i18n="nav.terms">Điều khoản</a>
-      <a href="./privacy-policy.html" data-i18n="nav.privacy">Bảo mật</a>
+<body>
+  <div class="scene"><div class="scene-photo"></div><div class="aurora"></div><div class="grain"></div></div>
+  <div class="pointer-glow" id="pointerGlow"></div>
+
+  <header class="nav">
+    <a href="index.html" class="brand"><span class="spark">✦</span><span>Nova</span></a>
+    <nav class="nav-links">
+      <a class="active" href="#home" data-nav="home">Home</a>
+      <a href="terms-of-service.html">Terms of Service</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
     </nav>
-    <div style="display:flex;align-items:center;gap:8px">
-      <div class="seg" id="langSeg" aria-label="Language selector">
-        <button data-lang="vi" class="active">VI</button><button data-lang="en">EN</button>
-      </div>
-      <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
-    </div>
+    <div class="lang-toggle"><button class="active" data-lang="vi" onclick="setLang('vi')">VI</button><button data-lang="en" onclick="setLang('en')">EN</button></div>
   </header>
 
-  <div class="mobile-sheet" id="mobileSheet" aria-hidden="true">
-    <div class="sheet-handle"></div>
-    <div class="mobile-links">
-      <a href="./index.html" data-i18n="nav.home">Trang chủ</a>
-      <a href="./terms-of-service.html" data-i18n="nav.terms">Điều khoản</a>
-      <a href="./privacy-policy.html" data-i18n="nav.privacy">Bảo mật</a>
-      <div style="display:flex;justify-content:flex-end;padding-top:4px"><div class="seg" id="mobileLangSeg"><button data-lang="vi" class="active">VI</button><button data-lang="en">EN</button></div></div>
-    </div>
-  </div>
-
-  <main>
-    <section class="hero wrap">
-      <div class="hero-glow"></div>
-      <div class="hero-inner">
-        <div class="eyebrow" data-i18n="home.eyebrow">DISCORD BOT · LEGAL PORTAL</div>
-        <h1 class="title" data-i18n="home.title">Điều Khoản <em>&amp; Bảo Mật</em></h1>
-        <p class="lede" data-i18n="home.lede">Minh bạch, rõ ràng và dễ hiểu — để bạn biết bot làm gì, dữ liệu nào có thể được xử lý và các tính năng hoạt động ra sao.</p>
-        <div class="meta"><span class="chip"><span data-i18n="meta.effective">Ngày hiệu lực</span>: <b data-bind="effectiveDate">[EFFECTIVE DATE]</b></span><span class="chip" data-i18n="meta.static">Static · GitHub Pages</span></div>
-        <div class="actions">
-          <a class="glass-btn" href="./terms-of-service.html"><span data-i18n="home.termsCta">Đọc Điều Khoản</span><span>↗</span></a>
-          <a class="glass-btn" href="./privacy-policy.html"><span data-i18n="home.privacyCta">Đọc Chính Sách Bảo Mật</span><span>↗</span></a>
+  <main class="page" id="home">
+    <section class="hero" id="hero">
+      <div class="hero-top">
+        <div class="bot-icon">🤖</div>
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><h1 class="hero-title" id="heroTitle">AI Chatbot</h1><span class="featured">◉ Featured</span></div>
+          <p class="hero-sub" id="heroSub">Chat with AI, anytime, anywhere. Nova remembers your conversation history and adapts to your style.</p>
         </div>
+        <button class="xbtn" onclick="openSheet('chat')" aria-label="Open chat">×</button>
       </div>
+
+      <div class="hero-main">
+        <aside class="side" id="sideNav"></aside>
+        <section class="commands" id="panel"></section>
+        <aside class="art">
+          <div class="planet"></div><div class="robot-glow"></div>
+          <img class="robot" src="./nova-robot.jpg" alt="Nova" />
+          <div class="quote">“Your thoughts,<br>our conversation.”<span>— Nova</span></div>
+        </aside>
+      </div>
+
+      <div class="hero-footer"><div class="status"><span class="dot"></span><span id="apiStatus">Nova web interface ready</span></div><div id="effectiveDate">Effective date · 19/09/2026</div></div>
     </section>
 
-    <section class="section wrap">
-      <div class="section-head"><div><div class="section-kicker" data-i18n="home.featuresKicker">HỆ THỐNG</div><h2 class="section-title" data-i18n="home.featuresTitle">Một nơi để hiểu toàn bộ bot.</h2></div><div style="max-width:420px;color:var(--muted);line-height:1.7" data-i18n="home.featuresIntro">Các tính năng được trình bày theo đúng cách người dùng và quản lý tương tác với bot trên Discord.</div></div>
-      <div class="grid">
-        <article class="feature tilt"><div class="feature-top"><div class="feature-icon">🤖</div><div class="arrow">↗</div></div><h3 data-i18n="features.ai.title">AI Chatbot</h3><p data-i18n="features.ai.desc">Chat với AI, lịch sử riêng từng người, shared history, persona và ngôn ngữ giao diện.</p></article>
-        <article class="feature tilt"><div class="feature-top"><div class="feature-icon">⚔️</div><div class="arrow">↗</div></div><h3 data-i18n="features.war.title">War Ping / Backup</h3><p data-i18n="features.war.desc">Tạo request WAR hoặc BACKUP, tham gia, báo hacker và quản lý trạng thái war.</p></article>
-        <article class="feature tilt"><div class="feature-top"><div class="feature-icon">🏆</div><div class="arrow">↗</div></div><h3 data-i18n="features.event.title">Hero Battlegrounds Event</h3><p data-i18n="features.event.desc">Tham gia event bằng panel, quản lý người tham gia, blacklist và kết thúc event.</p></article>
-        <article class="feature tilt"><div class="feature-top"><div class="feature-icon">☠️</div><div class="arrow">↗</div></div><h3 data-i18n="features.ban.title">Automatic Ban Channel</h3><p data-i18n="features.ban.desc">Kênh ban tự động, debug điều kiện ban và whitelist, luôn tuân theo role hierarchy của Discord.</p></article>
-      </div>
-      <div class="band"><strong data-i18n="home.aiProviderLabel">AI Provider</strong><span data-bind="aiProvider">[AI PROVIDER]</span></div>
+    <section class="feature-row" aria-label="Nova features">
+      <button class="feature-card active" data-feature="ai" onclick="showFeature('ai')"><div class="fc-top"><div class="fc-icon">🤖</div><span class="fc-arrow">›</span></div><div class="fc-title">AI Chatbot</div><div class="fc-desc">Chat · Memory · Persona</div></button>
+      <button class="feature-card" data-feature="war" onclick="showFeature('war')"><div class="fc-top"><div class="fc-icon">⚔️</div><span class="fc-arrow">›</span></div><div class="fc-title">War Ping / Backup</div><div class="fc-desc">Fast · Reliable · Organized</div></button>
+      <button class="feature-card" data-feature="event" onclick="showFeature('event')"><div class="fc-top"><div class="fc-icon">🏆</div><span class="fc-arrow">›</span></div><div class="fc-title">Hero Battlegrounds Event</div><div class="fc-desc">Join · Compete · Win</div></button>
+      <button class="feature-card" data-feature="ban" onclick="showFeature('ban')"><div class="fc-top"><div class="fc-icon">💀</div><span class="fc-arrow">›</span></div><div class="fc-title">Automatic Ban Channel</div><div class="fc-desc">Auto Ban · No Mercy</div></button>
     </section>
   </main>
-  <footer class="wrap"><div class="footer-line"><span>© 2026 <span data-bind="botName">NOVA</span></span><span><span data-bind="owner">[BOT OWNER NAME / DISCORD]</span> · <span data-bind="support">[SUPPORT SERVER]</span></span></div><div class="footer-brand" data-bind="botName">NOVA</div></footer>
+
+  <div class="floating" id="toast"></div>
+
+  <div class="sheet-backdrop" id="backdrop" onclick="closeSheet()"></div>
+  <section class="sheet" id="sheet" aria-modal="true" role="dialog">
+    <div class="sheet-head"><h3 id="sheetTitle">Nova</h3><button class="xbtn" onclick="closeSheet()">×</button></div>
+    <div class="sheet-body" id="sheetBody"></div>
+  </section>
 
   <script>
-  const CONFIG={botName:'NOVA',owner:'[BOT OWNER NAME / DISCORD]',support:'[SUPPORT SERVER]',aiProvider:'[AI PROVIDER]',effectiveDate:'[EFFECTIVE DATE]'};
-  const I18N={vi:{meta:{homeTitle:'Điều Khoản & Bảo Mật',effective:'Ngày hiệu lực',static:'Static · GitHub Pages'},nav:{home:'Trang chủ',terms:'Điều khoản',privacy:'Bảo mật'},home:{eyebrow:'DISCORD BOT · LEGAL PORTAL',title:'Điều Khoản & Bảo Mật',lede:'Minh bạch, rõ ràng và dễ hiểu — để bạn biết bot làm gì, dữ liệu nào có thể được xử lý và các tính năng hoạt động ra sao.',termsCta:'Đọc Điều Khoản',privacyCta:'Đọc Chính Sách Bảo Mật',featuresKicker:'HỆ THỐNG',featuresTitle:'Một nơi để hiểu toàn bộ bot.',featuresIntro:'Các tính năng được trình bày theo đúng cách người dùng và quản lý tương tác với bot trên Discord.',aiProviderLabel:'AI Provider'},features:{ai:{title:'AI Chatbot',desc:'Chat với AI, lịch sử riêng từng người, shared history, persona và ngôn ngữ giao diện.'},war:{title:'War Ping / Backup',desc:'Tạo request WAR hoặc BACKUP, tham gia, báo hacker và quản lý trạng thái war.'},event:{title:'Hero Battlegrounds Event',desc:'Tham gia event bằng panel, quản lý người tham gia, blacklist và kết thúc event.'},ban:{title:'Automatic Ban Channel',desc:'Kênh ban tự động, debug điều kiện ban và whitelist, luôn tuân theo role hierarchy của Discord.'}}},en:{meta:{homeTitle:'Terms & Privacy',effective:'Effective Date',static:'Static · GitHub Pages'},nav:{home:'Home',terms:'Terms',privacy:'Privacy'},home:{eyebrow:'DISCORD BOT · LEGAL PORTAL',title:'Terms & Privacy',lede:'Clear, transparent policies explaining what the bot does, what information may be processed, and how its features work.',termsCta:'Read Terms of Service',privacyCta:'Read Privacy Policy',featuresKicker:'SYSTEMS',featuresTitle:'One place to understand the whole bot.',featuresIntro:'Features are presented around the way users and moderators actually interact with the bot on Discord.',aiProviderLabel:'AI Provider'},features:{ai:{title:'AI Chatbot',desc:'Chat with AI, per-user history, shared channel history, personas and interface language.'},war:{title:'War Ping / Backup',desc:'Create WAR or BACKUP requests, join, report hackers and manage war state.'},event:{title:'Hero Battlegrounds Event',desc:'Join events through a panel, manage participants, blacklist roles and end an event.'},ban:{title:'Automatic Ban Channel',desc:'Automatic moderation channel, ban debugging and whitelist controls, respecting Discord role hierarchy.'}}}};
-  const saved=localStorage.getItem('site-language')||'vi';
-  function getPath(obj,path){return path.split('.').reduce((a,k)=>a?.[k],obj)}
-  function applyI18n(lang){document.documentElement.lang=lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const v=getPath(I18N[lang],el.dataset.i18n);if(v)el.textContent=v});document.title=I18N[lang].meta.homeTitle;document.querySelectorAll('[data-bind]').forEach(el=>{const k=el.dataset.bind;el.textContent=CONFIG[k]??''});document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));document.querySelectorAll('.seg').forEach(s=>s.classList.toggle('en',lang==='en'));localStorage.setItem('site-language',lang)}
-  function switchLang(lang,source){document.querySelectorAll('.seg').forEach(seg=>{const current=seg.classList.contains('en')?'en':'vi';if(current!==lang){seg.classList.remove('stretch-right','stretch-left');void seg.offsetWidth;seg.classList.add(lang==='en'?'stretch-right':'stretch-left');setTimeout(()=>{seg.classList.remove('stretch-right','stretch-left');applyI18n(lang)},190)}})}
-  document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>switchLang(b.dataset.lang,b.closest('.seg'))));
-  applyI18n(saved);
-  const topbar=document.getElementById('topbar');window.addEventListener('scroll',()=>topbar.classList.toggle('scrolled',scrollY>20),{passive:true});
-  const menu=document.getElementById('mobileSheet'),veil=document.getElementById('veil');document.getElementById('menuBtn').addEventListener('click',()=>{menu.classList.toggle('open');menu.setAttribute('aria-hidden',String(!menu.classList.contains('open')));veil.classList.toggle('show');document.body.style.overflow=menu.classList.contains('open')?'hidden':''});veil.addEventListener('click',()=>{menu.classList.remove('open');veil.classList.remove('show');document.body.style.overflow=''});
-  document.querySelectorAll('.tilt,.glass-btn').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');el.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%')});el.addEventListener('pointerdown',()=>el.animate([{transform:'scale(.985)'},{transform:'scale(1)'}],{duration:360,easing:'cubic-bezier(.2,.9,.2,1)'}))});
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!reduce){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.animate([{opacity:0,transform:'translateY(18px)',filter:'blur(6px)'},{opacity:1,transform:'translateY(0)',filter:'blur(0)'}],{duration:720,easing:'cubic-bezier(.2,.8,.2,1)',fill:'forwards'});io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.feature,.band,.section-head').forEach(el=>{el.style.opacity=0;io.observe(el)})}
+    window.NOVA_CONFIG = window.NOVA_CONFIG || {apiBase:""};
   </script>
-</body></html>
+  <script src="config.js"></script>
+  <script>
+    const NOVA = {
+      lang: localStorage.getItem('nova_lang') || 'vi',
+      feature: 'ai',
+      chat: JSON.parse(localStorage.getItem('nova_chat') || 'null') || [
+        {role:'bot', text:'Chào bạn. Mình là Nova. Hỏi mình về tính năng của bot, lệnh AI, War Ping, Backup, Event, Ban Guard hoặc cách cấu hình.'}
+      ]
+    };
+    const API_BASE = String(window.NOVA_CONFIG?.apiBase || '').replace(/\/$/,'');
+    const api = path => API_BASE + path;
+    const h = s => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+
+    const featureData = {
+      ai:{title:'AI Chatbot',sub:'Chat with AI, anytime, anywhere. Nova remembers your conversation history and adapts to your style.',side:[['💬','Chat Commands','commands'],['⚙️','AI Settings','settings'],['◷','History & Memory','history'],['◎','Language','language']],view:'commands'},
+      war:{title:'War Ping / Backup',sub:'Organize squad requests with join status, hacker reporting and clean end states.',side:[['⚔️','War Ping','war'],['🛡️','Backup Ping','backup'],['👥','Members','members'],['☎️','Hacker Help','hacker']],view:'war'},
+      event:{title:'Hero Battlegrounds Event',sub:'Event controls for sending, updating, counting and clearing the current Hero Battlegrounds panel.',side:[['🏆','Event Panel','panel'],['👥','Participants','participants'],['⛔','Blacklist','blacklist'],['🧹','Clear / Reset','clear']],view:'event'},
+      ban:{title:'Automatic Ban Channel',sub:'A dedicated moderation surface based on the bot’s auto-ban channel logic and whitelist checks.',side:[['💀','Ban Guard','ban'],['✅','Whitelist','whitelist'],['🧭','Permissions','permissions'],['▤','Audit','audit']],view:'ban'}
+    };
+
+    function setLang(lang){NOVA.lang=lang;localStorage.setItem('nova_lang',lang);document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));toast(lang==='vi'?'Đã chuyển sang Tiếng Việt':'Language set to English')}
+    function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),2200)}
+    function renderFeature(){
+      const f=featureData[NOVA.feature];
+      document.getElementById('heroTitle').textContent=f.title;
+      document.getElementById('heroSub').textContent=f.sub;
+      document.querySelectorAll('.feature-card').forEach(c=>c.classList.toggle('active',c.dataset.feature===NOVA.feature));
+      const nav=document.getElementById('sideNav');
+      nav.innerHTML=f.side.map((x,i)=>`<button class="side-btn ${i===0?'active':''}" data-side="${x[2]}" onclick="showPanel('${x[2]}')"><span class="side-ico">${x[0]}</span><span>${x[1]}</span></button>`).join('');
+      showPanel(f.view);
+    }
+    function showFeature(name){NOVA.feature=name;renderFeature();const hero=document.getElementById('hero');hero.animate([{transform:'scale(.985)'},{transform:'scale(1.012)',offset:.35},{transform:'none'}],{duration:520,easing:'cubic-bezier(.16,1.25,.3,1)'});toast(featureData[name].title)}
+    function showPanel(name){document.querySelectorAll('.side-btn').forEach(b=>b.classList.toggle('active',b.dataset.side===name));const p=document.getElementById('panel');p.innerHTML=panelHTML(name);p.firstElementChild?.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:420,easing:'cubic-bezier(.16,1.1,.3,1)'});if(name==='chat')renderChat();}
+
+    function panelShell(title,lead,body){return `<div class="panel-view"><h3>${title}</h3><p class="lead">${lead}</p>${body}</div>`}
+    function panelHTML(name){
+      const panels={
+        commands:panelShell('Chat Commands','Interact with Nova AI through simple commands.',`
+          ${[['!chat <nội dung>','Chat with AI and use recent conversation context.'],['!clearchat','Clear your personal conversation history.'],['!setai','Turn a channel into an AI channel (manager control).'],['!setsharedhistory','Share chat history across the channel.'],['!persona <preset|custom>','Set a personal AI personality style.'],['!mypersona','View the current personality style.'],['!resetpersona','Reset to the default personality.'],['!language <vi|en>','Set the preferred bot language.']].map(x=>`<div class="cmd-row"><span class="cmd-pill">${h(x[0])}</span><span class="cmd-desc">${h(x[1])}</span></div>`).join('')}
+          <div class="chips"><span class="chip">Case-insensitive</span><span class="chip">Nova knowledge included</span><button class="chip" onclick="openSheet('chat')">Open live chat →</button></div>`),
+        settings:panelShell('AI Settings','These controls mirror Nova’s AI-related settings surface.',`<div class="mini-grid"><div class="mini-card"><b>AI Channel</b><span>Channel mode can be enabled by a manager.</span></div><div class="mini-card"><b>Shared History</b><span>Use shared chat history for the whole channel.</span></div><div class="mini-card"><b>Persona</b><span>Default, Friendly, Professional, Anime companion or custom.</span></div><div class="mini-card"><b>Provider</b><span>Google Gemini · Gemini 3.8 Flash by default in this build.</span></div></div><div style="margin-top:12px"><button class="primary" onclick="openSheet('chat')">Try AI Chat</button></div>`),
+        history:panelShell('History & Memory','Browser chat history is stored locally; backend chat can receive recent context.',`<div class="mini-card"><b>${NOVA.chat.length}</b><span>messages currently stored in this browser</span></div><div class="chips"><button class="chip" onclick="clearChat()">Clear browser history</button><button class="chip" onclick="openSheet('chat')">Open conversation</button></div>`),
+        language:panelShell('Language','Nova supports Vietnamese and English interface preferences.',`<div class="mini-grid"><button class="mini-card" onclick="setLang('vi')"><b>Tiếng Việt</b><span>Use Vietnamese labels and prompts.</span></button><button class="mini-card" onclick="setLang('en')"><b>English</b><span>Use English labels and prompts.</span></button></div>`),
+
+        war:panelShell('War Ping','Gather members for a war/fight request.',`<div class="mini-grid"><div class="mini-card"><b>Create</b><span>Clan · Region · Roblox server link/code.</span></div><div class="mini-card"><b>Join</b><span>Members can join an active request.</span></div><div class="mini-card"><b>Hacker Report</b><span>Marks the operation and exposes follow-up actions.</span></div><div class="mini-card"><b>End</b><span>Finish as Win, Loss or Ended.</span></div></div><div style="margin-top:12px"><button class="primary" onclick="openSheet('war')">Open War Console</button></div>`),
+        backup:panelShell('Backup Ping','Call members to help deal with teamers.',`<div class="mini-grid"><div class="mini-card"><b>Create Backup</b><span>Enemy clan, region and server code/link.</span></div><div class="mini-card"><b>Members</b><span>Tracks who joined the active backup.</span></div><div class="mini-card"><b>Call Hacker</b><span>Available to Manager/Trusted according to bot rules.</span></div><div class="mini-card"><b>Leave / End</b><span>Broadcast leave or close the request.</span></div></div><div style="margin-top:12px"><button class="primary" onclick="openSheet('backup')">Open Backup Console</button></div>`),
+        members:panelShell('Members','War/Backup requests track joined members and status.',`<div class="mini-grid"><div class="mini-card"><b>Join</b><span>Add a member to an active request.</span></div><div class="mini-card"><b>Count</b><span>Member count is shown on the request panel.</span></div></div>`),
+        hacker:panelShell('Hacker Help','Public assistance calls are throttled and role-aware in the bot.',`<div class="mini-card"><b>Cooldown</b><span>The bot enforces a five-minute cooldown per active request for Call Hacker.</span></div>`),
+
+        panel:panelShell('Event Panel','Hero Battlegrounds event management.',`<div class="mini-grid"><div class="mini-card"><b>Send / Edit</b><span>Update the event title and description.</span></div><div class="mini-card"><b>Participants</b><span>Show the current registered count/list.</span></div><div class="mini-card"><b>Count / Remove</b><span>Manage the participant list.</span></div><div class="mini-card"><b>Clear</b><span>Reset current event state.</span></div></div>`),
+        participants:panelShell('Participants','The bot keeps an event participant list and count.',`<div class="mini-card"><b>Current event</b><span>Participants can be viewed, counted or removed by the appropriate manager controls.</span></div>`),
+        blacklist:panelShell('Blacklist','The event flow supports a blacklist role control.',`<div class="mini-card"><b>Blacklist role</b><span>Managers can set the role used by the event blacklist control.</span></div>`),
+        clear:panelShell('Clear / Reset','Reset the current event panel state.',`<div class="mini-card"><b>Clear</b><span>Use the manager control to remove the active event state and start fresh.</span></div>`),
+
+        ban:panelShell('Automatic Ban Channel','A dedicated anti-spam moderation surface.',`<div class="mini-grid"><div class="mini-card"><b>Catch</b><span>Messages in the configured ban channel trigger the moderation flow.</span></div><div class="mini-card"><b>Whitelist</b><span>Whitelisted users are ignored.</span></div><div class="mini-card"><b>Permission checks</b><span>Ban permission, owner protection and role hierarchy are validated.</span></div><div class="mini-card"><b>Audit</b><span>Ban count and diagnostic logs are maintained by the bot.</span></div></div>`),
+        whitelist:panelShell('Whitelist','Users on the bot’s ban whitelist are skipped by the automatic ban flow.',`<div class="mini-card"><b>Manager control</b><span>Whitelist entries can be added or removed through the bot’s administrative commands.</span></div>`),
+        permissions:panelShell('Permissions','The bot checks Discord permissions and role hierarchy before banning.',`<div class="mini-card"><b>Safety checks</b><span>Ban Members/Admin, owner protection, role position and channel overrides are checked.</span></div>`),
+        audit:panelShell('Audit','The source logs moderation checks and outcomes for troubleshooting.',`<div class="mini-card"><b>Diagnostics</b><span>Useful for checking bot permissions, target hierarchy and ban outcomes.</span></div>`)
+      };
+      return panels[name] || panels.commands;
+    }
+
+    function renderChat(){
+      const body=document.getElementById('panel');
+      body.innerHTML=panelShell('Live AI Chat','Messages go to /api/chat when a backend URL is configured.',`<div class="chat"><div class="messages" id="messages">${NOVA.chat.map(m=>`<div class="msg ${m.role==='user'?'user':'bot'}">${h(m.text)}</div>`).join('')}</div><div class="compose"><input id="chatInput" placeholder="Hỏi Nova về tính năng của bot…" onkeydown="if(event.key==='Enter')sendChat()"><button class="primary" onclick="sendChat()">Send</button></div><div class="chips"><span class="chip">Gemini backend</span><span class="chip">26-key pool compatible</span><button class="chip" onclick="clearChat()">Clear</button></div></div>`);
+      setTimeout(()=>{const m=document.getElementById('messages');if(m)m.scrollTop=m.scrollHeight},20);
+    }
+    async function sendChat(){
+      const input=document.getElementById('chatInput');if(!input)return;const v=input.value.trim();if(!v)return;
+      NOVA.chat.push({role:'user',text:v});persistChat();renderChat();
+      const messages=document.getElementById('messages');
+      NOVA.chat.push({role:'bot',text:'Đang trả lời…'});renderChat();
+      try{
+        const r=await fetch(api('/api/chat'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:v,history:NOVA.chat.slice(0,-1).slice(-16),language:NOVA.lang})});
+        const data=await r.json().catch(()=>({}));if(!r.ok)throw new Error(data.error||`HTTP ${r.status}`);
+        NOVA.chat[NOVA.chat.length-1].text=data.reply||'Không nhận được phản hồi.';
+        document.getElementById('apiStatus').textContent='Gemini API connected';
+      }catch(err){
+        NOVA.chat[NOVA.chat.length-1].text=`⚠️ ${err.message}. Cấu hình apiBase trong config.js và backend Render.`;
+        document.getElementById('apiStatus').textContent='Backend not connected';
+      }finally{persistChat();renderChat()}
+    }
+    function persistChat(){localStorage.setItem('nova_chat',JSON.stringify(NOVA.chat.slice(-40)))}
+    function clearChat(){NOVA.chat=[{role:'bot',text:'Lịch sử chat trên trình duyệt đã được xoá. Mình vẫn sẵn sàng trả lời câu hỏi về Nova.'}];persistChat();renderChat();toast('Đã xoá chat')}
+
+    function openSheet(kind){
+      const sheet=document.getElementById('sheet'),back=document.getElementById('backdrop'),title=document.getElementById('sheetTitle'),body=document.getElementById('sheetBody');
+      const content={
+        chat:{title:'AI Chatbot',body:`<div class="section-label">Nova</div><p style="color:var(--muted);font-size:12px;line-height:1.6">Ask about War Ping, Backup Ping, Hero Battlegrounds Event, Help Desk, Ban Guard, AI settings, language, permissions, or key rotation architecture.</p><div class="section-label">Quick prompts</div><div class="chips"><button class="chip" onclick="quickPrompt('Nova có những tính năng gì?')">Nova features</button><button class="chip" onclick="quickPrompt('War Ping hoạt động thế nào?')">War Ping</button><button class="chip" onclick="quickPrompt('26 Gemini key rotation hoạt động ra sao?')">Key rotation</button></div><div class="section-label">Chat</div><div class="chat" style="height:360px"><div class="messages" id="sheetMessages">${NOVA.chat.map(m=>`<div class="msg ${m.role==='user'?'user':'bot'}">${h(m.text)}</div>`).join('')}</div><div class="compose"><input id="sheetInput" placeholder="Message Nova…" onkeydown="if(event.key==='Enter')sendSheetChat()"><button class="primary" onclick="sendSheetChat()">Send</button></div></div>`},
+        war:{title:'⚔️ War Ping',body:`<div class="section-label">Request</div><div class="mini-grid"><div class="mini-card"><b>Clan</b><span>Enemy / opposing clan name.</span></div><div class="mini-card"><b>Region</b><span>SG / US / JP etc.</span></div><div class="mini-card"><b>Server</b><span>Roblox private server link or code.</span></div><div class="mini-card"><b>Status actions</b><span>Join · Hacker Report · Call Hacker · Win · Lose · End.</span></div></div>`},
+        backup:{title:'🛡️ Backup Ping',body:`<div class="section-label">Backup request</div><div class="mini-grid"><div class="mini-card"><b>Call members</b><span>Bring trusted members into a backup request.</span></div><div class="mini-card"><b>Hacker report</b><span>Expose leave/call-hacker follow-up.</span></div></div>`}
+      }[kind]||null;
+      if(!content)return;title.textContent=content.title;body.innerHTML=content.body;back.classList.add('open');sheet.classList.add('open');sheet.animate([{transform:'translate(-50%,-44%) scale(.92)',opacity:0},{transform:'translate(-50%,-50%) scale(1.012)',opacity:1,offset:.7},{transform:'translate(-50%,-50%) scale(1)',opacity:1}],{duration:560,easing:'cubic-bezier(.16,1.22,.3,1)'});
+    }
+    function closeSheet(){document.getElementById('backdrop').classList.remove('open');document.getElementById('sheet').classList.remove('open')}
+    function quickPrompt(v){const el=document.getElementById('sheetInput');if(el){el.value=v;el.focus()}else{openSheet('chat');setTimeout(()=>{const x=document.getElementById('sheetInput');if(x){x.value=v;x.focus()}},80)}}
+    async function sendSheetChat(){const input=document.getElementById('sheetInput');if(!input)return;const v=input.value.trim();if(!v)return;NOVA.chat.push({role:'user',text:v});persistChat();openSheet('chat');const last=()=>NOVA.chat[NOVA.chat.length-1];NOVA.chat.push({role:'bot',text:'Đang trả lời…'});openSheet('chat');try{const r=await fetch(api('/api/chat'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:v,history:NOVA.chat.slice(0,-1).slice(-16),language:NOVA.lang})});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||`HTTP ${r.status}`);last().text=d.reply||'Không nhận được phản hồi.';}catch(e){last().text='⚠️ '+e.message+' — kiểm tra backend và config.js.'}persistChat();openSheet('chat')}
+
+    async function checkHealth(){try{const r=await fetch(api('/api/health'),{cache:'no-store'});const d=await r.json();if(d.ready)document.getElementById('apiStatus').textContent=`Gemini ready · ${d.keyPool?.available ?? '?'} keys available`;else document.getElementById('apiStatus').textContent='Nova web interface ready';}catch{document.getElementById('apiStatus').textContent='Nova web interface ready'}}
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
+    window.addEventListener('pointermove',e=>{const g=document.getElementById('pointerGlow');g.style.left=e.clientX+'px';g.style.top=e.clientY+'px';const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;document.querySelector('.scene-photo').style.transform=`scale(1.10) translate3d(${(-x*9).toFixed(2)}px,${(-y*7).toFixed(2)}px,0)`},{passive:true});
+    window.addEventListener('scroll',()=>{const y=window.scrollY;document.querySelector('.nav').style.transform=`translateY(${Math.min(y*.14,8)}px)`},{passive:true});
+    renderFeature();setLang(NOVA.lang);checkHealth();
+  </script>
+</body>
+</html>
