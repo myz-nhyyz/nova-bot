@@ -153,7 +153,7 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.0
   .toc-h::after{content:'▾';margin-left:auto;font-size:12px;color:var(--muted);transition:transform .3s}
   .toc.open .toc-h::after{transform:rotate(180deg)}
   .toc-list{max-height:0;overflow:hidden;transition:max-height .4s var(--ease);padding:0 8px;margin-top:8px}
-  .toc.open .toc-list{max-height:1200px;padding:8px}
+  .toc.open .toc-list{max-height:1400px;padding:8px}
   .toc-capsule{display:none}
   .toc-link{height:auto;padding:11px 14px}
   .toc-link.active{background:linear-gradient(90deg,rgba(120,160,255,.16),transparent);
@@ -204,7 +204,6 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.0
   background:rgba(125,180,255,.12);border:1px solid rgba(125,180,255,.22);
   color:#c8dcff;padding:2px 7px;border-radius:5px;white-space:nowrap}
 
-/* Callout — bỏ backdrop-filter, dùng background đặc hơn để vẫn giữ glass feel */
 .callout{position:relative;padding:16px 20px;border-radius:16px;margin:20px 0;
   font-size:14.5px;line-height:1.7;color:#cfd2db;
   background:linear-gradient(180deg,rgba(38,32,68,.55),rgba(24,20,48,.6));
@@ -227,7 +226,6 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.0
   background:linear-gradient(180deg,rgba(28,50,42,.55),rgba(18,34,28,.6))}
 .callout.privacy .callout-head{color:var(--ok)}
 
-/* Code block — bỏ backdrop-filter */
 .code-block{position:relative;margin:14px 0 20px;border-radius:16px;
   background:linear-gradient(180deg,rgba(22,20,40,.7),rgba(14,12,26,.75));
   border:1px solid rgba(255,255,255,.09);
@@ -346,7 +344,7 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.0
     <section class="sec" id="s1">
       <h2><span class="n">01</span><span data-i18n="s1.h">Giới thiệu</span></h2>
       <div data-i18n-html="s1.b">
-        <p>Nova ("bot", "chúng tôi") là một Discord bot cung cấp AI chat, điều phối War Ping / Backup Ping, quản lý event và kênh ban tự động cho server Discord. Bot được vận hành bởi <strong>nova_.inovation</strong>.</p>
+        <p>Nova ("bot", "chúng tôi") là một Discord bot cung cấp AI chat, AI image generation, điều phối War Ping / Backup Ping, quản lý event, và bộ công cụ moderation (Ban Zone + ban/mute) cho server Discord. Bot được vận hành bởi <strong>nova_.inovation</strong>.</p>
         <p>Bằng việc mời Nova vào server, cấu hình bot hoặc sử dụng bất kỳ tính năng nào, bạn ("Người dùng", "bạn") đồng ý bị ràng buộc bởi các Điều khoản Dịch vụ này. Nếu bạn không đồng ý, bạn không được sử dụng bot.</p>
         <p>Discord là một dịch vụ độc lập do Discord Inc. vận hành. Nova <strong>không liên kết, không được Discord chứng thực hay tài trợ</strong>. Việc bạn sử dụng Discord vẫn tuân theo Điều khoản Dịch vụ và Nguyên tắc Cộng đồng của Discord.</p>
       </div>
@@ -363,17 +361,18 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.0
     <section class="sec" id="s3">
       <h2><span class="n">03</span><span data-i18n="s3.h">Tính năng AI</span></h2>
       <div data-i18n-html="s3.b">
-        <p>Bot có thể tạo phản hồi cho prompt văn bản thông qua một dịch vụ AI bên thứ ba (<strong>Qwen3.7-max</strong>). Các lệnh hiện có:</p>
+        <p>Bot có thể tạo phản hồi văn bản và tạo ảnh thông qua dịch vụ AI bên thứ ba (<strong>Qwen3.7-max</strong>). Các lệnh hiện có:</p>
         <div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/chat &lt;content&gt;
+/image &lt;prompt&gt;
 /clearchat
-/setai
-/setsharedhistory
-/persona &lt;preset|custom: description&gt;
+/setai value:true|false
+/setsharedhistory value:true|false
+/persona preset:&lt;mã&gt; | custom_text:&lt;mô tả&gt;
 /mypersona
 /resetpersona
-/language &lt;vi|en&gt;</pre></div>
+/language value:&lt;vi|en&gt;</pre></div>
         <p>Theo mặc định, bot có thể lưu <strong>lịch sử hội thoại riêng theo từng người dùng</strong> để duy trì ngữ cảnh. Trong <em>AI channel</em> (do quản trị viên server bật), bot tự động xử lý tin nhắn trong kênh đó. Quản trị viên có thể bật <strong>lịch sử chung cho cả kênh</strong>, khi đó mọi người dùng chia sẻ cùng một ngữ cảnh hội thoại.</p>
-        <p>Người dùng có thể cấu hình persona để tùy chỉnh phong cách của AI, xem persona hiện tại, đặt lại bất kỳ lúc nào và chọn ngôn ngữ giao diện mong muốn.</p>
+        <p>Người dùng có thể cấu hình persona (chọn preset có sẵn hoặc tự viết), xem persona hiện tại, đặt lại mặc định và chọn ngôn ngữ giao diện mong muốn. Persona mặc định là AI tự nhiên, không có tính cách bổ sung. Có thể đặt lại bằng <code>/resetpersona</code>.</p>
       </div>
       <div class="callout warn">
         <div class="callout-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg><span data-i18n="warn.limit">Giới hạn quan trọng</span></div>
@@ -385,16 +384,13 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.0
       <h2><span class="n">04</span><span data-i18n="s4.h">War / Backup Ping</span></h2>
       <div data-i18n-html="s4.b">
         <p>Bot cung cấp panel HELP DESK với các nút mở yêu cầu <strong>War Ping</strong> hoặc <strong>Backup Ping</strong>. Yêu cầu cần nhập <em>Clan</em>, <em>Region</em> và <em>Server Link hoặc Code</em>.</p>
-        <p>Sau khi gửi, bot ping role liên quan, đăng panel và tạo thread riêng. Các hành động có sẵn qua slash command:</p>
-        <div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/war
-/backup
-/join
-/hacker
-/callhacker
-/win
-/lose
-/end</pre></div>
-        <p>Khi yêu cầu kết thúc, thread tự động khóa. Một số hành động có thể bị giới hạn cho quản trị viên server hoặc người dùng được đánh dấu là <em>Trusted</em>.</p>
+        <p>Sau khi gửi, bot ping role liên quan, đăng panel và tạo thread riêng. Các hành động có sẵn trên panel:</p>
+        <div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>Join
+Hacker showed up
+Call hacker
+Win / Lose
+End</pre></div>
+        <p>Khi yêu cầu kết thúc, thread tự động khóa. Các nút Win/Lose/End/Call hacker có thể bị giới hạn cho Manager hoặc Trusted users (danh sách Trusted quản lý bằng <code>/trust</code>).</p>
         <p><strong>Manager</strong> được hiểu là người dùng có quyền Discord <em>Administrator</em>, <em>Manage Server</em> hoặc <em>Manage Channels</em>.</p>
       </div>
     </section>
@@ -409,6 +405,8 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.0
 /event count
 /event remove
 /event clear
+/event edit title
+/event edit description
 /event blacklist add
 /event blacklist remove
 /event blacklist list</pre></div>
@@ -417,21 +415,30 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.0
     </section>
 
     <section class="sec" id="s6">
-      <h2><span class="n">06</span><span data-i18n="s6.h">Kiểm duyệt tự động</span></h2>
+      <h2><span class="n">06</span><span data-i18n="s6.h">Kiểm duyệt tự động & Ban Zone</span></h2>
       <div data-i18n-html="s6.b">
-        <p>Quản trị viên server có thể đặt một kênh là <strong>Ban Channel</strong>. Khi bật, người dùng gửi tin nhắn vào kênh đó có thể bị ban tự động và tin nhắn của họ trong ngày có thể bị xóa. Lệnh liên quan:</p>
-        <div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/setbanchannel true
-/setbanchannel false
-/bandebug
-/banwhitelist add @user
-/banwhitelist remove @user
-/banwhitelist list</pre></div>
-        <p>Bot dựa vào hệ thống phân cấp role của Discord: bot chỉ có thể ban người dùng nếu role của bot cao hơn role cao nhất của người đó. Chủ server không thể bị bot ban qua tính năng này. Quyền hạn của người dùng không thể vượt qua hệ thống phân cấp role.</p>
-        <p>Việc quản lý whitelist có thể bị giới hạn cho chủ bot tùy theo cấu hình.</p>
+        <p>Server Owner có thể cấu hình <strong>Ban Zone</strong> cho server của mình. Cấu hình được lưu <strong>riêng theo từng server</strong>. Có 2 mode:</p>
+        <div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/setbanchannel value:true
+/setbanchannel value:false
+/banzone mode:ban
+/banzone mode:mute duration:10m
+/banwhitelist action:add
+/banwhitelist action:remove
+/banwhitelist action:list
+/bandebug @user</pre></div>
+        <p>Ở mode <strong>ban</strong>: người gửi tin vào Ban Zone sẽ bị ban + Discord xóa tin nhắn trong 24h gần nhất của họ trên toàn server. Ở mode <strong>mute</strong>: người gửi tin sẽ bị timeout theo duration đã cài (tối đa 28 ngày) + bot xóa tin nhắn trong 24h gần nhất trên toàn server.</p>
+        <p>Nếu ai xóa Ban Zone channel, bot tự động tạo lại channel, gửi lại panel, và xử lý người xóa theo mode hiện tại của server.</p>
+        <p>Bot cũng cung cấp các lệnh moderation tiêu chuẩn:</p>
+        <div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/ban &lt;user&gt; [reason]
+/unban &lt;user&gt; [reason]
+/mute &lt;user&gt; &lt;duration&gt; [reason]
+/unmute &lt;user&gt; [reason]</pre></div>
+        <p>Các lệnh này yêu cầu quyền Discord tương ứng (Ban Members, Moderate Members). Bot cần role cao hơn target để xử lý, và không thể xử lý Server Owner.</p>
+        <p>Cấu hình Ban Zone & whitelist có thể bị giới hạn cho Server Owner.</p>
       </div>
       <div class="callout warn">
         <div class="callout-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg><span data-i18n="warn.limit">Giới hạn quan trọng</span></div>
-        <p data-i18n="s6.warn">Gửi tin nhắn vào Ban Channel có thể dẫn đến ban tự động ngay lập tức. Quản trị viên server có trách nhiệm ghi nhãn rõ ràng cho Ban Channel.</p>
+        <p data-i18n="s6.warn">Gửi tin nhắn vào Ban Channel có thể dẫn đến ban hoặc mute tự động ngay lập tức tùy mode của server. Quản trị viên server có trách nhiệm ghi nhãn rõ ràng cho Ban Channel.</p>
       </div>
     </section>
 
@@ -442,10 +449,11 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.0
         <p data-i18n="s7.warn">Phản hồi AI có thể không chính xác, không đầy đủ hoặc lỗi thời. Không coi kết quả AI như sự thật, lời khuyên chuyên môn, y tế, pháp lý hay tài chính.</p>
       </div>
       <div data-i18n-html="s7.b">
-        <p>Bot dùng dịch vụ AI bên thứ ba để tạo phản hồi. Chúng tôi không kiểm soát và không đảm bảo tính chính xác, an toàn hoặc phù hợp của kết quả AI.</p>
+        <p>Bot dùng dịch vụ AI bên thứ ba để tạo phản hồi và tạo ảnh. Chúng tôi không kiểm soát và không đảm bảo tính chính xác, an toàn hoặc phù hợp của kết quả AI.</p>
         <ul>
           <li>Kết quả AI có thể bị ảnh hưởng bởi ngữ cảnh, cấu hình người dùng (persona, ngôn ngữ, chế độ kênh) và hành vi mô hình.</li>
           <li>Chúng tôi không đảm bảo kết quả AI đúng, cập nhật hoặc không chứa nội dung gây hại.</li>
+          <li>Ảnh do AI tạo ra có thể không phù hợp với mô tả hoặc bị chặn bởi safety filter của nhà cung cấp.</li>
           <li>Bạn chịu hoàn toàn trách nhiệm về cách bạn sử dụng kết quả AI.</li>
         </ul>
       </div>
@@ -461,8 +469,9 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.0
         <p>Một số tính năng phụ thuộc vào quyền Discord và vị trí role của bot:</p>
         <ul>
           <li><strong>Tính năng Manager</strong> cần <em>Administrator</em>, <em>Manage Server</em> hoặc <em>Manage Channels</em>.</li>
-          <li><strong>Kiểm duyệt</strong> cần role bot cao hơn role cao nhất của người dùng bị tác động.</li>
-          <li><strong>Trusted users</strong> là người được đánh dấu riêng trong cấu hình bot; họ có thể được cấp một số hành động mà không cần đầy đủ quyền Manager.</li>
+          <li><strong>Moderation</strong> (<code>/ban</code>, <code>/mute</code>) cần quyền <em>Ban Members</em> hoặc <em>Moderate Members</em>, và role bot phải cao hơn role cao nhất của người dùng bị tác động.</li>
+          <li><strong>Ban Zone</strong> chỉ có thể xử lý người dùng nếu bot có role cao hơn role cao nhất của họ. Server Owner không thể bị bot ban hoặc mute.</li>
+          <li><strong>Trusted users</strong> là người được đánh dấu riêng trong cấu hình bot; họ có thể được cấp quyền Win/Lose/End cho war/backup mà không cần đầy đủ quyền Manager.</li>
           <li>Việc tạo thread, xóa tin nhắn và quản lý role phụ thuộc vào quyền tương ứng của bot trong kênh.</li>
         </ul>
         <p>Nếu thiếu quyền hoặc vị trí role không phù hợp, tính năng có thể im lặng thất bại hoặc trả về lỗi.</p>
@@ -481,7 +490,7 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.0
           <li>Khai thác, làm sập hoặc dịch ngược bot.</li>
           <li>Vượt qua hoặc cố gắng vượt qua kiểm tra quyền, hệ thống phân cấp role hoặc quy tắc whitelist.</li>
           <li>Truy cập trái phép vào bot, cơ sở dữ liệu hoặc cấu hình.</li>
-          <li>Lạm dụng công cụ kiểm duyệt đối với người dùng không vi phạm quy tắc.</li>
+          <li>Lạm dụng công cụ kiểm duyệt (bao gồm Ban Zone, <code>/ban</code>, <code>/mute</code>) đối với người dùng không vi phạm quy tắc.</li>
         </ul>
         <p>Chúng tôi có quyền tạm ngừng hoặc chấm dứt quyền truy cập của bất kỳ người dùng hoặc server vi phạm, không cần thông báo trước.</p>
       </div>
@@ -577,27 +586,27 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.0
       'doc.meta':'Ngày hiệu lực: <strong>19/09/2026</strong>','doc.effective':'Ngày hiệu lực',
       'warn.limit':'Giới hạn quan trọng','warn.perm':'Quyền hạn','info.version':'Phiên bản hiện tại',
       's1.h':'Giới thiệu',
-      's1.b':'<p>Nova ("bot", "chúng tôi") là một Discord bot cung cấp AI chat, điều phối War Ping / Backup Ping, quản lý event và kênh ban tự động cho server Discord. Bot được vận hành bởi <strong>nova_.inovation</strong>.</p><p>Bằng việc mời Nova vào server, cấu hình bot hoặc sử dụng bất kỳ tính năng nào, bạn ("Người dùng", "bạn") đồng ý bị ràng buộc bởi các Điều khoản Dịch vụ này. Nếu bạn không đồng ý, bạn không được sử dụng bot.</p><p>Discord là một dịch vụ độc lập do Discord Inc. vận hành. Nova <strong>không liên kết, không được Discord chứng thực hay tài trợ</strong>. Việc bạn sử dụng Discord vẫn tuân theo Điều khoản Dịch vụ và Nguyên tắc Cộng đồng của Discord.</p>',
+      's1.b':'<p>Nova ("bot", "chúng tôi") là một Discord bot cung cấp AI chat, AI image generation, điều phối War Ping / Backup Ping, quản lý event, và bộ công cụ moderation (Ban Zone + ban/mute) cho server Discord. Bot được vận hành bởi <strong>nova_.inovation</strong>.</p><p>Bằng việc mời Nova vào server, cấu hình bot hoặc sử dụng bất kỳ tính năng nào, bạn ("Người dùng", "bạn") đồng ý bị ràng buộc bởi các Điều khoản Dịch vụ này. Nếu bạn không đồng ý, bạn không được sử dụng bot.</p><p>Discord là một dịch vụ độc lập do Discord Inc. vận hành. Nova <strong>không liên kết, không được Discord chứng thực hay tài trợ</strong>. Việc bạn sử dụng Discord vẫn tuân theo Điều khoản Dịch vụ và Nguyên tắc Cộng đồng của Discord.</p>',
       's2.h':'Sử dụng hợp lý',
       's2.b':'<p>Bạn chỉ được sử dụng Nova nếu bạn được phép sử dụng Discord theo điều khoản của Discord và pháp luật áp dụng tại khu vực của bạn. Bạn không được sử dụng bot nếu việc đó bị cấm theo pháp luật hoặc nếu quyền truy cập của bạn đã từng bị thu hồi vì vi phạm các Điều khoản này.</p><p>Bạn có trách nhiệm đảm bảo việc sử dụng bot — bao gồm mọi lệnh hoặc cấu hình bạn thiết lập thay mặt server — tuân thủ pháp luật, chính sách của Discord và quy định của server bạn đang ở.</p>',
       's3.h':'Tính năng AI',
-      's3.b':'<p>Bot có thể tạo phản hồi cho prompt văn bản thông qua một dịch vụ AI bên thứ ba (<strong>Qwen3.7-max</strong>). Các lệnh hiện có:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/chat &lt;content&gt;\n/clearchat\n/setai\n/setsharedhistory\n/persona &lt;preset|custom: description&gt;\n/mypersona\n/resetpersona\n/language &lt;vi|en&gt;</pre></div><p>Theo mặc định, bot có thể lưu <strong>lịch sử hội thoại riêng theo từng người dùng</strong> để duy trì ngữ cảnh. Trong <em>AI channel</em> (do quản trị viên server bật), bot tự động xử lý tin nhắn trong kênh đó. Quản trị viên có thể bật <strong>lịch sử chung cho cả kênh</strong>, khi đó mọi người dùng chia sẻ cùng một ngữ cảnh hội thoại.</p><p>Người dùng có thể cấu hình persona để tùy chỉnh phong cách của AI, xem persona hiện tại, đặt lại bất kỳ lúc nào và chọn ngôn ngữ giao diện mong muốn.</p>',
+      's3.b':'<p>Bot có thể tạo phản hồi văn bản và tạo ảnh thông qua dịch vụ AI bên thứ ba (<strong>Qwen3.7-max</strong>). Các lệnh hiện có:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/chat &lt;content&gt;\n/image &lt;prompt&gt;\n/clearchat\n/setai value:true|false\n/setsharedhistory value:true|false\n/persona preset:&lt;mã&gt; | custom_text:&lt;mô tả&gt;\n/mypersona\n/resetpersona\n/language value:&lt;vi|en&gt;</pre></div><p>Theo mặc định, bot có thể lưu <strong>lịch sử hội thoại riêng theo từng người dùng</strong> để duy trì ngữ cảnh. Trong <em>AI channel</em> (do quản trị viên server bật), bot tự động xử lý tin nhắn trong kênh đó. Quản trị viên có thể bật <strong>lịch sử chung cho cả kênh</strong>, khi đó mọi người dùng chia sẻ cùng một ngữ cảnh hội thoại.</p><p>Người dùng có thể cấu hình persona (chọn preset có sẵn hoặc tự viết), xem persona hiện tại, đặt lại mặc định và chọn ngôn ngữ giao diện mong muốn. Persona mặc định là AI tự nhiên, không có tính cách bổ sung. Có thể đặt lại bằng <code>/resetpersona</code>.</p>',
       's3.warn':'Không gửi thông tin nhạy cảm — mật khẩu, giấy tờ tùy thân, dữ liệu tài chính, địa chỉ, hoặc dữ liệu sức khỏe riêng tư — qua các tính năng AI.',
       's4.h':'War / Backup Ping',
-      's4.b':'<p>Bot cung cấp panel HELP DESK với các nút mở yêu cầu <strong>War Ping</strong> hoặc <strong>Backup Ping</strong>. Yêu cầu cần nhập <em>Clan</em>, <em>Region</em> và <em>Server Link hoặc Code</em>.</p><p>Sau khi gửi, bot ping role liên quan, đăng panel và tạo thread riêng. Các hành động có sẵn qua slash command:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/war\n/backup\n/join\n/hacker\n/callhacker\n/win\n/lose\n/end</pre></div><p>Khi yêu cầu kết thúc, thread tự động khóa. Một số hành động có thể bị giới hạn cho quản trị viên server hoặc người dùng được đánh dấu là <em>Trusted</em>.</p><p><strong>Manager</strong> được hiểu là người dùng có quyền Discord <em>Administrator</em>, <em>Manage Server</em> hoặc <em>Manage Channels</em>.</p>',
+      's4.b':'<p>Bot cung cấp panel HELP DESK với các nút mở yêu cầu <strong>War Ping</strong> hoặc <strong>Backup Ping</strong>. Yêu cầu cần nhập <em>Clan</em>, <em>Region</em> và <em>Server Link hoặc Code</em>.</p><p>Sau khi gửi, bot ping role liên quan, đăng panel và tạo thread riêng. Các hành động có sẵn trên panel:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>Join\nHacker showed up\nCall hacker\nWin / Lose\nEnd</pre></div><p>Khi yêu cầu kết thúc, thread tự động khóa. Các nút Win/Lose/End/Call hacker có thể bị giới hạn cho Manager hoặc Trusted users (danh sách Trusted quản lý bằng <code>/trust</code>).</p><p><strong>Manager</strong> được hiểu là người dùng có quyền Discord <em>Administrator</em>, <em>Manage Server</em> hoặc <em>Manage Channels</em>.</p>',
       's5.h':'Event',
-      's5.b':'<p>Bot cung cấp panel event để người dùng tham gia. Quản trị viên có thể đăng và quản lý panel event qua các lệnh:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/event send\n/event test\n/event participants\n/event count\n/event remove\n/event clear\n/event blacklist add\n/event blacklist remove\n/event blacklist list</pre></div><p>Blacklist role chặn role đó tham gia event, bất kể role đó có quyền hạn gì khác. Kết thúc event có thể công bố người chiến thắng và xóa danh sách tham gia.</p>',
-      's6.h':'Kiểm duyệt tự động',
-      's6.b':'<p>Quản trị viên server có thể đặt một kênh là <strong>Ban Channel</strong>. Khi bật, người dùng gửi tin nhắn vào kênh đó có thể bị ban tự động và tin nhắn của họ trong ngày có thể bị xóa. Lệnh liên quan:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/setbanchannel true\n/setbanchannel false\n/bandebug\n/banwhitelist add @user\n/banwhitelist remove @user\n/banwhitelist list</pre></div><p>Bot dựa vào hệ thống phân cấp role của Discord: bot chỉ có thể ban người dùng nếu role của bot cao hơn role cao nhất của người đó. Chủ server không thể bị bot ban qua tính năng này. Quyền hạn của người dùng không thể vượt qua hệ thống phân cấp role.</p><p>Việc quản lý whitelist có thể bị giới hạn cho chủ bot tùy theo cấu hình.</p>',
-      's6.warn':'Gửi tin nhắn vào Ban Channel có thể dẫn đến ban tự động ngay lập tức. Quản trị viên server có trách nhiệm ghi nhãn rõ ràng cho Ban Channel.',
+      's5.b':'<p>Bot cung cấp panel event để người dùng tham gia. Quản trị viên có thể đăng và quản lý panel event qua các lệnh:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/event send\n/event test\n/event participants\n/event count\n/event remove\n/event clear\n/event edit title\n/event edit description\n/event blacklist add\n/event blacklist remove\n/event blacklist list</pre></div><p>Blacklist role chặn role đó tham gia event, bất kể role đó có quyền hạn gì khác. Kết thúc event có thể công bố người chiến thắng và xóa danh sách tham gia.</p>',
+      's6.h':'Kiểm duyệt tự động & Ban Zone',
+      's6.b':'<p>Server Owner có thể cấu hình <strong>Ban Zone</strong> cho server của mình. Cấu hình được lưu <strong>riêng theo từng server</strong>. Có 2 mode:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/setbanchannel value:true\n/setbanchannel value:false\n/banzone mode:ban\n/banzone mode:mute duration:10m\n/banwhitelist action:add\n/banwhitelist action:remove\n/banwhitelist action:list\n/bandebug @user</pre></div><p>Ở mode <strong>ban</strong>: người gửi tin vào Ban Zone sẽ bị ban + Discord xóa tin nhắn trong 24h gần nhất của họ trên toàn server. Ở mode <strong>mute</strong>: người gửi tin sẽ bị timeout theo duration đã cài (tối đa 28 ngày) + bot xóa tin nhắn trong 24h gần nhất trên toàn server.</p><p>Nếu ai xóa Ban Zone channel, bot tự động tạo lại channel, gửi lại panel, và xử lý người xóa theo mode hiện tại của server.</p><p>Bot cũng cung cấp các lệnh moderation tiêu chuẩn:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/ban &lt;user&gt; [reason]\n/unban &lt;user&gt; [reason]\n/mute &lt;user&gt; &lt;duration&gt; [reason]\n/unmute &lt;user&gt; [reason]</pre></div><p>Các lệnh này yêu cầu quyền Discord tương ứng (Ban Members, Moderate Members). Bot cần role cao hơn target để xử lý, và không thể xử lý Server Owner.</p><p>Cấu hình Ban Zone & whitelist có thể bị giới hạn cho Server Owner.</p>',
+      's6.warn':'Gửi tin nhắn vào Ban Channel có thể dẫn đến ban hoặc mute tự động ngay lập tức tùy mode của server. Quản trị viên server có trách nhiệm ghi nhãn rõ ràng cho Ban Channel.',
       's7.h':'Miễn trừ AI',
       's7.warn':'Phản hồi AI có thể không chính xác, không đầy đủ hoặc lỗi thời. Không coi kết quả AI như sự thật, lời khuyên chuyên môn, y tế, pháp lý hay tài chính.',
-      's7.b':'<p>Bot dùng dịch vụ AI bên thứ ba để tạo phản hồi. Chúng tôi không kiểm soát và không đảm bảo tính chính xác, an toàn hoặc phù hợp của kết quả AI.</p><ul><li>Kết quả AI có thể bị ảnh hưởng bởi ngữ cảnh, cấu hình người dùng (persona, ngôn ngữ, chế độ kênh) và hành vi mô hình.</li><li>Chúng tôi không đảm bảo kết quả AI đúng, cập nhật hoặc không chứa nội dung gây hại.</li><li>Bạn chịu hoàn toàn trách nhiệm về cách bạn sử dụng kết quả AI.</li></ul>',
+      's7.b':'<p>Bot dùng dịch vụ AI bên thứ ba để tạo phản hồi và tạo ảnh. Chúng tôi không kiểm soát và không đảm bảo tính chính xác, an toàn hoặc phù hợp của kết quả AI.</p><ul><li>Kết quả AI có thể bị ảnh hưởng bởi ngữ cảnh, cấu hình người dùng (persona, ngôn ngữ, chế độ kênh) và hành vi mô hình.</li><li>Chúng tôi không đảm bảo kết quả AI đúng, cập nhật hoặc không chứa nội dung gây hại.</li><li>Ảnh do AI tạo ra có thể không phù hợp với mô tả hoặc bị chặn bởi safety filter của nhà cung cấp.</li><li>Bạn chịu hoàn toàn trách nhiệm về cách bạn sử dụng kết quả AI.</li></ul>',
       's8.h':'Quyền Discord',
       's8.callout':'Bot không thể vượt qua hệ thống phân quyền hoặc phân cấp role của Discord.',
-      's8.b':'<p>Một số tính năng phụ thuộc vào quyền Discord và vị trí role của bot:</p><ul><li><strong>Tính năng Manager</strong> cần <em>Administrator</em>, <em>Manage Server</em> hoặc <em>Manage Channels</em>.</li><li><strong>Kiểm duyệt</strong> cần role bot cao hơn role cao nhất của người dùng bị tác động.</li><li><strong>Trusted users</strong> là người được đánh dấu riêng trong cấu hình bot.</li><li>Việc tạo thread, xóa tin nhắn và quản lý role phụ thuộc vào quyền tương ứng của bot trong kênh.</li></ul><p>Nếu thiếu quyền hoặc vị trí role không phù hợp, tính năng có thể im lặng thất bại hoặc trả về lỗi.</p>',
+      's8.b':'<p>Một số tính năng phụ thuộc vào quyền Discord và vị trí role của bot:</p><ul><li><strong>Tính năng Manager</strong> cần <em>Administrator</em>, <em>Manage Server</em> hoặc <em>Manage Channels</em>.</li><li><strong>Moderation</strong> (<code>/ban</code>, <code>/mute</code>) cần quyền <em>Ban Members</em> hoặc <em>Moderate Members</em>, và role bot phải cao hơn role cao nhất của người dùng bị tác động.</li><li><strong>Ban Zone</strong> chỉ có thể xử lý người dùng nếu bot có role cao hơn role cao nhất của họ. Server Owner không thể bị bot ban hoặc mute.</li><li><strong>Trusted users</strong> là người được đánh dấu riêng trong cấu hình bot; họ có thể được cấp quyền Win/Lose/End cho war/backup mà không cần đầy đủ quyền Manager.</li><li>Việc tạo thread, xóa tin nhắn và quản lý role phụ thuộc vào quyền tương ứng của bot trong kênh.</li></ul><p>Nếu thiếu quyền hoặc vị trí role không phù hợp, tính năng có thể im lặng thất bại hoặc trả về lỗi.</p>',
       's9.h':'Hành vi bị cấm',
-      's9.b':'<p>Bạn đồng ý không sử dụng bot để:</p><ul><li>Quấy rối, đe dọa hoặc lạm dụng người dùng khác.</li><li>Tham gia vào hoạt động bất hợp pháp hoặc hỗ trợ hoạt động đó.</li><li>Spam lệnh, kênh hoặc người dùng khác.</li><li>Triển khai tự động hóa hoặc script độc hại chống lại bot.</li><li>Khai thác, làm sập hoặc dịch ngược bot.</li><li>Vượt qua hoặc cố gắng vượt qua kiểm tra quyền, hệ thống phân cấp role hoặc quy tắc whitelist.</li><li>Truy cập trái phép vào bot, cơ sở dữ liệu hoặc cấu hình.</li><li>Lạm dụng công cụ kiểm duyệt đối với người dùng không vi phạm quy tắc.</li></ul><p>Chúng tôi có quyền tạm ngừng hoặc chấm dứt quyền truy cập của bất kỳ người dùng hoặc server vi phạm, không cần thông báo trước.</p>',
+      's9.b':'<p>Bạn đồng ý không sử dụng bot để:</p><ul><li>Quấy rối, đe dọa hoặc lạm dụng người dùng khác.</li><li>Tham gia vào hoạt động bất hợp pháp hoặc hỗ trợ hoạt động đó.</li><li>Spam lệnh, kênh hoặc người dùng khác.</li><li>Triển khai tự động hóa hoặc script độc hại chống lại bot.</li><li>Khai thác, làm sập hoặc dịch ngược bot.</li><li>Vượt qua hoặc cố gắng vượt qua kiểm tra quyền, hệ thống phân cấp role hoặc quy tắc whitelist.</li><li>Truy cập trái phép vào bot, cơ sở dữ liệu hoặc cấu hình.</li><li>Lạm dụng công cụ kiểm duyệt (bao gồm Ban Zone, <code>/ban</code>, <code>/mute</code>) đối với người dùng không vi phạm quy tắc.</li></ul><p>Chúng tôi có quyền tạm ngừng hoặc chấm dứt quyền truy cập của bất kỳ người dùng hoặc server vi phạm, không cần thông báo trước.</p>',
       's10.h':'Khả dụng',
       's10.b':'<p>Bot được cung cấp trên cơ sở <em>"nguyên trạng"</em> và <em>"tùy theo khả dụng"</em>. Chúng tôi không đảm bảo bot luôn khả dụng hoặc mọi tính năng hoạt động không gián đoạn. Gián đoạn có thể do:</p><ul><li>Downtime, cập nhật hoặc bảo trì bot.</li><li>Sự cố, giới hạn tốc độ hoặc thay đổi API từ Discord.</li><li>Lỗi hoặc thay đổi từ dịch vụ bên thứ ba, bao gồm nhà cung cấp AI và hosting.</li><li>Sự cố mạng hoặc hạ tầng ngoài tầm kiểm soát.</li></ul><p>Chúng tôi có thể thay đổi, thêm hoặc xóa tính năng vào bất kỳ lúc nào.</p>',
       's11.h':'Thay đổi',
@@ -618,27 +627,27 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.0
       'doc.meta':'Effective Date: <strong>19/09/2026</strong>','doc.effective':'Effective Date',
       'warn.limit':'Important limitation','warn.perm':'Permissions','info.version':'Current version',
       's1.h':'Introduction',
-      's1.b':'<p>Nova ("the Bot", "we") is a Discord bot providing AI chat, war coordination (War Ping / Backup Ping), event management, and automatic moderation to Discord servers. The Bot is operated by <strong>nova_.inovation</strong>.</p><p>By inviting the Bot, configuring it, or using any of its features, you ("User", "you") agree to be bound by these Terms of Service. If you do not agree, you must not use the Bot.</p><p>Discord is a separate service operated by Discord Inc. The Bot is <strong>not affiliated with, endorsed by, or sponsored by</strong> Discord Inc.</p>',
+      's1.b':'<p>Nova ("the Bot", "we") is a Discord bot providing AI chat, AI image generation, war coordination (War Ping / Backup Ping), event management, and moderation tooling (Ban Zone + ban/mute commands) to Discord servers. The Bot is operated by <strong>nova_.inovation</strong>.</p><p>By inviting the Bot, configuring it, or using any of its features, you ("User", "you") agree to be bound by these Terms of Service. If you do not agree, you must not use the Bot.</p><p>Discord is a separate service operated by Discord Inc. The Bot is <strong>not affiliated with, endorsed by, or sponsored by</strong> Discord Inc.</p>',
       's2.h':'Acceptable Use',
       's2.b':'<p>You may use the Bot only if you are permitted to use Discord under Discord\'s own terms and under applicable laws. You must not use the Bot if barred by law or if your access was previously revoked for a violation of these Terms.</p><p>You are responsible for ensuring that your use of the Bot — including any commands or configurations you set on behalf of a server — complies with applicable laws, Discord\'s policies, and the rules of the server you are in.</p>',
       's3.h':'AI Features',
-      's3.b':'<p>The Bot can generate responses through a third-party AI service (<strong>Qwen3.7-max</strong>). Available commands:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/chat &lt;content&gt;\n/clearchat\n/setai\n/setsharedhistory\n/persona &lt;preset|custom: description&gt;\n/mypersona\n/resetpersona\n/language &lt;vi|en&gt;</pre></div><p>By default, the Bot may store a <strong>per-user conversation history</strong>. In an <em>AI channel</em>, the Bot processes messages automatically. A server manager may enable <strong>shared channel history</strong>, in which all users share the same conversation context.</p><p>Users may configure a persona, view it, reset it at any time, and choose their preferred interface language.</p>',
+      's3.b':'<p>The Bot can generate text responses and images through a third-party AI service (<strong>Qwen3.7-max</strong>). Available commands:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/chat &lt;content&gt;\n/image &lt;prompt&gt;\n/clearchat\n/setai value:true|false\n/setsharedhistory value:true|false\n/persona preset:&lt;key&gt; | custom_text:&lt;description&gt;\n/mypersona\n/resetpersona\n/language value:&lt;vi|en&gt;</pre></div><p>By default, the Bot may store a <strong>per-user conversation history</strong>. In an <em>AI channel</em>, the Bot processes messages automatically. A server manager may enable <strong>shared channel history</strong>, in which all users share the same context.</p><p>Users may configure a persona (preset or custom), view it, reset it, and choose their preferred interface language. The default persona is a natural AI with no extra personality. Reset with <code>/resetpersona</code>.</p>',
       's3.warn':'Do not send sensitive information — passwords, government IDs, financial data, addresses, or private health data — through AI features.',
       's4.h':'War / Backup Ping',
-      's4.b':'<p>The Bot provides a HELP DESK panel with buttons to open a <strong>War Ping</strong> or <strong>Backup Ping</strong> request. Requests require a <em>Clan</em>, <em>Region</em>, and <em>Server Link or Code</em>.</p><p>Once submitted, the Bot pings the role, posts a panel, and creates a thread. Available actions:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/war\n/backup\n/join\n/hacker\n/callhacker\n/win\n/lose\n/end</pre></div><p>When a request ends, its thread is automatically locked. Some actions may be restricted to server managers or to users marked as <em>Trusted</em>.</p><p><strong>Manager</strong> means a user with Discord <em>Administrator</em>, <em>Manage Server</em>, or <em>Manage Channels</em> permissions.</p>',
+      's4.b':'<p>The Bot provides a HELP DESK panel with buttons to open a <strong>War Ping</strong> or <strong>Backup Ping</strong> request. Requests require a <em>Clan</em>, <em>Region</em>, and <em>Server Link or Code</em>.</p><p>Once submitted, the Bot pings the role, posts a panel, and creates a thread. Available actions on the panel:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>Join\nHacker showed up\nCall hacker\nWin / Lose\nEnd</pre></div><p>When a request ends, its thread is automatically locked. Win/Lose/End/Call hacker may be restricted to Managers or to users marked as <em>Trusted</em> (managed via <code>/trust</code>).</p><p><strong>Manager</strong> means a user with Discord <em>Administrator</em>, <em>Manage Server</em>, or <em>Manage Channels</em> permissions.</p>',
       's5.h':'Events',
-      's5.b':'<p>The Bot provides an event panel. Server managers can post and manage event panels via:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/event send\n/event test\n/event participants\n/event count\n/event remove\n/event clear\n/event blacklist add\n/event blacklist remove\n/event blacklist list</pre></div><p>Role blacklisting blocks a role from joining, regardless of other permissions. Ending an event may announce a winner and clear participant records.</p>',
-      's6.h':'Automatic Moderation',
-      's6.b':'<p>A server manager may designate a channel as a <strong>Ban Channel</strong>. When enabled, users who message there may be automatically banned and their messages from that day may be purged. Commands:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/setbanchannel true\n/setbanchannel false\n/bandebug\n/banwhitelist add @user\n/banwhitelist remove @user\n/banwhitelist list</pre></div><p>The Bot relies on Discord\'s role hierarchy: it can only ban a user if its role is positioned higher than the user\'s highest role. Server owners cannot be banned by the Bot through this feature.</p><p>Whitelist management may be restricted to the Bot owner.</p>',
-      's6.warn':'Messaging a Ban Channel is likely to result in an immediate, automatic ban. Server managers are responsible for clearly labeling Ban Channels.',
+      's5.b':'<p>The Bot provides an event panel. Server managers can post and manage event panels via:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/event send\n/event test\n/event participants\n/event count\n/event remove\n/event clear\n/event edit title\n/event edit description\n/event blacklist add\n/event blacklist remove\n/event blacklist list</pre></div><p>Role blacklisting blocks a role from joining, regardless of other permissions. Ending an event may announce a winner and clear participant records.</p>',
+      's6.h':'Automatic Moderation & Ban Zone',
+      's6.b':'<p>The Server Owner can configure <strong>Ban Zone</strong> for their server. Configuration is stored <strong>per server</strong>. Two modes are available:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/setbanchannel value:true\n/setbanchannel value:false\n/banzone mode:ban\n/banzone mode:mute duration:10m\n/banwhitelist action:add\n/banwhitelist action:remove\n/banwhitelist action:list\n/bandebug @user</pre></div><p>In <strong>ban</strong> mode, senders are banned and Discord purges their messages from the last 24 hours server-wide. In <strong>mute</strong> mode, senders get a timeout for the configured duration (max 28 days) and the bot purges their messages from the last 24 hours server-wide.</p><p>If the Ban Zone channel is deleted, the bot recreates it, reposts the panel, and takes action against the deleter according to the current mode.</p><p>The Bot also provides standard moderation commands:</p><div class="code-block"><button class="copy-btn" type="button">Copy</button><pre>/ban &lt;user&gt; [reason]\n/unban &lt;user&gt; [reason]\n/mute &lt;user&gt; &lt;duration&gt; [reason]\n/unmute &lt;user&gt; [reason]</pre></div><p>These commands require the corresponding Discord permissions (Ban Members, Moderate Members). The Bot needs a role higher than the target, and cannot act on the Server Owner.</p><p>Ban Zone configuration and whitelist management may be restricted to the Server Owner.</p>',
+      's6.warn':'Messaging a Ban Channel may result in an immediate ban or mute depending on the server\'s mode. Server managers are responsible for clearly labeling Ban Channels.',
       's7.h':'AI Disclaimer',
       's7.warn':'AI responses may be inaccurate, incomplete, or outdated. Do not treat AI output as factual, professional, medical, legal, or financial advice.',
-      's7.b':'<p>The Bot uses a third-party AI service. We do not control, and cannot guarantee, the accuracy, safety, or appropriateness of AI output.</p><ul><li>AI output may be affected by context, user configuration, and model behavior.</li><li>We do not guarantee that AI output is correct, up to date, or free of harmful content.</li><li>You remain solely responsible for how you use any AI-generated output.</li></ul>',
+      's7.b':'<p>The Bot uses a third-party AI service for both text responses and image generation. We do not control, and cannot guarantee, the accuracy, safety, or appropriateness of AI output.</p><ul><li>AI output may be affected by context, user configuration (persona, language, channel mode), and model behavior.</li><li>We do not guarantee that AI output is correct, up to date, or free of harmful content.</li><li>AI-generated images may not match the prompt, or may be blocked by the provider\'s safety filters.</li><li>You remain solely responsible for how you use any AI-generated output.</li></ul>',
       's8.h':'Discord Permissions',
       's8.callout':"The Bot cannot bypass Discord's permission system or role hierarchy.",
-      's8.b':'<p>Several features depend on Discord permissions and the position of the Bot\'s role:</p><ul><li><strong>Manager features</strong> require <em>Administrator</em>, <em>Manage Server</em>, or <em>Manage Channels</em>.</li><li><strong>Moderation actions</strong> require the Bot\'s role to be higher than the target user\'s highest role.</li><li><strong>Trusted users</strong> are users explicitly marked as trusted in the Bot\'s configuration.</li><li>Thread creation, message deletion, and role management depend on the corresponding permissions.</li></ul><p>If permissions are missing, features may silently fail or return an error.</p>',
+      's8.b':'<p>Several features depend on Discord permissions and the position of the Bot\'s role:</p><ul><li><strong>Manager features</strong> require <em>Administrator</em>, <em>Manage Server</em>, or <em>Manage Channels</em>.</li><li><strong>Moderation</strong> (<code>/ban</code>, <code>/mute</code>) requires <em>Ban Members</em> or <em>Moderate Members</em>, and the Bot\'s role must be higher than the target\'s highest role.</li><li><strong>Ban Zone</strong> can only act on a user if the Bot\'s role is higher than the user\'s highest role. The Server Owner cannot be banned or muted by the Bot.</li><li><strong>Trusted users</strong> are users explicitly marked as trusted in the Bot\'s configuration; they may be granted Win/Lose/End for war/backup without full Manager permissions.</li><li>Thread creation, message deletion, and role management depend on the corresponding permissions.</li></ul><p>If permissions are missing, features may silently fail or return an error.</p>',
       's9.h':'Prohibited Use',
-      's9.b':'<p>You agree not to use the Bot to:</p><ul><li>Harass, threaten, or abuse other users.</li><li>Engage in illegal activity or facilitate it.</li><li>Spam commands, channels, or other users.</li><li>Deploy malicious automation against the Bot.</li><li>Exploit, crash, or reverse-engineer the Bot.</li><li>Bypass permission checks, role hierarchy, or whitelist rules.</li><li>Gain unauthorized access to the Bot or its configuration.</li><li>Misuse moderation tools against users who have not violated any rule.</li></ul><p>We reserve the right to suspend or terminate access for any user or server that violates these Terms.</p>',
+      's9.b':'<p>You agree not to use the Bot to:</p><ul><li>Harass, threaten, or abuse other users.</li><li>Engage in illegal activity or facilitate it.</li><li>Spam commands, channels, or other users.</li><li>Deploy malicious automation against the Bot.</li><li>Exploit, crash, or reverse-engineer the Bot.</li><li>Bypass permission checks, role hierarchy, or whitelist rules.</li><li>Gain unauthorized access to the Bot or its configuration.</li><li>Misuse moderation tools (including Ban Zone, <code>/ban</code>, <code>/mute</code>) against users who have not violated any rule.</li></ul><p>We reserve the right to suspend or terminate access for any user or server that violates these Terms.</p>',
       's10.h':'Availability',
       's10.b':'<p>The Bot is provided on an <em>"as is"</em> and <em>"as available"</em> basis. We do not guarantee availability. Interruptions may result from:</p><ul><li>Downtime, updates, or maintenance of the Bot.</li><li>Outages, rate limits, or API changes on Discord\'s side.</li><li>Failures or changes in third-party services.</li><li>Network or infrastructure issues outside our control.</li></ul><p>We may change, add, or remove features at any time.</p>',
       's11.h':'Changes',
