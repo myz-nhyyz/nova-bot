@@ -2,793 +2,128 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0a0512">
-<title>Privacy Policy — Nova</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --fg:#f5f6fa;--muted:#b6b9c8;--dim:#7c7f92;
-  --line:rgba(255,255,255,.10);--line-soft:rgba(255,255,255,.06);
-  --warn:#ffcf6b;--ok:#6ee7b7;
-  --shadow-lg:0 30px 80px -30px rgba(0,0,0,.7),0 12px 32px -12px rgba(0,0,0,.5);
-  --ease:cubic-bezier(.32,.72,0,1);
-  --ease-out:cubic-bezier(.16,1,.3,1);
-  --ease-spring:cubic-bezier(.34,1.56,.64,1);
-  --nav-h:56px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;color:var(--fg);
-  background:#0a0512;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;
-  line-height:1.7;position:relative}
-button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
-a{color:#a8c8ff;text-decoration:none;transition:color .2s}
-a:hover{color:#c8dcff}
-h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.01em;line-height:1.15;color:#fff;font-optical-sizing:auto}
-::selection{background:rgba(125,180,255,.35);color:#fff}
-:focus-visible{outline:2px solid #a8c8ff;outline-offset:3px;border-radius:6px}
-
-.bg-layer{position:fixed;inset:0;z-index:-4;pointer-events:none;
-  background:
-    radial-gradient(ellipse 90% 40% at 50% 62%, rgba(255,150,120,.22), transparent 70%),
-    radial-gradient(ellipse 70% 35% at 65% 58%, rgba(255,190,140,.13), transparent 65%),
-    radial-gradient(ellipse 100% 60% at 30% 20%, rgba(140,90,220,.46), transparent 65%),
-    radial-gradient(ellipse 80% 50% at 80% 15%, rgba(90,60,180,.42), transparent 60%),
-    linear-gradient(180deg,#150a26 0%,#23153f 22%,#2f1c50 42%,#3d254f 58%,#43243c 72%,#2a1529 86%,#0f0818 100%)}
-.bg-orb{position:fixed;border-radius:50%;pointer-events:none;z-index:-3;opacity:.5;
-  will-change:transform;transform:translate3d(0,0,0)}
-.bg-orb.o1{width:520px;height:520px;top:-15%;left:-8%;
-  background:radial-gradient(circle, rgba(140,90,220,.55) 0%, rgba(140,90,220,.22) 30%, transparent 68%);
-  animation:float1 24s ease-in-out infinite}
-.bg-orb.o2{width:600px;height:600px;bottom:-25%;right:-12%;
-  background:radial-gradient(circle, rgba(255,150,120,.4) 0%, rgba(255,150,120,.15) 32%, transparent 68%);
-  animation:float2 30s ease-in-out infinite}
-@keyframes float1{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(70px,60px,0) scale(1.1)}}
-@keyframes float2{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-90px,-50px,0) scale(.92)}}
-.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.045;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
-.particles{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;contain:strict}
-.particle{position:absolute;border-radius:50%;background:rgba(200,220,255,.6);
-  animation:floatUp linear infinite;opacity:0;will-change:transform,opacity}
-@keyframes floatUp{
-  0%{transform:translate3d(0,0,0);opacity:0}
-  10%{opacity:.6}
-  90%{opacity:.3}
-  100%{transform:translate3d(15px,-110vh,0);opacity:0}
-}
-
-.glass{background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.045));
-  backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);
-  border:1px solid var(--line);
-  box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(255,255,255,.04);
-  position:relative}
-.glass::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.5) 30%,rgba(255,255,255,.5) 70%,transparent);pointer-events:none}
-
-.topbar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:50;
-  display:flex;align-items:center;gap:6px;padding:6px;border-radius:100px;
-  width:min(1180px,calc(100vw - 32px));
-  animation:slideDown .9s var(--ease-out) both}
-@keyframes slideDown{from{opacity:0;transform:translate3d(-50%,-24px,0)}to{opacity:1;transform:translate3d(-50%,0,0)}}
-.brand-chip{display:flex;align-items:center;gap:10px;padding:9px 20px 9px 12px;border-radius:100px;
-  background:linear-gradient(180deg,rgba(120,160,255,.22),rgba(120,160,255,.08));
-  border:1px solid rgba(150,180,255,.28);box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
-  font-weight:600;font-size:14.5px;flex-shrink:0;transition:transform .3s var(--ease-spring)}
-.brand-chip:hover{transform:scale(1.04)}
-.brand-star{width:26px;height:26px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,#3b82f6,#6366f1);
-  box-shadow:0 2px 8px rgba(80,120,255,.5),inset 0 1px 0 rgba(255,255,255,.4)}
-.brand-star svg{width:16px;height:16px;color:#fff;transition:transform .6s var(--ease-spring)}
-.brand-chip:hover .brand-star svg{transform:rotate(360deg)}
-.brand-text{display:flex;flex-direction:column;line-height:1.1}
-.brand-name{font-weight:600;font-size:14.5px;color:#fff}
-.brand-sub{font-size:9.5px;font-weight:500;letter-spacing:.18em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-top:2px}
-.tabs{display:flex;gap:2px;flex:1;padding-left:8px}
-.tab{padding:10px 18px;border-radius:100px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.75);white-space:nowrap;transition:color .3s,background .3s}
-.tab:hover{color:#fff;background:rgba(255,255,255,.06)}
-.tab.active{color:#fff;background:linear-gradient(180deg,rgba(120,160,255,.22),rgba(120,160,255,.08));
-  border:1px solid rgba(150,180,255,.28);box-shadow:inset 0 1px 0 rgba(255,255,255,.2);font-weight:600}
-.lang-seg{display:inline-flex;gap:2px;padding:3px;border-radius:100px;background:rgba(0,0,0,.28);
-  border:1px solid rgba(255,255,255,.1);position:relative;flex-shrink:0}
-.lang-pill{position:absolute;top:3px;bottom:3px;border-radius:100px;
-  background:linear-gradient(180deg,rgba(255,255,255,.24),rgba(255,255,255,.10));
-  border:1px solid rgba(255,255,255,.24);
-  box-shadow:0 3px 10px -2px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.35);
-  transition:transform .45s var(--ease-spring),width .45s var(--ease-spring);z-index:1}
-.lang-btn{position:relative;z-index:2;padding:7px 16px;border-radius:100px;
-  font-size:11.5px;font-weight:600;letter-spacing:.1em;color:var(--dim);transition:color .3s}
-.lang-btn.active{color:#fff}
-@media(max-width:820px){.tabs{display:none}.brand-chip{flex:1;justify-content:flex-start}}
-
-.progress-cap{position:fixed;top:84px;left:50%;transform:translateX(-50%);z-index:45;
-  width:180px;height:5px;border-radius:100px;
-  background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);
-  overflow:hidden;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  box-shadow:0 4px 16px -4px rgba(0,0,0,.5);opacity:.9;transition:opacity .4s}
-.progress-cap.hide{opacity:0;pointer-events:none}
-.progress-fill{height:100%;width:0%;border-radius:100px;
-  background:linear-gradient(90deg,#6366f1,#7db4ff,#c8dcff);
-  box-shadow:0 0 10px rgba(125,180,255,.6);transition:width .15s linear}
-
-.doc-layout{max-width:1200px;margin:0 auto;
-  padding:calc(var(--nav-h) + 100px) clamp(20px,4vw,44px) 80px;
-  display:grid;grid-template-columns:260px minmax(0,1fr);gap:44px;align-items:start;
-  position:relative;z-index:1}
-@media(max-width:960px){.doc-layout{grid-template-columns:1fr;gap:20px;padding-top:calc(var(--nav-h) + 40px)}}
-
-.toc{position:sticky;top:calc(var(--nav-h) + 56px);max-height:calc(100vh - var(--nav-h) - 80px);
-  overflow-y:auto;padding:16px 10px 16px 8px;border-radius:24px;scrollbar-width:thin;
-  animation:fadeUp .9s .15s var(--ease-out) both}
-@keyframes fadeUp{from{opacity:0;transform:translate3d(0,20px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
-.toc::-webkit-scrollbar{width:4px}
-.toc::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:4px}
-.toc-h{display:flex;align-items:center;gap:8px;
-  font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--dim);padding:4px 12px 14px}
-.toc-h svg{width:14px;height:14px;color:#a8c8ff}
-.toc-list{list-style:none;position:relative}
-.toc-capsule{position:absolute;left:0;width:100%;height:38px;border-radius:12px;
-  background:linear-gradient(90deg,rgba(120,160,255,.2),rgba(120,160,255,.03));
-  border-left:2px solid #7db4ff;
-  box-shadow:0 0 20px rgba(120,160,255,.25);
-  transition:top .5s var(--ease-spring),opacity .3s;opacity:0;pointer-events:none;will-change:top}
-.toc-list.has-active .toc-capsule{opacity:1}
-.toc-link{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);
-  padding:9px 12px;border-radius:12px;transition:color .25s,transform .25s;line-height:1.4;
-  position:relative;z-index:2;height:38px}
-.toc-link:hover{color:var(--fg);transform:translateX(3px)}
-.toc-link.active{color:#fff}
-.toc-num{font-family:'Fraunces',serif;font-style:italic;font-size:11.5px;
-  color:#a8c8ff;opacity:.75;width:22px;text-align:right}
-@media(max-width:960px){
-  .toc{position:sticky;top:calc(var(--nav-h) + 20px);max-height:none;overflow:visible;padding:0;margin-bottom:6px;z-index:40}
-  .toc-h{padding:14px 16px;cursor:pointer;border-radius:20px;
-    background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.04));
-    backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);
-    border:1px solid rgba(255,255,255,.10);color:var(--fg);letter-spacing:.16em;
-    box-shadow:0 12px 36px -16px rgba(0,0,0,.6)}
-  .toc-h::after{content:'▾';margin-left:auto;font-size:12px;color:var(--muted);transition:transform .3s}
-  .toc.open .toc-h::after{transform:rotate(180deg)}
-  .toc-list{max-height:0;overflow:hidden;transition:max-height .4s var(--ease);padding:0 8px;margin-top:8px}
-  .toc.open .toc-list{max-height:1400px;padding:8px}
-  .toc-capsule{display:none}
-  .toc-link{height:auto;padding:11px 14px}
-  .toc-link.active{background:linear-gradient(90deg,rgba(120,160,255,.16),transparent);
-    border-left:2px solid #7db4ff}
-}
-
-.doc{min-width:0;max-width:780px}
-.doc-eyebrow{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.22em;
-  text-transform:uppercase;color:#a8c8ff;margin-bottom:16px;
-  animation:fadeUp .8s .2s var(--ease-out) both}
-.doc-title{font-family:'Fraunces',Georgia,serif;font-weight:400;font-optical-sizing:auto;
-  font-size:clamp(32px,5vw,52px);line-height:1.06;letter-spacing:-.025em;margin-bottom:20px;
-  animation:titleIn .9s .3s var(--ease-out) both}
-@keyframes titleIn{0%{opacity:0;transform:translate3d(0,30px,0);filter:blur(12px)}100%{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}}
-.doc-title em{background:linear-gradient(135deg,#c8dcff,#7db4ff);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-  font-style:italic}
-.doc-meta{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted);
-  padding-bottom:26px;border-bottom:1px solid var(--line);margin-bottom:44px;
-  animation:fadeUp .9s .45s var(--ease-out) both}
-.doc-meta span{display:inline-flex;align-items:center;gap:8px;
-  padding:6px 14px;border-radius:100px;background:rgba(255,255,255,.04);
-  border:1px solid var(--line);transition:border-color .3s,background .3s}
-.doc-meta span:hover{border-color:rgba(150,180,255,.28);background:rgba(255,255,255,.06)}
-.doc-meta strong{color:var(--fg);font-weight:600}
-
-.sec{padding:34px 0;border-bottom:1px solid var(--line);
-  opacity:0;transform:translate3d(0,20px,0);filter:blur(4px);
-  transition:opacity .85s var(--ease-out),transform .85s var(--ease-out),filter .85s var(--ease-out)}
-.sec.in{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}
-.sec:last-of-type{border-bottom:none}
-.sec h2{font-family:'Fraunces',Georgia,serif;font-weight:400;font-optical-sizing:auto;
-  font-size:clamp(21px,2.8vw,27px);line-height:1.25;margin-bottom:18px;
-  display:flex;align-items:baseline;gap:14px;letter-spacing:-.015em;color:#fff}
-.sec h2 .n{font-family:'Fraunces',serif;font-style:italic;font-size:13px;
-  color:#a8c8ff;opacity:.8;letter-spacing:.04em;flex-shrink:0;font-weight:400}
-.sec h3{font-family:'Inter',sans-serif;font-weight:600;font-size:16px;color:#fff;margin:22px 0 10px}
-.sec p{font-size:15.5px;line-height:1.8;color:#c9cbd6;margin-bottom:14px;max-width:70ch}
-.sec p strong{color:#fff;font-weight:600}
-.sec ul{padding-left:0;list-style:none;margin-bottom:16px}
-.sec li{position:relative;padding-left:20px;font-size:15px;line-height:1.75;
-  color:#c9cbd6;margin-bottom:9px;max-width:70ch}
-.sec li::before{content:'';position:absolute;left:0;top:.72em;width:5px;height:5px;
-  border-radius:50%;background:#7db4ff;opacity:.6;transition:transform .3s,box-shadow .3s}
-.sec li:hover::before{transform:scale(1.6);box-shadow:0 0 12px #7db4ff;opacity:1}
-.sec li strong{color:#fff;font-weight:600}
-.sec code{font-family:'SF Mono','JetBrains Mono',Consolas,monospace;font-size:.85em;
-  background:rgba(125,180,255,.12);border:1px solid rgba(125,180,255,.22);
-  color:#c8dcff;padding:2px 7px;border-radius:5px;white-space:nowrap}
-
-.callout{position:relative;padding:16px 20px;border-radius:16px;margin:20px 0;
-  font-size:14.5px;line-height:1.7;color:#cfd2db;
-  background:linear-gradient(180deg,rgba(38,32,68,.55),rgba(24,20,48,.6));
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow:0 8px 24px -10px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.14);
-  overflow:hidden;isolation:isolate;
-  transition:transform .4s var(--ease-spring),border-color .4s}
-.callout:hover{transform:translate3d(0,-2px,0);border-color:rgba(150,180,255,.24)}
-.callout-head{display:flex;align-items:center;gap:8px;font-weight:600;
-  font-size:12.5px;letter-spacing:.02em;margin-bottom:8px;color:#a8c8ff}
-.callout-head svg{width:15px;height:15px;flex-shrink:0}
-.callout p{font-size:14.5px;line-height:1.7;margin:0;color:#cfd2db;max-width:none}
-.callout.info{border-left:2px solid #728cff}
-.callout.info .callout-head{color:#9db4ff}
-.callout.perm{border-left:2px solid #7db4ff}
-.callout.warn{border-left:2px solid var(--warn);
-  background:linear-gradient(180deg,rgba(60,48,30,.55),rgba(40,32,20,.6))}
-.callout.warn .callout-head{color:var(--warn)}
-.callout.privacy{border-left:2px solid var(--ok);
-  background:linear-gradient(180deg,rgba(28,50,42,.55),rgba(18,34,28,.6))}
-.callout.privacy .callout-head{color:var(--ok)}
-
-.code-block{position:relative;margin:14px 0 20px;border-radius:16px;
-  background:linear-gradient(180deg,rgba(22,20,40,.7),rgba(14,12,26,.75));
-  border:1px solid rgba(255,255,255,.09);
-  box-shadow:0 8px 22px -12px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.12);
-  overflow:hidden;transition:border-color .3s,transform .3s}
-.code-block:hover{border-color:rgba(125,180,255,.3);transform:translate3d(0,-2px,0)}
-.code-block pre{font-family:'SF Mono','JetBrains Mono',Consolas,monospace;
-  font-size:12.5px;line-height:1.65;padding:14px 78px 14px 18px;color:#dde0e9;
-  overflow-x:auto;margin:0;white-space:pre;scrollbar-width:thin}
-.code-block pre::-webkit-scrollbar{height:5px}
-.code-block pre::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:5px}
-.copy-btn{position:absolute;top:9px;right:9px;padding:6px 12px;border-radius:100px;
-  font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--muted);
-  background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.06));
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.2);transition:all .3s var(--ease-spring)}
-.copy-btn:hover{color:#c8dcff;border-color:rgba(183,175,255,.45);
-  background:linear-gradient(180deg,rgba(125,180,255,.24),rgba(125,180,255,.1));
-  transform:scale(1.06)}
-.copy-btn:active{transform:scale(.94)}
-.copy-btn.copied{color:#0a1a14;
-  background:linear-gradient(180deg,rgba(110,231,183,.95),rgba(110,231,183,.7));
-  border-color:rgba(110,231,183,.6)}
-
-.foot{padding:50px 0 40px;margin-top:50px;border-top:1px solid var(--line);position:relative;z-index:1}
-.foot-inner{max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,44px)}
-.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:34px}
-@media(max-width:700px){.foot-grid{grid-template-columns:1fr;gap:26px}}
-.foot-brand{display:flex;align-items:center;gap:10px;margin-bottom:12px;
-  font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#fff}
-.foot-tag{color:var(--muted);font-size:13px;line-height:1.6;max-width:320px}
-.foot-h{font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--dim);margin-bottom:14px}
-.foot ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-.foot a{font-size:13px;color:#b9bcc7}
-.foot a:hover{color:#c8dcff}
-.foot-bottom{padding-top:22px;border-top:1px solid var(--line);
-  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
-  font-size:11.5px;color:var(--dim)}
-
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
-  .bg-orb,.bg-layer,.particles{animation:none!important}
-  .sec{opacity:1;transform:none;filter:none}
-}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chính sách bảo mật — Nova</title>
+<meta name="description" content="Chính sách bảo mật của Nova Discord bot. Tìm hiểu dữ liệu nào được xử lý, cách lưu trữ và quyền của bạn.">
+<meta name="theme-color" content="#050507">
+<meta property="og:title" content="Chính sách bảo mật — Nova">
+<meta property="og:description" content="Chính sách bảo mật của Nova Discord bot.">
+<meta property="og:image" content="assets/avatar.png">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/avatar.png">
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-page="privacy">
 
-<div class="bg-layer" aria-hidden="true"></div>
-<div class="bg-orb o1" aria-hidden="true"></div>
-<div class="bg-orb o2" aria-hidden="true"></div>
-<div class="grain" aria-hidden="true"></div>
-<div class="particles" id="particles" aria-hidden="true"></div>
-<div class="progress-cap" id="pc"><div class="progress-fill" id="pf"></div></div>
-
-<nav class="topbar glass" aria-label="Main">
-  <a href="./index.html" class="brand-chip">
-    <span class="brand-star">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 2l2.4 7.4L22 12l-7.6 2.6L12 22l-2.4-7.4L2 12l7.6-2.6z"/>
-      </svg>
-    </span>
-    <span class="brand-text">
-      <span class="brand-name">Nova</span>
-      <span class="brand-sub">Discord Bot</span>
-    </span>
-  </a>
-  <div class="tabs">
-    <a href="./index.html" class="tab" data-i18n="tab.home">Trang chủ</a>
-    <a href="./terms-of-service.html" class="tab" data-i18n="tab.terms">Điều khoản dịch vụ</a>
-    <a href="./privacy-policy.html" class="tab active" data-i18n="tab.privacy">Chính sách bảo mật</a>
-  </div>
-  <div class="lang-seg" id="langSeg" role="tablist" aria-label="Language">
-    <span class="lang-pill" id="langPill" aria-hidden="true"></span>
-    <button class="lang-btn active" data-lang="vi" role="tab" aria-selected="true">VI</button>
-    <button class="lang-btn" data-lang="en" role="tab" aria-selected="false">EN</button>
-  </div>
-</nav>
-
-<div class="doc-layout">
-  <aside class="toc glass" id="toc" aria-label="Table of contents">
-    <div class="toc-h" id="tocH">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-        <line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="14" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/>
-      </svg>
-      <span data-i18n="toc.title">Mục lục</span>
-    </div>
-    <ul class="toc-list" id="tocList">
-      <span class="toc-capsule" id="tocCap" aria-hidden="true"></span>
-      <li><a class="toc-link" href="#p1"><span class="toc-num">01</span><span data-i18n="toc.p1">Tổng quan</span></a></li>
-      <li><a class="toc-link" href="#p2"><span class="toc-num">02</span><span data-i18n="toc.p2">Discord ID</span></a></li>
-      <li><a class="toc-link" href="#p3"><span class="toc-num">03</span><span data-i18n="toc.p3">Dữ liệu AI</span></a></li>
-      <li><a class="toc-link" href="#p4"><span class="toc-num">04</span><span data-i18n="toc.p4">War / Backup</span></a></li>
-      <li><a class="toc-link" href="#p5"><span class="toc-num">05</span><span data-i18n="toc.p5">Dữ liệu Event</span></a></li>
-      <li><a class="toc-link" href="#p6"><span class="toc-num">06</span><span data-i18n="toc.p6">Kiểm duyệt</span></a></li>
-      <li><a class="toc-link" href="#p7"><span class="toc-num">07</span><span data-i18n="toc.p7">Mục đích</span></a></li>
-      <li><a class="toc-link" href="#p8"><span class="toc-num">08</span><span data-i18n="toc.p8">AI Provider</span></a></li>
-      <li><a class="toc-link" href="#p9"><span class="toc-num">09</span><span data-i18n="toc.p9">Bên thứ ba</span></a></li>
-      <li><a class="toc-link" href="#p10"><span class="toc-num">10</span><span data-i18n="toc.p10">Bảo mật</span></a></li>
-      <li><a class="toc-link" href="#p11"><span class="toc-num">11</span><span data-i18n="toc.p11">Xóa dữ liệu</span></a></li>
-      <li><a class="toc-link" href="#p12"><span class="toc-num">12</span><span data-i18n="toc.p12">Liên hệ</span></a></li>
-    </ul>
-  </aside>
-
-  <main class="doc">
-    <header>
-      <span class="doc-eyebrow" data-i18n="doc.eyebrow">Văn bản pháp lý</span>
-      <h1 class="doc-title" data-i18n-html="doc.title">Chính Sách <em>Bảo Mật</em></h1>
-      <div class="doc-meta">
-        <span data-i18n-html="doc.meta">Ngày hiệu lực: <strong>19/09/2026</strong></span>
-      </div>
-    </header>
-
-    <section class="sec" id="p1">
-      <h2><span class="n">01</span><span data-i18n="p1.h">Tổng quan</span></h2>
-      <div data-i18n-html="p1.b">
-        <p>Chính sách Bảo mật này giải thích cách Nova ("bot", "chúng tôi") xử lý thông tin khi bạn sử dụng bot trên Discord. Nova được vận hành bởi <strong>nova_.inovation</strong>. Bot không liên kết với Discord Inc.; việc bạn sử dụng Discord tuân theo chính sách riêng của Discord.</p>
-        <p>Chính sách áp dụng cho toàn bộ tính năng: AI Chatbot, War Ping / Backup Ping, Hero Battlegrounds Event và Automatic Ban Channel.</p>
-      </div>
-      <div class="callout privacy">
-        <div class="callout-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span data-i18n="priv.principle">Nguyên tắc</span></div>
-        <p data-i18n="p1.principle">Nova chỉ xử lý dữ liệu cần thiết để cung cấp tính năng mà bạn hoặc quản trị viên server đã chủ động kích hoạt. Chúng tôi không bán dữ liệu người dùng.</p>
-      </div>
-    </section>
-
-    <section class="sec" id="p2">
-      <h2><span class="n">02</span><span data-i18n="p2.h">Thông tin Discord</span></h2>
-      <div data-i18n-html="p2.b">
-        <p>Để vận hành, bot có thể lưu các định danh do Discord cung cấp:</p>
-        <ul>
-          <li><strong>Discord User ID</strong> — gắn cài đặt, lịch sử AI, tham gia event, bản ghi kiểm duyệt với từng người dùng.</li>
-          <li><strong>Server (Guild) ID</strong> — phân tách cấu hình và dữ liệu giữa các server.</li>
-          <li><strong>Channel ID</strong> — phạm vi cài đặt AI channel, ban channel, panel.</li>
-          <li><strong>Role ID</strong> — lưu role ping, hacker role, joined role, blacklist event.</li>
-          <li><strong>Message ID</strong> — gắn panel tương tác của bot vào tin nhắn cụ thể.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="sec" id="p3">
-      <h2><span class="n">03</span><span data-i18n="p3.h">Dữ liệu AI</span></h2>
-      <div data-i18n-html="p3.b">
-        <p>Khi bạn sử dụng tính năng AI, bot có thể xử lý:</p>
-        <ul>
-          <li>Prompt hoặc tin nhắn bạn gửi tới AI.</li>
-          <li>Phản hồi của AI, để hiển thị và duy trì ngữ cảnh.</li>
-          <li>Lịch sử hội thoại, nếu tính năng được bật trong cấu hình.</li>
-          <li>Persona và ngôn ngữ bạn chọn.</li>
-        </ul>
-        <p>Bot hỗ trợ hai chế độ lịch sử:</p>
-        <ul>
-          <li><strong>Lịch sử riêng từng người</strong> — ngữ cảnh gắn với một User ID trong một kênh.</li>
-          <li><strong>Lịch sử chung cho kênh</strong> — khi quản trị viên bật, mọi người dùng trong kênh chia sẻ cùng ngữ cảnh.</li>
-        </ul>
-      </div>
-      <div class="callout info">
-        <div class="callout-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span data-i18n="info.provider">Nhà cung cấp AI</span></div>
-        <p data-i18n="p3.provider">Nội dung bạn gửi tới AI có thể được chuyển tới nhà cung cấp mô hình bên thứ ba (<strong>Qwen3.7-max</strong>) để tạo phản hồi. Chúng tôi không kiểm soát chính sách xử lý dữ liệu của nhà cung cấp đó.</p>
-      </div>
-    </section>
-
-    <section class="sec" id="p4">
-      <h2><span class="n">04</span><span data-i18n="p4.h">Dữ liệu War / Backup</span></h2>
-      <div data-i18n-html="p4.b">
-        <p>Khi một yêu cầu War Ping hoặc Backup Ping được tạo, bot có thể lưu:</p>
-        <ul>
-          <li>Người tạo yêu cầu.</li>
-          <li>Người dùng đã bấm Join.</li>
-          <li>Tên clan và khu vực (region) trong yêu cầu.</li>
-          <li>Link server hoặc code trong yêu cầu.</li>
-          <li>Trạng thái (đang chạy, thắng, thua, kết thúc).</li>
-          <li>Thời gian tạo và hoàn thành.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="sec" id="p5">
-      <h2><span class="n">05</span><span data-i18n="p5.h">Dữ liệu Event</span></h2>
-      <div data-i18n-html="p5.b">
-        <p>Đối với event, bot có thể lưu:</p>
-        <ul>
-          <li>ID người tham gia (đã bấm Join).</li>
-          <li>Trạng thái event.</li>
-          <li>Cấu hình blacklist (role bị chặn).</li>
-          <li>Các hành động quản lý event.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="sec" id="p6">
-      <h2><span class="n">06</span><span data-i18n="p6.h">Dữ liệu kiểm duyệt</span></h2>
-      <div data-i18n-html="p6.b">
-        <p>Nếu Ban Channel tự động được cấu hình, bot có thể lưu:</p>
-        <ul>
-          <li>Kênh được cấu hình làm ban channel.</li>
-          <li>Danh sách whitelist.</li>
-          <li>Các sự kiện kiểm duyệt (ví dụ, ban tự động đã xảy ra).</li>
-          <li>User ID liên quan tới những sự kiện đó.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="sec" id="p7">
-      <h2><span class="n">07</span><span data-i18n="p7.h">Mục đích sử dụng</span></h2>
-      <div data-i18n-html="p7.b">
-        <p>Dữ liệu được xử lý cho các mục đích:</p>
-        <ul>
-          <li>Cung cấp tính năng của bot.</li>
-          <li>Duy trì hội thoại AI mạch lạc.</li>
-          <li>Lưu tùy chọn người dùng (persona, ngôn ngữ).</li>
-          <li>Vận hành War Ping / Backup Ping.</li>
-          <li>Vận hành event và theo dõi người tham gia.</li>
-          <li>Vận hành kiểm duyệt (ban channel, whitelist).</li>
-          <li>Phòng chống lạm dụng, spam và truy cập trái phép.</li>
-          <li>Debug, cải thiện độ ổn định và xử lý sự cố.</li>
-        </ul>
-        <p>Chúng tôi <strong>không bán</strong> hay cho thuê dữ liệu của bạn, và không chia sẻ dữ liệu cho mục đích quảng cáo hay tiếp thị.</p>
-      </div>
-    </section>
-
-    <section class="sec" id="p8">
-      <h2><span class="n">08</span><span data-i18n="p8.h">Nhà cung cấp AI</span></h2>
-      <div data-i18n-html="p8.b">
-        <p>Các tính năng AI của Nova sử dụng nhà cung cấp mô hình ngôn ngữ bên thứ ba:</p>
-        <ul>
-          <li><strong>Nhà cung cấp AI:</strong> Qwen3.7-max</li>
-        </ul>
-        <p>Khi bạn gửi prompt tới AI, nội dung đó được truyền tới nhà cung cấp để tạo phản hồi. Chúng tôi không kiểm soát cách nhà cung cấp xử lý dữ liệu; bạn nên tham khảo chính sách riêng của họ.</p>
-      </div>
-    </section>
-
-    <section class="sec" id="p9">
-      <h2><span class="n">09</span><span data-i18n="p9.h">Chia sẻ bên thứ ba</span></h2>
-      <div data-i18n-html="p9.b">
-        <p>Một số thông tin có thể được truyền tới dịch vụ bên thứ ba khi cần thiết để cung cấp tính năng mà bạn yêu cầu. Các nhóm bên thứ ba tiềm năng bao gồm:</p>
-        <ul>
-          <li><strong>Discord</strong> — nền tảng mà bot hoạt động trên đó.</li>
-          <li><strong>Nhà cung cấp AI</strong> — Qwen3.7-max — nhận nội dung bạn gửi tới AI để tạo phản hồi.</li>
-          <li><strong>Nhà cung cấp hạ tầng</strong> — nơi bot và dữ liệu cục bộ được vận hành.</li>
-        </ul>
-        <p>Chúng tôi khuyến nghị bạn tham khảo phiên bản mới nhất của chính sách này để biết chi tiết.</p>
-      </div>
-    </section>
-
-    <section class="sec" id="p10">
-      <h2><span class="n">10</span><span data-i18n="p10.h">Bảo mật</span></h2>
-      <div data-i18n-html="p10.b">
-        <p>Chúng tôi áp dụng các biện pháp hợp lý để bảo vệ dữ liệu khỏi truy cập trái phép, mất mát hoặc lạm dụng:</p>
-        <ul>
-          <li>Hạn chế quyền truy cập vào máy chủ vận hành bot.</li>
-          <li>Sử dụng kết nối bảo mật khi bot giao tiếp với Discord và các nhà cung cấp bên thứ ba.</li>
-          <li>Giới hạn quyền hạn của bot theo nguyên tắc tối thiểu.</li>
-          <li>Theo dõi và khắc phục sự cố định kỳ.</li>
-        </ul>
-      </div>
-      <div class="callout warn">
-        <div class="callout-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg><span data-i18n="warn.limit">Giới hạn quan trọng</span></div>
-        <p data-i18n="p10.warn">Không có hệ thống nào an toàn tuyệt đối. Chúng tôi không cam kết rằng dữ liệu sẽ không bao giờ bị truy cập trái phép. Bạn nên cân nhắc trước khi gửi thông tin nhạy cảm qua bot.</p>
-      </div>
-    </section>
-
-    <section class="sec" id="p11">
-      <h2><span class="n">11</span><span data-i18n="p11.h">Xóa dữ liệu</span></h2>
-      <div data-i18n-html="p11.b">
-        <p>Bạn có một số cách để yêu cầu hoặc thực hiện xóa dữ liệu:</p>
-        <ul>
-          <li><strong>Lịch sử AI cá nhân:</strong> Sử dụng <code>/clearchat</code> trong kênh liên quan để xóa lịch sử trò chuyện AI của chính bạn.</li>
-          <li><strong>Tùy chọn persona:</strong> Sử dụng <code>/resetpersona</code> để đặt lại phong cách trò chuyện về mặc định.</li>
-          <li><strong>Yêu cầu xóa toàn bộ:</strong> Liên hệ trực tiếp với chủ bot qua các kênh ở phần Liên hệ.</li>
-        </ul>
-        <p><strong>Lưu ý:</strong> <code>/clearchat</code> xóa lịch sử trò chuyện AI được bot lưu trữ, nhưng không đảm bảo xóa bản sao lưu (backup) ở cấp cơ sở dữ liệu nếu bot có cơ chế sao lưu.</p>
-      </div>
-    </section>
-
-    <section class="sec" id="p12">
-      <h2><span class="n">12</span><span data-i18n="p12.h">Liên hệ</span></h2>
-      <div data-i18n-html="p12.b">
-        <p>Mọi câu hỏi về Chính sách Bảo mật, yêu cầu xóa dữ liệu, hoặc báo cáo sự cố liên quan đến dữ liệu, vui lòng liên hệ:</p>
-        <ul>
-          <li>Chủ bot: <strong>nova_.inovation</strong></li>
-          <li>Support server: <a href="https://discord.gg/qkyu3G6WMa" target="_blank" rel="noopener">discord.gg/qkyu3G6WMa</a></li>
-          <li>Email: <a href="mailto:anhbao27072011@gmail.com">anhbao27072011@gmail.com</a></li>
-        </ul>
-      </div>
-    </section>
-  </main>
+<div class="aurora" aria-hidden="true">
+  <span class="aurora-blob a1"></span>
+  <span class="aurora-blob a2"></span>
+  <span class="aurora-blob a3"></span>
+  <span class="aurora-grain"></span>
 </div>
 
-<footer class="foot">
-  <div class="foot-inner">
-    <div class="foot-grid">
-      <div>
-        <div class="foot-brand"><span class="brand-star" style="width:20px;height:20px;border-radius:6px">
-          <svg viewBox="0 0 24 24" fill="currentColor" style="width:12px;height:12px;color:#fff"><path d="M12 2l2.4 7.4L22 12l-7.6 2.6L12 22l-2.4-7.4L2 12l7.6-2.6z"/></svg>
-        </span>Nova</div>
-        <p class="foot-tag" data-i18n="foot.tag">Bot Discord cho cộng đồng game thủ — AI chat, điều phối war, event và kiểm duyệt.</p>
+<a class="skip-link" href="#main" data-i18n="a11y.skip">Chuyển tới nội dung</a>
+
+<header class="nav" id="nav">
+  <div class="nav-inner glass">
+    <a class="brand" href="index.html" aria-label="Nova">
+      <span class="brand-avatar-wrap"><img class="brand-avatar" src="assets/avatar.png" alt="Nova avatar" data-avatar></span>
+      <span class="brand-name">Nova</span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="index.html#home" data-i18n="nav.home">Trang chủ</a>
+      <a href="index.html#features" data-i18n="nav.features">Tính năng</a>
+      <a href="index.html#commands" data-i18n="nav.commands">Lệnh</a>
+      <a href="index.html#help" data-i18n="nav.help">Trợ giúp</a>
+      <a href="privacy-policy.html" class="active" data-i18n="nav.privacy">Bảo mật</a>
+      <a href="terms-of-service.html" data-i18n="nav.terms">Điều khoản</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="seg" id="langSwitch" role="group" aria-label="Language / Ngôn ngữ">
+        <span class="seg-thumb" aria-hidden="true"></span>
+        <button type="button" class="seg-btn" data-lang="vi" aria-pressed="true">VI</button>
+        <button type="button" class="seg-btn" data-lang="en" aria-pressed="false">EN</button>
       </div>
-      <div>
-        <div class="foot-h" data-i18n="foot.legal">Pháp lý</div>
+      <a class="btn btn-primary btn-invite" href="https://discord.com/oauth2/authorize?client_id=1532745879944036523" target="_blank" rel="noopener" data-i18n="nav.invite">Mời Nova</a>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu glass" id="mobileMenu" hidden>
+  <nav aria-label="Mobile navigation">
+    <a href="index.html#home" data-i18n="nav.home">Trang chủ</a>
+    <a href="index.html#features" data-i18n="nav.features">Tính năng</a>
+    <a href="index.html#commands" data-i18n="nav.commands">Lệnh</a>
+    <a href="index.html#help" data-i18n="nav.help">Trợ giúp</a>
+    <a href="privacy-policy.html" data-i18n="nav.privacy">Bảo mật</a>
+    <a href="terms-of-service.html" data-i18n="nav.terms">Điều khoản</a>
+  </nav>
+  <a class="btn btn-primary btn-block" href="https://discord.com/oauth2/authorize?client_id=1532745879944036523" target="_blank" rel="noopener" data-i18n="nav.invite">Mời Nova</a>
+</div>
+
+<main id="main">
+  <section class="legal-hero">
+    <div class="container">
+      <span class="kicker" data-i18n="legal.kicker">Pháp lý</span>
+      <h1 data-i18n="privacy.title">Chính sách bảo mật</h1>
+      <p class="legal-effective"><span data-i18n="legal.effective">Ngày hiệu lực</span>: <strong>19/09/2026</strong></p>
+      <p class="legal-lead" data-i18n="privacy.lead">Tài liệu này giải thích Nova xử lý những dữ liệu nào khi bạn sử dụng bot, vì sao cần thiết và bạn có những quyền gì.</p>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container">
+      <article class="glass legal-doc" id="legalBody" data-i18n-html="privacy.body"></article>
+
+      <div class="glass contact-card">
+        <h3 data-i18n="legal.contactTitle">Liên hệ</h3>
+        <p data-i18n="legal.contactText">Nếu bạn có câu hỏi về chính sách này hoặc muốn yêu cầu xoá dữ liệu, hãy liên hệ:</p>
         <ul>
-          <li><a href="./terms-of-service.html" data-i18n="tab.terms">Điều khoản dịch vụ</a></li>
-          <li><a href="./privacy-policy.html" data-i18n="tab.privacy">Chính sách bảo mật</a></li>
-          <li><a href="./index.html" data-i18n="tab.home">Trang chủ</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="foot-h" data-i18n="foot.contact">Liên hệ</div>
-        <ul>
-          <li><a href="https://discord.gg/qkyu3G6WMa" target="_blank" rel="noopener">Support Server</a></li>
-          <li><a href="mailto:anhbao27072011@gmail.com">anhbao27072011@gmail.com</a></li>
+          <li><span data-i18n="legal.email">Email</span>: <a href="mailto:anhbao27072011@gmail.com">anhbao27072011@gmail.com</a></li>
+          <li><span data-i18n="legal.support">Support Server</span>: <a href="https://discord.gg/qkyu3G6WMa" target="_blank" rel="noopener">discord.gg/qkyu3G6WMa</a></li>
+          <li><span data-i18n="legal.owner">Chủ sở hữu</span>: <strong>nova_.inovation</strong></li>
         </ul>
       </div>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 Nova · nova_.inovation</span>
-      <span data-i18n="foot.disclaimer">Không liên kết với Discord Inc.</span>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-top">
+        <img src="assets/avatar.png" alt="Nova" data-avatar>
+        <span>Nova</span>
+      </div>
+      <p data-i18n="footer.owned">Được phát triển và duy trì bởi <strong>nova_.inovation</strong>.</p>
+      <p class="footer-ai"><span data-i18n="footer.model">Mô hình AI công khai</span>: <strong>Qwen3.7-max</strong></p>
     </div>
+    <nav class="footer-col" aria-label="Footer navigation">
+      <h4 data-i18n="footer.links">Liên kết</h4>
+      <a href="index.html#home" data-i18n="nav.home">Trang chủ</a>
+      <a href="index.html#features" data-i18n="nav.features">Tính năng</a>
+      <a href="index.html#commands" data-i18n="nav.commands">Lệnh</a>
+      <a href="index.html#help" data-i18n="nav.help">Trợ giúp</a>
+      <a href="privacy-policy.html" data-i18n="nav.privacy">Bảo mật</a>
+      <a href="terms-of-service.html" data-i18n="nav.terms">Điều khoản</a>
+    </nav>
+    <div class="footer-col">
+      <h4 data-i18n="footer.supportTitle">Hỗ trợ</h4>
+      <a href="https://discord.gg/qkyu3G6WMa" target="_blank" rel="noopener" data-i18n="footer.supportLink">Support Server</a>
+      <a href="https://discord.com/oauth2/authorize?client_id=1532745879944036523" target="_blank" rel="noopener" data-i18n="footer.inviteLink">Mời Nova</a>
+      <a href="mailto:anhbao27072011@gmail.com">anhbao27072011@gmail.com</a>
+      <p class="footer-date"><span data-i18n="footer.effective">Ngày hiệu lực</span>: 19/09/2026</p>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>© <span id="year">2026</span> Nova · nova_.inovation. <span data-i18n="footer.rights">Mọi quyền được bảo lưu.</span></p>
+    <p class="footer-note" data-i18n="footer.note">Trang web tĩnh chỉ mang tính giới thiệu. Nova không lưu trữ token hay khóa API trên trang này.</p>
   </div>
 </footer>
 
-<script>
-(function(){
-  'use strict';
-  var fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var HEADER_OFFSET = 110;
-
-  var I18N = {
-    vi:{
-      'tab.home':'Trang chủ','tab.terms':'Điều khoản dịch vụ','tab.privacy':'Chính sách bảo mật',
-      'toc.title':'Mục lục',
-      'toc.p1':'Tổng quan','toc.p2':'Discord ID','toc.p3':'Dữ liệu AI',
-      'toc.p4':'War / Backup','toc.p5':'Dữ liệu Event','toc.p6':'Kiểm duyệt',
-      'toc.p7':'Mục đích','toc.p8':'AI Provider','toc.p9':'Bên thứ ba',
-      'toc.p10':'Bảo mật','toc.p11':'Xóa dữ liệu','toc.p12':'Liên hệ',
-      'doc.eyebrow':'Văn bản pháp lý','doc.title':'Chính Sách <em>Bảo Mật</em>',
-      'doc.meta':'Ngày hiệu lực: <strong>19/09/2026</strong>','doc.effective':'Ngày hiệu lực',
-      'warn.limit':'Giới hạn quan trọng','info.provider':'Nhà cung cấp AI','priv.principle':'Nguyên tắc',
-      'p1.h':'Tổng quan',
-      'p1.b':'<p>Chính sách Bảo mật này giải thích cách Nova ("bot", "chúng tôi") xử lý thông tin khi bạn sử dụng bot trên Discord. Nova được vận hành bởi <strong>nova_.inovation</strong>. Bot không liên kết với Discord Inc.; việc bạn sử dụng Discord tuân theo chính sách riêng của Discord.</p><p>Chính sách áp dụng cho toàn bộ tính năng: AI Chatbot, War Ping / Backup Ping, Hero Battlegrounds Event và Automatic Ban Channel.</p>',
-      'p1.principle':'Nova chỉ xử lý dữ liệu cần thiết để cung cấp tính năng mà bạn hoặc quản trị viên server đã chủ động kích hoạt. Chúng tôi không bán dữ liệu người dùng.',
-      'p2.h':'Thông tin Discord',
-      'p2.b':'<p>Để vận hành, bot có thể lưu các định danh do Discord cung cấp:</p><ul><li><strong>Discord User ID</strong> — gắn cài đặt, lịch sử AI, tham gia event, bản ghi kiểm duyệt với từng người dùng.</li><li><strong>Server (Guild) ID</strong> — phân tách cấu hình và dữ liệu giữa các server.</li><li><strong>Channel ID</strong> — phạm vi cài đặt AI channel, ban channel, panel.</li><li><strong>Role ID</strong> — lưu role ping, hacker role, joined role, blacklist event.</li><li><strong>Message ID</strong> — gắn panel tương tác của bot vào tin nhắn cụ thể.</li></ul>',
-      'p3.h':'Dữ liệu AI',
-      'p3.b':'<p>Khi bạn sử dụng tính năng AI, bot có thể xử lý:</p><ul><li>Prompt hoặc tin nhắn bạn gửi tới AI.</li><li>Phản hồi của AI, để hiển thị và duy trì ngữ cảnh.</li><li>Lịch sử hội thoại, nếu tính năng được bật trong cấu hình.</li><li>Persona và ngôn ngữ bạn chọn.</li></ul><p>Bot hỗ trợ hai chế độ lịch sử:</p><ul><li><strong>Lịch sử riêng từng người</strong> — ngữ cảnh gắn với một User ID trong một kênh.</li><li><strong>Lịch sử chung cho kênh</strong> — khi quản trị viên bật, mọi người dùng trong kênh chia sẻ cùng ngữ cảnh.</li></ul>',
-      'p3.provider':'Nội dung bạn gửi tới AI có thể được chuyển tới nhà cung cấp mô hình bên thứ ba (<strong>Qwen3.7-max</strong>) để tạo phản hồi. Chúng tôi không kiểm soát chính sách xử lý dữ liệu của nhà cung cấp đó.',
-      'p4.h':'Dữ liệu War / Backup',
-      'p4.b':'<p>Khi một yêu cầu War Ping hoặc Backup Ping được tạo, bot có thể lưu:</p><ul><li>Người tạo yêu cầu.</li><li>Người dùng đã bấm Join.</li><li>Tên clan và khu vực (region) trong yêu cầu.</li><li>Link server hoặc code trong yêu cầu.</li><li>Trạng thái (đang chạy, thắng, thua, kết thúc).</li><li>Thời gian tạo và hoàn thành.</li></ul>',
-      'p5.h':'Dữ liệu Event',
-      'p5.b':'<p>Đối với event, bot có thể lưu:</p><ul><li>ID người tham gia (đã bấm Join).</li><li>Trạng thái event.</li><li>Cấu hình blacklist (role bị chặn).</li><li>Các hành động quản lý event.</li></ul>',
-      'p6.h':'Dữ liệu kiểm duyệt',
-      'p6.b':'<p>Nếu Ban Channel tự động được cấu hình, bot có thể lưu:</p><ul><li>Kênh được cấu hình làm ban channel.</li><li>Danh sách whitelist.</li><li>Các sự kiện kiểm duyệt (ví dụ, ban tự động đã xảy ra).</li><li>User ID liên quan tới những sự kiện đó.</li></ul>',
-      'p7.h':'Mục đích sử dụng',
-      'p7.b':'<p>Dữ liệu được xử lý cho các mục đích:</p><ul><li>Cung cấp tính năng của bot.</li><li>Duy trì hội thoại AI mạch lạc.</li><li>Lưu tùy chọn người dùng (persona, ngôn ngữ).</li><li>Vận hành War Ping / Backup Ping.</li><li>Vận hành event và theo dõi người tham gia.</li><li>Vận hành kiểm duyệt (ban channel, whitelist).</li><li>Phòng chống lạm dụng, spam và truy cập trái phép.</li><li>Debug, cải thiện độ ổn định và xử lý sự cố.</li></ul><p>Chúng tôi <strong>không bán</strong> hay cho thuê dữ liệu của bạn, và không chia sẻ dữ liệu cho mục đích quảng cáo hay tiếp thị.</p>',
-      'p8.h':'Nhà cung cấp AI',
-      'p8.b':'<p>Các tính năng AI của Nova sử dụng nhà cung cấp mô hình ngôn ngữ bên thứ ba:</p><ul><li><strong>Nhà cung cấp AI:</strong> Qwen3.7-max</li></ul><p>Khi bạn gửi prompt tới AI, nội dung đó được truyền tới nhà cung cấp để tạo phản hồi. Chúng tôi không kiểm soát cách nhà cung cấp xử lý dữ liệu; bạn nên tham khảo chính sách riêng của họ.</p>',
-      'p9.h':'Chia sẻ bên thứ ba',
-      'p9.b':'<p>Một số thông tin có thể được truyền tới dịch vụ bên thứ ba khi cần thiết để cung cấp tính năng mà bạn yêu cầu. Các nhóm bên thứ ba tiềm năng bao gồm:</p><ul><li><strong>Discord</strong> — nền tảng mà bot hoạt động trên đó.</li><li><strong>Nhà cung cấp AI</strong> — Qwen3.7-max — nhận nội dung bạn gửi tới AI để tạo phản hồi.</li><li><strong>Nhà cung cấp hạ tầng</strong> — nơi bot và dữ liệu cục bộ được vận hành.</li></ul><p>Chúng tôi khuyến nghị bạn tham khảo phiên bản mới nhất của chính sách này để biết chi tiết.</p>',
-      'p10.h':'Bảo mật',
-      'p10.b':'<p>Chúng tôi áp dụng các biện pháp hợp lý để bảo vệ dữ liệu khỏi truy cập trái phép, mất mát hoặc lạm dụng:</p><ul><li>Hạn chế quyền truy cập vào máy chủ vận hành bot.</li><li>Sử dụng kết nối bảo mật khi bot giao tiếp với Discord và các nhà cung cấp bên thứ ba.</li><li>Giới hạn quyền hạn của bot theo nguyên tắc tối thiểu.</li><li>Theo dõi và khắc phục sự cố định kỳ.</li></ul>',
-      'p10.warn':'Không có hệ thống nào an toàn tuyệt đối. Chúng tôi không cam kết rằng dữ liệu sẽ không bao giờ bị truy cập trái phép. Bạn nên cân nhắc trước khi gửi thông tin nhạy cảm qua bot.',
-      'p11.h':'Xóa dữ liệu',
-      'p11.b':'<p>Bạn có một số cách để yêu cầu hoặc thực hiện xóa dữ liệu:</p><ul><li><strong>Lịch sử AI cá nhân:</strong> Sử dụng <code>/clearchat</code> trong kênh liên quan để xóa lịch sử trò chuyện AI của chính bạn.</li><li><strong>Tùy chọn persona:</strong> Sử dụng <code>/resetpersona</code> để đặt lại phong cách trò chuyện về mặc định.</li><li><strong>Yêu cầu xóa toàn bộ:</strong> Liên hệ trực tiếp với chủ bot qua các kênh ở phần Liên hệ.</li></ul><p><strong>Lưu ý:</strong> <code>/clearchat</code> xóa lịch sử trò chuyện AI được bot lưu trữ, nhưng không đảm bảo xóa bản sao lưu (backup) ở cấp cơ sở dữ liệu nếu bot có cơ chế sao lưu.</p>',
-      'p12.h':'Liên hệ',
-      'p12.b':'<p>Mọi câu hỏi về Chính sách Bảo mật, yêu cầu xóa dữ liệu, hoặc báo cáo sự cố liên quan đến dữ liệu, vui lòng liên hệ:</p><ul><li>Chủ bot: <strong>nova_.inovation</strong></li><li>Support server: <a href="https://discord.gg/qkyu3G6WMa" target="_blank" rel="noopener">discord.gg/qkyu3G6WMa</a></li><li>Email: <a href="mailto:anhbao27072011@gmail.com">anhbao27072011@gmail.com</a></li></ul>',
-      'foot.tag':'Bot Discord cho cộng đồng game thủ — AI chat, điều phối war, event và kiểm duyệt.',
-      'foot.legal':'Pháp lý','foot.contact':'Liên hệ','foot.disclaimer':'Không liên kết với Discord Inc.'
-    },
-    en:{
-      'tab.home':'Home','tab.terms':'Terms of Service','tab.privacy':'Privacy Policy',
-      'toc.title':'Contents',
-      'toc.p1':'Overview','toc.p2':'Discord IDs','toc.p3':'AI Data',
-      'toc.p4':'War / Backup','toc.p5':'Event Data','toc.p6':'Moderation',
-      'toc.p7':'Purpose','toc.p8':'AI Provider','toc.p9':'Third Parties',
-      'toc.p10':'Security','toc.p11':'Data Deletion','toc.p12':'Contact',
-      'doc.eyebrow':'Legal Document','doc.title':'Privacy <em>Policy</em>',
-      'doc.meta':'Effective Date: <strong>19/09/2026</strong>','doc.effective':'Effective Date',
-      'warn.limit':'Important limitation','info.provider':'AI Provider','priv.principle':'Principle',
-      'p1.h':'Overview',
-      'p1.b':'<p>This Privacy Policy explains how Nova ("the Bot", "we") processes information when you use it on Discord. The Bot is operated by <strong>nova_.inovation</strong>. The Bot is not affiliated with Discord Inc.; your use of Discord is governed by Discord\'s own policies.</p><p>This policy applies to all features: AI Chatbot, War Ping / Backup Ping, Hero Battlegrounds Event, and Automatic Ban Channel.</p>',
-      'p1.principle':'Nova only processes data that is reasonably necessary to provide features you or a server admin have actively enabled. We do not sell your data.',
-      'p2.h':'Discord Information',
-      'p2.b':'<p>To operate, the Bot may store identifiers provided by Discord:</p><ul><li><strong>Discord User ID</strong> — associates settings, AI history, event participation, and moderation records with a user.</li><li><strong>Server (Guild) ID</strong> — separates configuration and data between servers.</li><li><strong>Channel ID</strong> — scopes AI channel settings, ban channels, panels.</li><li><strong>Role ID</strong> — stores ping roles, hacker role, joined roles, event blacklists.</li><li><strong>Message ID</strong> — attaches the Bot\'s interactive panels to specific messages.</li></ul>',
-      'p3.h':'AI Data',
-      'p3.b':'<p>When you use AI features, the Bot may process:</p><ul><li>The prompt or message you send to the AI.</li><li>The AI\'s response, to display it and maintain context.</li><li>Conversation history, if enabled by the current configuration.</li><li>Your persona setting and language preference.</li></ul><p>The Bot supports two history modes:</p><ul><li><strong>Per-user history</strong> — context tied to a single User ID within a channel.</li><li><strong>Shared channel history</strong> — when enabled by a server manager, all users share the same context.</li></ul>',
-      'p3.provider':'Content you send to the AI may be transmitted to a third-party model provider (<strong>Qwen3.7-max</strong>) to generate responses. We do not control that provider\'s data processing practices.',
-      'p4.h':'War / Backup Data',
-      'p4.b':'<p>When a War Ping or Backup Ping request is created, the Bot may store:</p><ul><li>The requesting user.</li><li>Users who clicked Join.</li><li>The clan name and region.</li><li>The server link or code.</li><li>Status (active, win, loss, end).</li><li>Creation and completion timestamps.</li></ul>',
-      'p5.h':'Event Data',
-      'p5.b':'<p>For events, the Bot may store:</p><ul><li>Participant IDs (users who clicked Join).</li><li>Event status.</li><li>Blacklist configuration (blocked roles).</li><li>Management actions taken on the event.</li></ul>',
-      'p6.h':'Moderation Data',
-      'p6.b':'<p>If the Automatic Ban Channel is configured, the Bot may store:</p><ul><li>The channel configured as a ban channel.</li><li>The whitelist.</li><li>Moderation events (for example, automatic bans).</li><li>User IDs associated with those events.</li></ul>',
-      'p7.h':'How Data Is Used',
-      'p7.b':'<p>Data is processed for:</p><ul><li>Providing the Bot\'s features.</li><li>Maintaining coherent AI conversations.</li><li>Storing user preferences (persona, language).</li><li>Operating War Ping / Backup Ping.</li><li>Operating events and participant tracking.</li><li>Operating moderation (ban channel, whitelist).</li><li>Preventing abuse, spam, and unauthorized access.</li><li>Debugging, reliability improvements, and incident response.</li></ul><p>We do <strong>not</strong> sell or rent your data, and do not share it for advertising or marketing purposes.</p>',
-      'p8.h':'AI Provider',
-      'p8.b':'<p>Nova\'s AI features use a third-party language model provider:</p><ul><li><strong>AI Provider:</strong> Qwen3.7-max</li></ul><p>When you send a prompt, its content is transmitted to the provider to generate a response. We do not control how the provider processes data.</p>',
-      'p9.h':'Third-Party Sharing',
-      'p9.b':'<p>Certain information may be transmitted to third-party services when necessary to provide a requested feature. Potential categories include:</p><ul><li><strong>Discord</strong> — the platform the Bot operates on.</li><li><strong>AI Provider</strong> — Qwen3.7-max — receives content you send to the AI to generate responses.</li><li><strong>Hosting provider</strong> — where the Bot and its local data are operated.</li></ul>',
-      'p10.h':'Security',
-      'p10.b':'<p>We take reasonable measures to protect data against unauthorized access, loss, or misuse:</p><ul><li>Restricting access to the machine(s) hosting the Bot.</li><li>Using secure connections where the Bot communicates with Discord and third-party providers.</li><li>Applying least-privilege principles to the Bot\'s permissions.</li><li>Periodic review and patching.</li></ul>',
-      'p10.warn':'No system is completely secure. We do not claim data is immune to breaches. Consider this before sharing sensitive information.',
-      'p11.h':'Data Deletion',
-      'p11.b':'<p>You have several ways to request or perform deletion:</p><ul><li><strong>Your AI history:</strong> Use <code>/clearchat</code> in the relevant channel to clear your own stored AI conversation history.</li><li><strong>Your persona:</strong> Use <code>/resetpersona</code> to reset your AI persona to the default.</li><li><strong>Full deletion request:</strong> Contact the bot owner using the details in the Contact section.</li></ul><p><strong>Note:</strong> <code>/clearchat</code> deletes AI history stored by the Bot, but does not guarantee deletion of database backups if such backups exist.</p>',
-      'p12.h':'Contact',
-      'p12.b':'<p>For questions about this Privacy Policy, data deletion requests, or data-related concerns, contact:</p><ul><li>Owner: <strong>nova_.inovation</strong></li><li>Support Server: <a href="https://discord.gg/qkyu3G6WMa" target="_blank" rel="noopener">discord.gg/qkyu3G6WMa</a></li><li>Email: <a href="mailto:anhbao27072011@gmail.com">anhbao27072011@gmail.com</a></li></ul>',
-      'foot.tag':'A Discord bot for gamer communities — AI chat, war coordination, events, and moderation.',
-      'foot.legal':'Legal','foot.contact':'Contact','foot.disclaimer':'Not affiliated with Discord Inc.'
-    }
-  };
-
-  function moveLangPill(){
-    var seg=document.getElementById('langSeg'),pill=document.getElementById('langPill');
-    if(!seg||!pill) return;
-    var a=seg.querySelector('.lang-btn.active'); if(!a) return;
-    pill.style.transform='translateX('+a.offsetLeft+'px)';
-    pill.style.width=a.offsetWidth+'px';
-  }
-
-  function bindCopy(){
-    document.querySelectorAll('.copy-btn').forEach(function(btn){
-      if(btn.dataset.b) return; btn.dataset.b='1';
-      btn.addEventListener('click',function(){
-        var pre=btn.closest('.code-block').querySelector('pre'); if(!pre) return;
-        var text=pre.innerText.replace(/\s+$/,'');
-        var orig=btn.textContent;
-        function done(){ btn.textContent='Copied ✓'; btn.classList.add('copied');
-          setTimeout(function(){ btn.textContent=orig; btn.classList.remove('copied'); },1500); }
-        function fb(){ var ta=document.createElement('textarea'); ta.value=text;
-          ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta);
-          ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); }
-        if(navigator.clipboard && window.isSecureContext){
-          navigator.clipboard.writeText(text).then(done,function(){fb();done();});
-        } else { fb(); done(); }
-      });
-    });
-  }
-
-  function setLang(lang){
-    if(lang!=='vi'&&lang!=='en') lang='vi';
-    document.documentElement.lang=lang;
-    var d=I18N[lang]||I18N.vi;
-    document.querySelectorAll('[data-i18n]').forEach(function(el){
-      var k=el.getAttribute('data-i18n'); if(d[k]!=null) el.textContent=d[k];
-    });
-    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
-      var k=el.getAttribute('data-i18n-html'); if(d[k]!=null) el.innerHTML=d[k];
-    });
-    document.querySelectorAll('.lang-btn').forEach(function(b){
-      var on=b.dataset.lang===lang; b.classList.toggle('active',on);
-      b.setAttribute('aria-selected',on?'true':'false');
-    });
-    try{localStorage.setItem('nova-lang',lang);}catch(e){}
-    requestAnimationFrame(moveLangPill);
-    bindCopy();
-  }
-
-  document.getElementById('langSeg').addEventListener('click',function(e){
-    var b=e.target.closest('.lang-btn'); if(!b) return; setLang(b.dataset.lang);
-  });
-
-  var pc=document.getElementById('pc'), pf=document.getElementById('pf');
-  var ptick=false;
-  function updateProgress(){
-    var h=document.documentElement;
-    var st=h.scrollTop||document.body.scrollTop;
-    var max=(h.scrollHeight||document.body.scrollHeight)-h.clientHeight;
-    var p=max>0?Math.min(100,Math.max(0,(st/max)*100)):0;
-    pf.style.width=p+'%';
-    pc.classList.toggle('hide', st<80);
-    ptick=false;
-  }
-  updateProgress();
-  addEventListener('scroll',function(){ if(!ptick){ requestAnimationFrame(updateProgress); ptick=true; } },{passive:true});
-  addEventListener('resize',updateProgress,{passive:true});
-
-  var links=Array.prototype.slice.call(document.querySelectorAll('.toc-link'));
-  var sections=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
-  var list=document.getElementById('tocList');
-  var cap=document.getElementById('tocCap');
-
-  function setActive(id){
-    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+id); });
-    var active=links.find(function(a){ return a.getAttribute('href')==='#'+id; });
-    if(!active){ list.classList.remove('has-active'); return; }
-    list.classList.add('has-active');
-    cap.style.top=active.offsetTop+'px';
-  }
-
-  var atick=false;
-  function updateActive(){
-    var probe=scrollY+innerHeight*.32;
-    var cur=sections.length?sections[0].id:null;
-    for(var i=0;i<sections.length;i++){
-      if(sections[i].offsetTop<=probe) cur=sections[i].id; else break;
-    }
-    if(cur) setActive(cur);
-    atick=false;
-  }
-  if(sections.length){
-    updateActive();
-    addEventListener('scroll',function(){ if(!atick){ requestAnimationFrame(updateActive); atick=true; } },{passive:true});
-    addEventListener('resize',updateActive,{passive:true});
-  }
-
-  var secEls = document.querySelectorAll('.sec');
-  if(reduce || !('IntersectionObserver' in window)){
-    secEls.forEach(function(el){ el.classList.add('in'); });
-  } else {
-    var secObs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('in'); secObs.unobserve(e.target); }
-      });
-    },{threshold:.08, rootMargin:'0px 0px -60px 0px'});
-    secEls.forEach(function(el){ secObs.observe(el); });
-  }
-
-  (function(){
-    var wrap = document.getElementById('particles');
-    if(!wrap) return;
-    var n = window.innerWidth < 700 ? 10 : 18;
-    var frag = document.createDocumentFragment();
-    for(var i=0;i<n;i++){
-      var p = document.createElement('div');
-      p.className = 'particle';
-      var size = Math.random()*2 + .5;
-      p.style.width = size + 'px'; p.style.height = size + 'px';
-      p.style.left = Math.random()*100 + '%';
-      p.style.top = (100 + Math.random()*40) + '%';
-      p.style.animationDuration = (Math.random()*18 + 14) + 's';
-      p.style.animationDelay = (Math.random()*-32) + 's';
-      frag.appendChild(p);
-    }
-    wrap.appendChild(frag);
-  })();
-
-  var toc=document.getElementById('toc'), tocH=document.getElementById('tocH');
-  tocH.addEventListener('click',function(){
-    if(innerWidth>960) return;
-    toc.classList.toggle('open');
-  });
-
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click',function(e){
-      var id=a.getAttribute('href');
-      if(!id || id.length < 2) return;
-      var target=document.querySelector(id);
-      if(!target) return;
-      e.preventDefault();
-      var top=target.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
-      window.scrollTo({top:top, behavior: reduce ? 'auto' : 'smooth'});
-      history.replaceState(null,'',id);
-      if(innerWidth<=960 && toc) toc.classList.remove('open');
-    });
-  });
-
-  var saved=null; try{saved=localStorage.getItem('nova-lang');}catch(e){}
-  setLang(saved||'vi');
-  bindCopy();
-  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){ moveLangPill(); updateActive(); });
-  addEventListener('load',function(){ moveLangPill(); updateActive(); });
-})();
-</script>
+<script src="script.js"></script>
 </body>
 </html>
