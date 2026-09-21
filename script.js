@@ -2,6 +2,7 @@
    NOVA — script.js
    Language switch, mobile nav, feature modals, command search,
    help menu preview, !help <feature> preview.
+   (Admin category removed — not shown publicly.)
    ============================================================ */
 'use strict';
 
@@ -206,7 +207,7 @@ const I18N = {
 };
 
 /* ============================================================
-   FEATURE CATEGORIES
+   FEATURE CATEGORIES (Admin category removed)
    ============================================================ */
 const FEATURES = [
   {
@@ -713,61 +714,11 @@ const FEATURES = [
       { name: "/help", type: "slash", vi: { d: "Bản slash command của Help Menu.", p: "Send Messages" }, en: { d: "Slash command version of the Help Menu.", p: "Send Messages" } },
       { name: "!help <feature>", type: "prefix", vi: { d: "Chỉ hiển thị hướng dẫn chi tiết của một tính năng cụ thể.", p: "Send Messages" }, en: { d: "Show only the detailed help for one specific feature.", p: "Send Messages" }, ex: "!help info" }
     ]
-  },
-  {
-    id: "admin",
-    icon: "🔐",
-    vi: {
-      title: "Admin",
-      short: "Lệnh chỉ dành cho chủ bot.",
-      lead: "Nhóm lệnh quản trị chỉ chủ bot sử dụng được: quản lý API key Cocolink, đồng bộ lệnh và các tiện ích nội bộ.",
-      details: [
-        "Tất cả lệnh trong nhóm này <strong>chỉ chủ bot</strong> sử dụng được.",
-        "Quản lý API key Cocolink: đăng ký, thêm, kiểm tra, thử, xoá và xoá sạch key.",
-        "Đổi nhà cung cấp API và đồng bộ slash command.",
-        "Không có thông tin bí mật nào (token, API key, mật khẩu) được hiển thị trên trang web này."
-      ],
-      perms: ["Bot owner only."],
-      examples: [
-        "!checkkey",
-        "!testkey",
-        "!sync"
-      ]
-    },
-    en: {
-      title: "Admin",
-      short: "Bot-owner-only commands.",
-      lead: "Administrative commands only the bot owner can use: Cocolink API key management, command syncing and internal utilities.",
-      details: [
-        "Every command in this group is <strong>bot owner only</strong>.",
-        "Cocolink API key management: register, add, check, test, delete and clear keys.",
-        "Change the API provider and sync slash commands.",
-        "No secret information (tokens, API keys, passwords) is ever displayed on this website."
-      ],
-      perms: ["Bot owner only."],
-      examples: [
-        "!checkkey",
-        "!testkey",
-        "!sync"
-      ]
-    },
-    commands: [
-      { name: "!reg", type: "prefix", vi: { d: "Đăng ký API key Cocolink.", p: "Bot owner" }, en: { d: "Register a Cocolink API key.", p: "Bot owner" }, owner: true },
-      { name: "!napkey", type: "prefix", vi: { d: "Nạp API key Cocolink.", p: "Bot owner" }, en: { d: "Load a Cocolink API key.", p: "Bot owner" }, owner: true },
-      { name: "!addkey", type: "prefix", vi: { d: "Thêm API key Cocolink.", p: "Bot owner" }, en: { d: "Add a Cocolink API key.", p: "Bot owner" }, owner: true },
-      { name: "!checkkey", type: "prefix", vi: { d: "Kiểm tra trạng thái API key hiện có.", p: "Bot owner" }, en: { d: "Check the status of existing API keys.", p: "Bot owner" }, owner: true },
-      { name: "!testkey", type: "prefix", vi: { d: "Thử nghiệm API key.", p: "Bot owner" }, en: { d: "Test an API key.", p: "Bot owner" }, owner: true },
-      { name: "!delkey", type: "prefix", vi: { d: "Xoá một API key.", p: "Bot owner" }, en: { d: "Delete an API key.", p: "Bot owner" }, owner: true },
-      { name: "!clearkey", type: "prefix", vi: { d: "Xoá sạch toàn bộ API key.", p: "Bot owner" }, en: { d: "Clear all API keys.", p: "Bot owner" }, owner: true },
-      { name: "!random", type: "prefix", vi: { d: "Chọn ngẫu nhiên một API key khả dụng.", p: "Bot owner" }, en: { d: "Pick a random available API key.", p: "Bot owner" }, owner: true },
-      { name: "!changeapi", type: "prefix", vi: { d: "Đổi nhà cung cấp API.", p: "Bot owner" }, en: { d: "Change the API provider.", p: "Bot owner" }, owner: true },
-      { name: "!sync", type: "prefix", vi: { d: "Đồng bộ slash command với Discord.", p: "Bot owner" }, en: { d: "Sync slash commands with Discord.", p: "Bot owner" }, owner: true }
-    ]
   }
 ];
 
 /* ============================================================
-   HELP MENU CATEGORIES (for the in-Discord preview)
+   HELP MENU CATEGORIES (Admin category removed)
    ============================================================ */
 const HELP_CATEGORIES = [
   {
@@ -840,24 +791,6 @@ const HELP_CATEGORIES = [
       text: "A server protection system: when a channel is compromised, Nova processes offenders according to the configured mode.",
       cmds: ["/banzone mode:ban", "/banzone mode:mute duration:10m", "/setbanchannel true|false", "/banwhitelist add @user", "/banwhitelist remove @user", "/banwhitelist list", "/bandebug @user"],
       note: "The whitelist is per-server and only the server owner can manage it. Bot role hierarchy matters."
-    }
-  },
-  {
-    id: "admin",
-    icon: "🔐",
-    vi: { name: "Admin", desc: "Quản lý API key cocolink, khởi động lại bot (chỉ chủ bot)" },
-    en: { name: "Admin", desc: "Manage cocolink API keys, restart bot (bot owner only)" },
-    viBody: {
-      title: "Admin",
-      text: "Nhóm lệnh quản trị chỉ chủ bot sử dụng được. Không có thông tin bí mật nào được hiển thị.",
-      cmds: ["!reg", "!napkey", "!addkey", "!checkkey", "!testkey", "!delkey", "!clearkey", "!random", "!changeapi", "!sync"],
-      note: "Chỉ chủ bot. Không hiển thị token, API key hay mật khẩu."
-    },
-    enBody: {
-      title: "Admin",
-      text: "Administrative commands only the bot owner can use. No secret information is displayed.",
-      cmds: ["!reg", "!napkey", "!addkey", "!checkkey", "!testkey", "!delkey", "!clearkey", "!random", "!changeapi", "!sync"],
-      note: "Bot owner only. Tokens, API keys and passwords are never displayed."
     }
   }
 ];
@@ -1162,30 +1095,25 @@ function setLang(next, save = true) {
   document.documentElement.lang = lang;
   if (save) { try { localStorage.setItem('nova-lang', lang); } catch (e) {} }
 
-  // Static text nodes
   $$('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     const val = I18N[lang][key];
     if (typeof val === 'string') el.innerHTML = val;
   });
-  // Placeholders
   $$('[data-i18n-placeholder]').forEach(el => {
     const val = I18N[lang][el.getAttribute('data-i18n-placeholder')];
     if (val) el.setAttribute('placeholder', val);
   });
-  // HTML blocks (legal)
   $$('[data-i18n-html]').forEach(el => {
     const key = el.getAttribute('data-i18n-html');
     const src = key.startsWith('privacy') ? LEGAL.privacy : LEGAL.terms;
     el.innerHTML = src[lang];
   });
-  // aria
   $$('[data-i18n-aria]').forEach(el => {
     const val = I18N[lang][el.getAttribute('data-i18n-aria')];
     if (val) el.setAttribute('aria-label', val);
   });
 
-  // Segmented control state
   const seg = $('#langSwitch');
   if (seg) {
     seg.setAttribute('data-active', lang);
@@ -1194,7 +1122,6 @@ function setLang(next, save = true) {
     });
   }
 
-  // Re-render dynamic sections
   renderFeatures();
   renderChips();
   renderCommands();
@@ -1204,7 +1131,6 @@ function setLang(next, save = true) {
   if (lastHelpFeature) renderHelpFeature(lastHelpFeature);
   applySearch();
 
-  // Title
   const page = document.body.dataset.page;
   if (page === 'privacy') document.title = (lang === 'vi' ? 'Chính sách bảo mật' : 'Privacy Policy') + ' — Nova';
   else if (page === 'terms') document.title = (lang === 'vi' ? 'Điều khoản dịch vụ' : 'Terms of Service') + ' — Nova';
@@ -1240,7 +1166,6 @@ function renderFeatures() {
     card.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFeature(card.dataset.feature); }
     });
-    // specular highlight
     card.addEventListener('pointermove', e => {
       if (REDUCED) return;
       const r = card.getBoundingClientRect();
@@ -1436,13 +1361,11 @@ function applySearch() {
   groups.hidden = true;
   results.hidden = false;
 
-  // Search commands
   const cmdHits = allCommands().filter(c => {
     const hay = [c.name, c[lang].d, c[lang].p, c.ex, c.featureId].join(' ').toLowerCase();
     return hay.includes(q);
   });
 
-  // Search features
   const featHits = FEATURES.filter(f => {
     const hay = [f[lang].title, f[lang].short, f[lang].lead,
                  (f[lang].details || []).join(' '),
@@ -1450,7 +1373,6 @@ function applySearch() {
     return hay.includes(q);
   });
 
-  // Search help categories
   const helpHits = HELP_CATEGORIES.filter(h => {
     const hay = [h[lang].name, h[lang].desc, h.viBody.title, h.enBody.title].join(' ').toLowerCase();
     return hay.includes(q);
@@ -1661,7 +1583,6 @@ function initImageFallback() {
       img.dataset.fallbackApplied = '1';
       img.src = FALLBACK_AVATAR;
     }, { once: true });
-    // If already failed before JS ran
     if (img.complete && img.naturalWidth === 0) {
       img.dataset.fallbackApplied = '1';
       img.src = FALLBACK_AVATAR;
@@ -1673,7 +1594,6 @@ function initImageFallback() {
    INIT
    ============================================================ */
 function init() {
-  // Language: localStorage > default vi
   let saved = null;
   try { saved = localStorage.getItem('nova-lang'); } catch (e) {}
   lang = (saved === 'en' || saved === 'vi') ? saved : 'vi';
@@ -1681,11 +1601,9 @@ function init() {
   initImageFallback();
   initMobileMenu();
 
-  // Year
   const y = $('#year');
   if (y) y.textContent = new Date().getFullYear();
 
-  // Segmented control
   const seg = $('#langSwitch');
   if (seg) {
     $$('.seg-btn', seg).forEach(b => {
@@ -1693,10 +1611,8 @@ function init() {
     });
   }
 
-  // Modal close
   $$('[data-close-modal]').forEach(el => el.addEventListener('click', closeModal));
 
-  // Search
   const input = $('#searchInput');
   if (input) {
     input.addEventListener('input', applySearch);
@@ -1705,11 +1621,9 @@ function init() {
   const clear = $('#searchClear');
   if (clear) clear.addEventListener('click', () => { if (input) input.value = ''; applySearch(); input && input.focus(); });
 
-  // Help select
   const sel = $('#helpSelect');
   if (sel) sel.addEventListener('change', () => renderHelpCategory(sel.value));
 
-  // Help form
   const form = $('#helpForm');
   if (form) {
     form.addEventListener('submit', e => {
@@ -1718,7 +1632,6 @@ function init() {
     });
   }
 
-  // Smooth scroll for in-page anchors
   $$('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const id = a.getAttribute('href');
@@ -1731,20 +1644,16 @@ function init() {
     });
   });
 
-  // First render
   setLang(lang, false);
 
-  // Default help preview: show AI Chatbot selected
   if (sel && document.body.dataset.page === 'index') {
     sel.value = 'ai';
     renderHelpCategory('ai');
   }
-  // Default !help info preview
   if ($('#helpFeatureOutput') && document.body.dataset.page === 'index') {
     renderHelpFeature('info');
   }
 
-  // Navbar shadow on scroll
   const nav = $('#nav');
   if (nav) {
     let ticking = false;
